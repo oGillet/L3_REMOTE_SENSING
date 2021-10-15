@@ -1,0 +1,15 @@
+name: "remoteSensing_TD"
+navbar:
+  title: "L3 - Télédétection"
+  left:
+    - text: "TD n°1"
+      href: index.html
+  right: 
+    - icon: fa-envelope fa-lg
+      href: mailto:<gillet.olivier@outlook.fr>
+    - icon: fa-github fa-lg
+      href: http://github.com/ogillet/
+output_dir: "docs"
+output:
+  html_document:
+    theme: yeti
