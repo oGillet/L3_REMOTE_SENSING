@@ -10,6 +10,7 @@ navbar:
     - icon: fa-github fa-lg
       href: http://github.com/ogillet/
 output_dir: "docs"
-output:
+output: 
   html_document:
+    keep_md: true
     theme: yeti
