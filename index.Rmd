@@ -82,7 +82,7 @@ Pour le télécharger, après ouverture du SIG QGIS, vous devez vous rendre sur 
 
 # 3 - Grouper les bandes spectrales
 
-La première étape du prétraitement consiste à regrouper les 11 bandes spectrales de l'image satellite. Nous devons réaliser une "LayerStack" des bandes. Il s'agit de grouper des diverses images en un seul objet (une image composée de plusieurs bandes). Une image de plusieurs bandes est plus facile à manipuler que plusieurs images d'une seule bande spectrale. Cela permet un gain de temps lorsque nous devons appliquer une chaîne de traitements sur les données matricielles.  
+La première étape du prétraitement consiste à regrouper les 11 bandes spectrales de l'image satellite. Nous devons réaliser un "LayerStack" des bandes. Il s'agit de grouper diverses images en un seul objet (une seule image composée de plusieurs bandes). Une image de plusieurs bandes est plus facile à manipuler que plusieurs images d'une seule bande spectrale. Cela permet un gain de temps lorsque nous devons appliquer une chaîne de traitements sur les données matricielles.  
 
 > Raster -> Divers -> Construire un rasteur virtuel  
 
@@ -112,7 +112,7 @@ Nous allons ensuite découper l'image satellite et définir la zone d'étude sur
 
 Sélectionnez la bande du Proche Infrarouge (bande  n°5) par exemple en niveau de gris.  
 
-Vous pouvez afficher les valeurs de chaque pixel avec l'outil "Identifier des entités" (CTRL + MAJ + I). Vous dirigez ensuite votre curseur sur le canevas et cliquez sur un pixel quelconque pour obtenir sa valeur radiométrique sur toutes les bandes spectrales. Celles-ci varient en fonction de l'encodage de l'image (les valeurs varient entre 0 et 225 si l'image est codée sur 8 bits par exemple). On parle alors de *résolution radiométrique*. 
+Vous pouvez afficher les valeurs de chaque pixel avec l'outil "Identifier des entités" (CTRL + MAJ + I). Vous devez ensuite diriger votre curseur sur le canevas et cliquez sur un pixel quelconque pour obtenir sa valeur radiométrique sur toutes les bandes spectrales. Celles-ci varient en fonction de l'encodage de l'image (les valeurs varient entre 0 et 225 si l'image est codée sur 8 bits par exemple). On parle alors de *résolution radiométrique*. 
 
 `r emo::ji("question")` Quelle est la résolution spatiale et radiométrique de votre image ? 
 
