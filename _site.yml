@@ -13,3 +13,5 @@ output_dir: "."
 output: 
   html_document:
     theme: yeti
+    toc: true
+    toc_float: true

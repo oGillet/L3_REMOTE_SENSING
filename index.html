@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -222,6 +225,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -229,6 +295,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -292,9 +368,9 @@ text-align: justify}
 3 - Visualiser les images sous QGIS (pseudo-couleur, le rehaussement d’image, les compositions colorées)<br />
 4 - Réaliser des signatures spectrales ainsi que des profils radiométriques</p>
 </div>
-<div id="la-plateforme-de-données-earthexplorer-de-lusgs" class="section level1">
-<h1>La plateforme de données <strong>EarthExplorer</strong> de l’<strong>USGS</strong></h1>
-<p>L’Institut d’études géologiques des États-Unis (United States Geological Survey, USGS) est un organisme gouvernemental américain qui se consacre aux sciences de la Terre. Par exemple, l’une des missions de l’organisme consiste à surveiller activité volcanique et sismique sur l’ensemble du globe. L’USGS et le département de l’agriculture ont impulsé le premier programme spatial d’observation de la Terre destiné à des fins civiles, le programme landsat. Il sera développé au milieu des années 1960 par l’agence spatiale américaine, la NASA. L’USGS, département de l’Intérieur des États-Unis, mettent à disposition gratuitement auprès des utilisateurs du monde entier les données brutes étalonnées Landsat. L’organisme met également à disposition d’autre données comme des MNT, des données issues de capteurs actifs, … La NASA a réalisé 6 lancements de satellites “Landsat” depuis les années 70 (9 satellites au total). Les données utilisées lors des TDs sont issues de la 5ème campagne avec le satellite Landsat 8.</p>
+<div id="earthexplorer-lusgs" class="section level1">
+<h1><strong>EarthExplorer</strong> &amp; l’<strong>USGS</strong></h1>
+<p>L’Institut d’études géologiques des États-Unis (United States Geological Survey, USGS) est un organisme gouvernemental américain qui se consacre aux sciences de la Terre. Par exemple, l’une des missions de l’organisme consiste à surveiller activité volcanique et sismique sur l’ensemble du globe. L’USGS et le département de l’agriculture ont impulsé le premier programme spatial d’observation de la Terre destiné à des fins civiles, le programme landsat. Il sera développé au milieu des années 1960 par l’agence spatiale américaine, la NASA. L’USGS, département de l’Intérieur des États-Unis, mettent à disposition gratuitement auprès des utilisateurs du monde entier les données brutes étalonnées Landsat. L’organisme met également à disposition d’autres données comme des MNT, des données issues de capteurs actifs, … La NASA a réalisé 6 lancements de satellites “Landsat” depuis les années 70 (9 satellites au total). Les données utilisées lors des TDs sont issues de la 5ème campagne avec le satellite Landsat 8.</p>
 <div class="figure">
 <img src="images/l8.jpg" alt="" />
 <p class="caption">Image de synthèse du satellite Landsat 8</p>
@@ -435,22 +511,241 @@ Bande spectrale n°11 - Infrarouge
 </tbody>
 </table>
 </div>
-<div id="télécharger-les-images-de-lembouchure-de-la-seine" class="section level1">
-<h1>Télécharger les images de l’embouchure de la Seine</h1>
+<div id="télécharger-limage-landsat" class="section level1">
+<h1>1 - Télécharger l’image Landsat 🛰</h1>
 <p>1 - <a href="https://ers.cr.usgs.gov/login" class="uri">https://ers.cr.usgs.gov/login</a> (l’inscription est obligatoire pour télécharger les données de l’USGS)<br />
 ⚠️ Le formulaire d’inscription est long et en anglais.<br />
 2 - <a href="https://earthexplorer.usgs.gov/" class="uri">https://earthexplorer.usgs.gov/</a> (lien vers la plateforme de données)<br />
 3 - Télécharger les données depuis la plateforme</p>
-<p>Vous devez télécharger l’image de l’embouchure de la Seine acquise le 2021/06/14 (Landsat 8 OLI/TIRS C2 L1).</p>
-<p><img src="images/usgs.png" alt="Plateforme de téléchargement de l’USGS - EarthExplorer" /> - Images Landsat 8 - Layerstack - Clip - Information pixel - Profil radiométrique - Histogramme - Différence bandes (réfléctance, IR, etc ) - Stretch local, global</p>
+<p>Vous devez télécharger l’image du nord Finistère acquise le 2017/08/28 (Landsat 8 OLI/TIRS C2 L1) et extraire les images.</p>
+<div class="figure">
+<img src="images/USGS.png" alt="" />
+<p class="caption">Plateforme de téléchargement de l’USGS - EarthExplorer</p>
+</div>
+</div>
+<div id="télécharger-le-plugin-sac-et-profiltool" class="section level1">
+<h1>2 - Télécharger le plugin SAC et ProfilTool</h1>
+<p>QGIS n’est pas un logiciel de traitement d’images comme IDRISI ou ENVI. Pour explorer et/ou manipuler graphiquement des images satellitaires via le Système d’Information Géographique (SIG, QGIS), nous devons installer deux plugins “Semi-Automatic Classification” et “Profile Tool”. Ce premier plugin open-source a été développé par Luca Congedo pour la classification semi-automatique (ou classification supervisée) des images satellitaires. L’outil est très complet car il fournit des outils de téléchargement, de pré/post traitements des images.</p>
+<p>Pour le télécharger, après ouverture du SIG QGIS, vous devez vous rendre sur la fenêtre “Installer/Gérer les extensions” et installer le plugin “Semi-Automatic Classification”:</p>
+<blockquote>
+<p>Extensions -&gt; Installer/Gérer les extensions</p>
+</blockquote>
+<p><img src="images/SACP.png" alt="Plugin ‘Semi Automatic Classification’" /> <em>Congedo, L., (2021). Semi-Automatic Classification Plugin: A Python tool for the download and processing of remote sensing images in QGIS. Journal of Open Source Software, 6(64), 3172, <a href="https://doi.org/10.21105/joss.03172" class="uri">https://doi.org/10.21105/joss.03172</a></em></p>
+<div class="figure">
+<img src="images/profiltool.png" alt="" />
+<p class="caption">Plugin ‘Profile Tool’</p>
+</div>
+</div>
+<div id="grouper-les-bandes-spectrales" class="section level1">
+<h1>3 - Grouper les bandes spectrales</h1>
+<p>La première étape du prétraitement consiste à regrouper les 11 bandes spectrales de l’image satellite. Nous devons réaliser une “LayerStack” des bandes. Il s’agit de grouper des diverses images en un seul objet (une image composée de plusieurs bandes). Une image de plusieurs bandes est plus facile à manipuler que plusieurs images d’une seule bande spectrale. Cela permet un gain de temps lorsque nous devons appliquer une chaîne de traitements sur les données matricielles.</p>
+<blockquote>
+<p>Raster -&gt; Divers -&gt; Construire un rasteur virtuel</p>
+</blockquote>
+<p>⚠️ N’oubliez pas de cocher l’option “Place each input file into a separate band”</p>
+<p>Le fichier créé par l’outil est format <em>.vrt</em>. Exporter ce fichier dans un autre format, en <em>.tif</em>.</p>
+<blockquote>
+<p>Clic droit sur l’image -&gt; Exporter -&gt; Enregistrer sous …</p>
+</blockquote>
+<p>Votre image doit être composée de 11 bandes spectrales et projetée en WGS84 UTM 30n (EPSG:32630) 🌏</p>
+</div>
+<div id="découper-limage-satellite" class="section level1">
+<h1>4 - Découper l’image satellite</h1>
+<p>Nous allons ensuite découper l’image satellite et définir la zone d’étude sur la ville de Brest et sa rade. Zoomez sur votre zone d’étude puis trouvez l’outil suivant :</p>
+<blockquote>
+<p>Raster -&gt; Extraire -&gt; Découper un raster selon une emprise</p>
+</blockquote>
+<p>🔍 Choisissez l’option “Utilisez l’emprise du canevas de carte” dans “Etendue de découpage”.<br />
+⚠️ Vous pouvez supprimer les deux couches précédentes afin de libérer de la mémoire (le fichier en .vrt et en .tif)</p>
+<div class="figure">
+<img src="images/sig1.png" alt="" />
+<p class="caption">Image satellite dans QGIS après la phase de prétraitement’</p>
+</div>
+</div>
+<div id="visualer-limage" class="section level1">
+<h1>5 - Visualer l’image 💻</h1>
+<div id="en-niveau-de-gris" class="section level2">
+<h2>En niveau de gris</h2>
+<blockquote>
+<p>Clic droit sur l’image -&gt; Propriétés -&gt; Symbologie -&gt; Type de rendu -&gt; Bande grise unique</p>
+</blockquote>
+<p>Sélectionnez la bande du Proche Infrarouge (bande n°5) par exemple en niveau de gris.</p>
+<p>Vous pouvez afficher les valeurs de chaque pixel avec l’outil “Identifier des entités” (CTRL + MAJ + I). Vous dirigez ensuite votre curseur sur le canevas et cliquez sur un pixel quelconque pour obtenir sa valeur radiométrique sur toutes les bandes spectrales. Celles-ci varient en fonction de l’encodage de l’image (les valeurs varient entre 0 et 225 si l’image est codée sur 8 bits par exemple). On parle alors de <em>résolution radiométrique</em>.</p>
+<p>❓ Quelle est la résolution spatiale et radiométrique de votre image ?</p>
+<p><strong>Rappel</strong></p>
 <ul>
-<li>Les signatures spectrales des surfaces naturelles et anthropiques dans le domaine du visible, du proche infrarouge et du moyen infrarouge.</li>
-<li>Les réflectances des sols, de la végétation et de l’eau en fonction de la turbidité ou de la teneur en chlorophylle.</li>
+<li>Entre 0,3 à 3 µm, la signature spectrale correspond à la réflectance<br />
+</li>
+<li>Partie thermique du spectre (3 µm à quelques cm), la signature correspond à la température</li>
 </ul>
+<div class="figure">
+<img src="images/sigPIR.png" alt="" />
+<p class="caption">Image satellite dans QGIS ’</p>
+</div>
+<blockquote>
+<p>Clic droit sur l’image -&gt; Propriétés -&gt; Symbologie -&gt; Type de rendu -&gt; Couleurs à bandes multiples</p>
+</blockquote>
+<p>Vous pouvez afficher l’histogramme de fréquence de votre image. C’est une manière simple de visualiser du contenu des données et de la répartition des valeurs de réflectance ou d’émittance. L’axe horizontal représente les valeurs de pixels, donc ici les valeurs radiométriques. L’axe vertical représente la fréquence d’une valeur donnée.</p>
+<div class="figure">
+<img src="images/sigHIST.png" alt="" />
+<p class="caption">Histogramme de fréquence de la bande du Proche Infrarouge</p>
+</div>
+<p>Réalisez l’exercice suivante. Indiquez les valeurs radiométriques de chaque objet :</p>
+<table class=" lightable-paper" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Objet
+</th>
+<th style="text-align:left;">
+Coordonnées
+</th>
+<th style="text-align:left;">
+Bande.2
+</th>
+<th style="text-align:left;">
+Bande.3
+</th>
+<th style="text-align:left;">
+Bande.4
+</th>
+<th style="text-align:left;">
+Bande.5
+</th>
+<th style="text-align:left;">
+Bande.10
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Surface en eau
+</td>
+<td style="text-align:left;">
+392072.7,5359053.6
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Forêt
+</td>
+<td style="text-align:left;">
+385242.57,5360070.59
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Champ
+</td>
+<td style="text-align:left;">
+399230.7,5364553.8
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Bâtiment
+</td>
+<td style="text-align:left;">
+392349.9,5359921.0
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="en-pseudo-couleur-vraiefausse-couleur" class="section level2">
+<h2>En pseudo-couleur (vraie/fausse couleur)</h2>
+<blockquote>
+<p>Clic droit sur l’image -&gt; Propriétés -&gt; Symbologie -&gt; Type de rendu -&gt; Couleurs à bandes multiples</p>
+</blockquote>
+<p>❓ Selon vous, quelle est la combinaison des bandes spectrales pour afficher l’image en pseudo-couleur naturelle ?</p>
+<div class="figure">
+<img src="images/sig2.png" alt="" />
+<p class="caption">Image satellite dans QGIS en pseudo-couleur naturelle’</p>
+</div>
+<p>Maintenant, nous allons réaliser une composition en infrarouge colorée, ou fausses couleurs. Elle a pour objectif de faire apparaître la végétation.</p>
+<ul>
+<li>La bande 5 en rouge, la bande 4 en vert, la bande 3 en bleu (5R, 4V, 3B ou 5,4,3)</li>
+</ul>
+<div class="figure">
+<img src="images/sig3.png" alt="" />
+<p class="caption">Image satellite dans QGIS en infrarouge colorée’</p>
+</div>
+<p>❓ Selon vous, que signifie les couleurs de la composition colorée ?</p>
+<p>Vous pouvez essayer diverses compositions comme les suivantes:</p>
+<ul>
+<li>la bande 5 en rouge, la bande 4 en vert, la bande 2 en bleu (5R, 4V, 2B ou 5,4,2)<br />
+</li>
+<li>la bande 5 en rouge, la bande 4 en vert, la bande 1 en bleu (5R, 4V, 1B ou 5,4,1)<br />
+</li>
+<li>la bande 4 en rouge, la bande 3 en vert et la bande 1 en bleu (4R, 3V, 1B ou 4,3,1)</li>
+</ul>
+</div>
+</div>
+<div id="les-profils-radiométriques" class="section level1">
+<h1>6 - Les profils radiométriques 📊</h1>
+<blockquote>
+<p>Extensions -&gt; Profile tool -&gt; Terrain profil</p>
+</blockquote>
+<div class="figure">
+<img src="images/sigProfile.png" alt="" />
+<p class="caption">Profil radiométrique dans la bande du PIR</p>
+</div>
+<p>❓ Exercice, réaliser un seul graphique avec le profil radiométrique de la bande spectrale n°2,3,4,5 et 10.</p>
+</div>
+<div id="les-signatures-spectrales" class="section level1">
+<h1>7 - Les signatures spectrales 📊</h1>
+<p>Chaque objet, à cause de leurs caractéristiques intrinsèques, possède sa propre réponse spectrale, signature spectrale (quantité d’énergie émise ou réfléchie en fonction de la longueur d’onde). Les objets peuvent être ainsi identifiés sur les images satellitaires grâce à leur signature spectrale.</p>
+<div class="figure">
+<img src="images/spectral_signatures.jpg" alt="" />
+<p class="caption">Signature spectrale des surfaces en eau, minérales etvégétalisées <em><a href="https://remotesensing529.wordpress.com" class="uri">https://remotesensing529.wordpress.com</a></em></p>
+</div>
 </div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -483,6 +778,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
