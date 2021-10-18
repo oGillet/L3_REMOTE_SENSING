@@ -75,10 +75,10 @@ Pour le télécharger, après ouverture du SIG QGIS, vous devez vous rendre sur 
 
 > Extensions -> Installer/Gérer les extensions
 
-![Plugin 'Semi Automatic Classification'](images/SACP.png)
+![Plugin 'Semi Automatic Classification](images/SACP.png)
 *Congedo, L., (2021). Semi-Automatic Classification Plugin: A Python tool for the download and processing of remote sensing images in QGIS. Journal of Open Source Software, 6(64), 3172, https://doi.org/10.21105/joss.03172*  
 
-![Plugin 'Profile Tool'](images/profiltool.png)
+![Plugin 'Profile Tool](images/profiltool.png)
 
 # 3 - Grouper les bandes spectrales
 
@@ -103,7 +103,7 @@ Nous allons ensuite découper l'image satellite et définir la zone d'étude sur
 `r emo::ji("zoom")`  Choisissez l'option "Utilisez l'emprise du canevas de carte" dans "Etendue de découpage".  
 `r emo::ji("warning")` Vous pouvez supprimer les deux couches précédentes afin de libérer de la mémoire (le fichier en .vrt et en .tif)
 
-![Image satellite dans QGIS après la phase de prétraitement'](images/sig1.png)
+![Image satellite dans QGIS après la phase de prétraitement](images/sig1.png)
 
 # 5 - Visualer l'image `r emo::ji("screen")`
 ## En niveau de gris
@@ -121,7 +121,7 @@ __Rappel__
 - Entre 0,3 à 3 µm, la signature spectrale correspond à la réflectance  
 - Partie thermique du spectre (3 µm à quelques cm), la signature correspond à la température  
 
-![Image satellite dans QGIS '](images/sigPIR.png)
+![Image satellite en niveau de gris dans QGIS](images/sigPIR.png)
 
 > Clic droit sur l'image -> Propriétés -> Symbologie  -> Type de rendu -> Couleurs à bandes multiples  
 
@@ -156,7 +156,7 @@ Maintenant, nous allons réaliser une composition en infrarouge colorée, ou fau
 
 + La bande 5 en rouge, la bande 4 en vert, la bande 3 en bleu (5R, 4V, 3B ou 5,4,3) 
 
-![Image satellite dans QGIS en infrarouge colorée'](images/sig3.png)
+![Image satellite dans QGIS en infrarouge colorée](images/sig3.png)
 
 `r emo::ji("question")` Selon vous, que signifie les couleurs de la composition colorée ?
 
