@@ -1,9 +1,6 @@
 ---
-title: ' '
-output:
-  word_document: default
-  html_document: default
-  pdf_document: default
+title: " "
+output: html_document
 ---
 
 <style>
