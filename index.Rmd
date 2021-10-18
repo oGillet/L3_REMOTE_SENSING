@@ -45,7 +45,7 @@ L'Institut d'études géologiques des États-Unis (United States Geological Surv
 ```{r}
 df <- data.frame(
   # "Capteur"= c(rep("OLI", 9),rep("TIRS", 2)),
-                 "Bandes"=c("Bande spectrale n°1 - aérosols","Bande spectrale n°2 - Bleu","Bande spectrale n°3 - Vert","Bande spectrale n°4 - Rouge","Bande spectrale n°5 - Proche Infrarouge","Bande spectrale n°6 - Moyen Infrarouge","Bande spectrale n°7 - Moyen Infrarouge","Bande spectrale n°8 - Panchromatique","Bande spectrale n°9 - Cirrus", "Bande spectrale n°10 - Infrarouge", "Bande spectrale n°11 - Infrarouge"),
+                 "Bandes"=c("Bande spectrale n°1 - aérosols","Bande spectrale n°2 - Bleu","Bande spectrale n°3 - Vert","Bande spectrale n°4 - Rouge","Bande spectrale n°5 - Infrarouge proche","Bande spectrale n°6 - Infrarouge à ondes courtes","Bande spectrale n°7 - Infrarouge à ondes courtes","Bande spectrale n°8 - Panchromatique","Bande spectrale n°9 - Cirrus", "Bande spectrale n°10 - Infrarouge à grande longueur d'onde", "Bande spectrale n°11 - Infrarouge à grande longueur d'onde"),
                  "Longueur onde"=c("0.433 - 0.453 µm","0.450 - 0.515 µm","0.525 - 0.600 µm","0.630 - 0.680 µm","0.845 - 0.885 µm","1.560 - 1.660 µm","2.100 - 2.300 µm","0.500 - 0.680 µm","1.360 - 1.390 µm","10.30 - 11.30 µm", "11.50 - 12.50 µm"),
                  "Résolution"=c("30 m","30 m","30 m","30 m","30 m","30 m","30 m","15 m","30 m","100 m","100 m"))
 
@@ -118,7 +118,7 @@ Vous pouvez afficher les valeurs de chaque pixel avec l'outil "Identifier des en
 
 __Rappel__   
 
-- Entre 0,3 à 3 µm, la signature spectrale correspond à la réflectance  
+- Entre 0,3 à 0.8 µm, la signature spectrale correspond à la réflectance  
 - Partie thermique du spectre (3 µm à quelques cm), la signature correspond à la température  
 
 ![Image satellite en niveau de gris dans QGIS](images/sigPIR.png)
