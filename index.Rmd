@@ -36,7 +36,7 @@ Le TD va se dérouler en 4 temps :
 3 - Visualiser les images sous QGIS (pseudo-couleur, le rehaussement d'image, les compositions colorées)  
 4 - Réaliser des signatures spectrales ainsi que des profils radiométriques  
 
-# **EarthExplorer** & l'**USGS**  
+# **EarthExplorer** & **l'USGS**  
 
 L'Institut d'études géologiques des États-Unis (United States Geological Survey, USGS) est un organisme gouvernemental américain qui se consacre aux sciences de la Terre. Par exemple, l'une des missions de l'organisme consiste à surveiller activité volcanique et sismique sur l'ensemble du globe.  L'USGS et le département de l'agriculture ont impulsé le premier programme spatial d'observation de la Terre destiné à des fins civiles, le programme landsat. Il sera développé au milieu des années 1960 par l'agence spatiale américaine, la NASA. L'USGS, département de l'Intérieur des États-Unis, mettent à disposition gratuitement auprès des utilisateurs du monde entier les données brutes étalonnées Landsat. L'organisme met également à disposition d'autres données comme des MNT, des données issues de capteurs actifs, ... La NASA a réalisé 6 lancements de satellites "Landsat" depuis les années 70 (9 satellites au total). Les données utilisées lors des TDs sont issues de la 5ème campagne avec le satellite Landsat 8. 
 
@@ -123,7 +123,7 @@ __Rappel__
 
 ![Image satellite en niveau de gris dans QGIS](images/sigPIR.png)
 
-> Clic droit sur l'image -> Propriétés -> Symbologie  -> Type de rendu -> Couleurs à bandes multiples  
+> Clic droit sur l'image -> Propriétés -> Histogramme 
 
 Vous pouvez afficher l'histogramme de fréquence de votre image.  C'est une manière simple de visualiser du contenu des données et de la répartition des valeurs de réflectance ou d'émittance. L'axe horizontal représente les valeurs de pixels, donc ici les valeurs radiométriques. L'axe vertical représente la fréquence d'une valeur donnée.
 
@@ -138,7 +138,8 @@ df <- data.frame("Objet"=c("Surface en eau", "Forêt", "Champ", "Bâtiment"),
                  "Bande.3"=c(rep("  ",4)),
                  "Bande.4"=c(rep("  ",4)),
                  "Bande.5"=c(rep("  ",4)),
-                 "Bande.10"=c(rep("  ",4)))
+                 "Bande.6"=c(rep("  ",4)),
+                 "Bande.7"=c(rep("  ",4)))
 
 kbl(df) %>%
   kable_paper(full_width = T) %>%
@@ -158,7 +159,7 @@ Maintenant, nous allons réaliser une composition en infrarouge colorée, ou fau
 
 ![Image satellite dans QGIS en infrarouge colorée](images/sig3.png)
 
-`r emo::ji("question")` Selon vous, que signifie les couleurs de la composition colorée ?
+`r emo::ji("question")` Selon vous, que signifie les couleurs de la composition ?
 
 Vous pouvez essayer diverses compositions comme les suivantes:  
 
@@ -172,10 +173,12 @@ Vous pouvez essayer diverses compositions comme les suivantes:
 
 ![Profil radiométrique dans la bande du PIR](images/sigProfile.png)
 
-`r emo::ji("question")` Exercice, réaliser un seul graphique avec le profil radiométrique de la bande spectrale n°2,3,4,5 et 10.
+`r emo::ji("question")` Exercice - réalisez un seul graphique avec le profil radiométrique de la bande spectrale n°2,3,4,5 et 10.
 
 # 7 - Les signatures spectrales `r emo::ji("stats")`
 
 Chaque objet, à cause de leurs caractéristiques intrinsèques, possède sa propre réponse spectrale, signature spectrale (quantité d'énergie émise ou réfléchie en fonction de la longueur d'onde). Les objets peuvent être ainsi identifiés sur les images satellitaires grâce à leur signature spectrale. 
 
 ![Signature spectrale des surfaces en eau, minérales etvégétalisées *https://remotesensing529.wordpress.com*](images/spectral_signatures.jpg)
+
+`r emo::ji("question")` Exercice - Tracez les différentes signatures spectrales sous Excel avec les données de votre précédent tableaux.
