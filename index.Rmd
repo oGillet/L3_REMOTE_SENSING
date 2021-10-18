@@ -106,7 +106,7 @@ Nous allons ensuite découper l'image satellite et définir la zone d'étude sur
 ![Image satellite dans QGIS après la phase de prétraitement](images/sig1.png)
 
 # 5 - Visualer l'image `r emo::ji("screen")`
-## En niveau de gris
+### En niveau de gris
 
 > Clic droit sur l'image -> Propriétés -> Symbologie  -> Type de rendu -> Bande grise unique
 
@@ -146,7 +146,7 @@ kbl(df) %>%
   column_spec(1, bold = T) 
 ```
 
-## En pseudo-couleur (vraie/fausse couleur)
+### En pseudo-couleur (vraie/fausse couleur)
 > Clic droit sur l'image -> Propriétés -> Symbologie  -> Type de rendu -> Couleurs à bandes multiples
 
 `r emo::ji("question")` Selon vous, quelle est la combinaison des bandes spectrales pour afficher l'image en pseudo-couleur naturelle ? 
@@ -173,7 +173,7 @@ Vous pouvez essayer diverses compositions comme les suivantes:
 
 ![Profil radiométrique dans la bande du PIR](images/sigProfile.png)
 
-`r emo::ji("question")` Exercice - réalisez un seul graphique avec le profil radiométrique de la bande spectrale n°2,3,4,5 et 10.
+`r emo::ji("question")` Exercice - Réalisez un seul graphique avec le profil radiométrique de la bande spectrale n°2,3,4,5 et 10.
 
 # 7 - Les signatures spectrales `r emo::ji("stats")`
 
