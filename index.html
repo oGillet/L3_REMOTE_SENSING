@@ -369,8 +369,8 @@ text-align: justify}
 4 - Réaliser des signatures spectrales ainsi que des profils radiométriques</p>
 </div>
 <div id="earthexplorer-lusgs" class="section level1">
-<h1><strong>EarthExplorer</strong> &amp; l’<strong>USGS</strong></h1>
-<p>L’Institut d’études géologiques des États-Unis (United States Geological Survey, USGS) est un organisme gouvernemental américain qui se consacre aux sciences de la Terre. Par exemple, l’une des missions de l’organisme consiste à surveiller activité volcanique et sismique sur l’ensemble du globe. L’USGS et le département de l’agriculture ont impulsé le premier programme spatial d’observation de la Terre destiné à des fins civiles, le programme landsat. Il sera développé au milieu des années 1960 par l’agence spatiale américaine, la NASA. L’USGS, département de l’Intérieur des États-Unis, mettent à disposition gratuitement auprès des utilisateurs du monde entier les données brutes étalonnées Landsat. L’organisme met également à disposition d’autres données comme des MNT, des données issues de capteurs actifs, … La NASA a réalisé 6 lancements de satellites “Landsat” depuis les années 70 (9 satellites au total). Les données utilisées lors des TDs sont issues de la 5ème campagne avec le satellite Landsat 8.</p>
+<h1><strong>EarthExplorer</strong> &amp; <strong>l’USGS</strong></h1>
+<p>L’Institut d’études géologiques des États-Unis (United States Geological Survey, USGS) est un organisme gouvernemental américain qui se consacre aux sciences de la Terre. Par exemple, l’une des missions de l’organisme consiste à surveiller activité volcanique et sismique sur l’ensemble du globe. L’USGS et le département de l’agriculture ont impulsé le premier programme spatial d’observation de la Terre destiné à des fins civiles, le programme landsat. Il sera développé au milieu des années 1960 par l’agence spatiale américaine, la NASA. L’USGS, département de l’Intérieur des États-Unis, met à disposition gratuitement pour le monde entier les données brutes étalonnées Landsat. L’organisme met également à disposition d’autres données comme des MNT, des données issues de capteurs actifs, … La NASA a réalisé 6 lancements de satellites “Landsat” depuis les années 70 (9 satellites au total). Les données utilisées lors des TDs sont issues de la 5ème campagne avec le satellite Landsat 8.</p>
 <div class="figure">
 <img src="images/l8.jpg" alt="" />
 <p class="caption">Image de synthèse du satellite Landsat 8</p>
@@ -530,10 +530,10 @@ Bande spectrale n°11 - Infrarouge
 <blockquote>
 <p>Extensions -&gt; Installer/Gérer les extensions</p>
 </blockquote>
-<p><img src="images/SACP.png" alt="Plugin ‘Semi Automatic Classification’" /> <em>Congedo, L., (2021). Semi-Automatic Classification Plugin: A Python tool for the download and processing of remote sensing images in QGIS. Journal of Open Source Software, 6(64), 3172, <a href="https://doi.org/10.21105/joss.03172" class="uri">https://doi.org/10.21105/joss.03172</a></em></p>
+<p><img src="images/SACP.png" alt="Plugin ’Semi Automatic Classification" /> <em>Congedo, L., (2021). Semi-Automatic Classification Plugin: A Python tool for the download and processing of remote sensing images in QGIS. Journal of Open Source Software, 6(64), 3172, <a href="https://doi.org/10.21105/joss.03172" class="uri">https://doi.org/10.21105/joss.03172</a></em></p>
 <div class="figure">
 <img src="images/profiltool.png" alt="" />
-<p class="caption">Plugin ‘Profile Tool’</p>
+<p class="caption">Plugin ’Profile Tool</p>
 </div>
 </div>
 <div id="grouper-les-bandes-spectrales" class="section level1">
@@ -547,7 +547,7 @@ Bande spectrale n°11 - Infrarouge
 <blockquote>
 <p>Clic droit sur l’image -&gt; Exporter -&gt; Enregistrer sous …</p>
 </blockquote>
-<p>Votre image doit être composée de 11 bandes spectrales et projetée en WGS84 UTM 30n (EPSG:32630) 🌏</p>
+<p>Votre image doit être composée de 11 bandes spectrales et projetée en WGS84 UTM 30n (EPSG:32630) 🌎</p>
 </div>
 <div id="découper-limage-satellite" class="section level1">
 <h1>4 - Découper l’image satellite</h1>
@@ -559,7 +559,7 @@ Bande spectrale n°11 - Infrarouge
 ⚠️ Vous pouvez supprimer les deux couches précédentes afin de libérer de la mémoire (le fichier en .vrt et en .tif)</p>
 <div class="figure">
 <img src="images/sig1.png" alt="" />
-<p class="caption">Image satellite dans QGIS après la phase de prétraitement’</p>
+<p class="caption">Image satellite dans QGIS après la phase de prétraitement</p>
 </div>
 </div>
 <div id="visualer-limage" class="section level1">
@@ -580,10 +580,10 @@ Bande spectrale n°11 - Infrarouge
 </ul>
 <div class="figure">
 <img src="images/sigPIR.png" alt="" />
-<p class="caption">Image satellite dans QGIS ’</p>
+<p class="caption">Image satellite en niveau de gris dans QGIS</p>
 </div>
 <blockquote>
-<p>Clic droit sur l’image -&gt; Propriétés -&gt; Symbologie -&gt; Type de rendu -&gt; Couleurs à bandes multiples</p>
+<p>Clic droit sur l’image -&gt; Propriétés -&gt; Histogramme</p>
 </blockquote>
 <p>Vous pouvez afficher l’histogramme de fréquence de votre image. C’est une manière simple de visualiser du contenu des données et de la répartition des valeurs de réflectance ou d’émittance. L’axe horizontal représente les valeurs de pixels, donc ici les valeurs radiométriques. L’axe vertical représente la fréquence d’une valeur donnée.</p>
 <div class="figure">
@@ -613,7 +613,10 @@ Bande.4
 Bande.5
 </th>
 <th style="text-align:left;">
-Bande.10
+Bande.6
+</th>
+<th style="text-align:left;">
+Bande.7
 </th>
 </tr>
 </thead>
@@ -624,6 +627,8 @@ Surface en eau
 </td>
 <td style="text-align:left;">
 392072.7,5359053.6
+</td>
+<td style="text-align:left;">
 </td>
 <td style="text-align:left;">
 </td>
@@ -653,6 +658,8 @@ Forêt
 </td>
 <td style="text-align:left;">
 </td>
+<td style="text-align:left;">
+</td>
 </tr>
 <tr>
 <td style="text-align:left;font-weight: bold;">
@@ -671,6 +678,8 @@ Champ
 </td>
 <td style="text-align:left;">
 </td>
+<td style="text-align:left;">
+</td>
 </tr>
 <tr>
 <td style="text-align:left;font-weight: bold;">
@@ -678,6 +687,8 @@ Bâtiment
 </td>
 <td style="text-align:left;">
 392349.9,5359921.0
+</td>
+<td style="text-align:left;">
 </td>
 <td style="text-align:left;">
 </td>
@@ -709,9 +720,9 @@ Bâtiment
 </ul>
 <div class="figure">
 <img src="images/sig3.png" alt="" />
-<p class="caption">Image satellite dans QGIS en infrarouge colorée’</p>
+<p class="caption">Image satellite dans QGIS en infrarouge colorée</p>
 </div>
-<p>❓ Selon vous, que signifie les couleurs de la composition colorée ?</p>
+<p>❓ Selon vous, que signifie les couleurs de la composition ?</p>
 <p>Vous pouvez essayer diverses compositions comme les suivantes:</p>
 <ul>
 <li>la bande 5 en rouge, la bande 4 en vert, la bande 2 en bleu (5R, 4V, 2B ou 5,4,2)<br />
@@ -731,7 +742,7 @@ Bâtiment
 <img src="images/sigProfile.png" alt="" />
 <p class="caption">Profil radiométrique dans la bande du PIR</p>
 </div>
-<p>❓ Exercice, réaliser un seul graphique avec le profil radiométrique de la bande spectrale n°2,3,4,5 et 10.</p>
+<p>❓ Exercice - réalisez un seul graphique avec le profil radiométrique de la bande spectrale n°2,3,4,5 et 10.</p>
 </div>
 <div id="les-signatures-spectrales" class="section level1">
 <h1>7 - Les signatures spectrales 📊</h1>
@@ -740,6 +751,7 @@ Bâtiment
 <img src="images/spectral_signatures.jpg" alt="" />
 <p class="caption">Signature spectrale des surfaces en eau, minérales etvégétalisées <em><a href="https://remotesensing529.wordpress.com" class="uri">https://remotesensing529.wordpress.com</a></em></p>
 </div>
+<p>❓ Exercice - Tracez les différentes signatures spectrales sous Excel avec les données de votre précédent tableaux.</p>
 </div>
 
 
