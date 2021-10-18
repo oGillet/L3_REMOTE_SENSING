@@ -368,8 +368,8 @@ text-align: justify}
 3 - Visualiser les images sous QGIS (pseudo-couleur, le rehaussement d’image, les compositions colorées)<br />
 4 - Réaliser des signatures spectrales ainsi que des profils radiométriques</p>
 </div>
-<div id="earthexplorer-lusgs" class="section level1">
-<h1><strong>EarthExplorer</strong> &amp; <strong>l’USGS</strong></h1>
+<div id="earthexplorer-usgs" class="section level1">
+<h1><strong>EarthExplorer</strong> &amp; <strong>USGS</strong></h1>
 <p>L’Institut d’études géologiques des États-Unis (United States Geological Survey, USGS) est un organisme gouvernemental américain qui se consacre aux sciences de la Terre. Par exemple, l’une des missions de l’organisme consiste à surveiller activité volcanique et sismique sur l’ensemble du globe. L’USGS et le département de l’agriculture ont impulsé le premier programme spatial d’observation de la Terre destiné à des fins civiles, le programme landsat. Il sera développé au milieu des années 1960 par l’agence spatiale américaine, la NASA. L’USGS, département de l’Intérieur des États-Unis, met à disposition gratuitement pour le monde entier les données brutes étalonnées Landsat. L’organisme met également à disposition d’autres données comme des MNT, des données issues de capteurs actifs, … La NASA a réalisé 6 lancements de satellites “Landsat” depuis les années 70 (9 satellites au total). Les données utilisées lors des TDs sont issues de la 5ème campagne avec le satellite Landsat 8.</p>
 <div class="figure">
 <img src="images/l8.jpg" alt="" />
@@ -538,7 +538,7 @@ Bande spectrale n°11 - Infrarouge
 </div>
 <div id="grouper-les-bandes-spectrales" class="section level1">
 <h1>3 - Grouper les bandes spectrales</h1>
-<p>La première étape du prétraitement consiste à regrouper les 11 bandes spectrales de l’image satellite. Nous devons réaliser une “LayerStack” des bandes. Il s’agit de grouper des diverses images en un seul objet (une image composée de plusieurs bandes). Une image de plusieurs bandes est plus facile à manipuler que plusieurs images d’une seule bande spectrale. Cela permet un gain de temps lorsque nous devons appliquer une chaîne de traitements sur les données matricielles.</p>
+<p>La première étape du prétraitement consiste à regrouper les 11 bandes spectrales de l’image satellite. Nous devons réaliser un “LayerStack” des bandes. Il s’agit de grouper diverses images en un seul objet (une seule image composée de plusieurs bandes). Une image de plusieurs bandes est plus facile à manipuler que plusieurs images d’une seule bande spectrale. Cela permet un gain de temps lorsque nous devons appliquer une chaîne de traitements sur les données matricielles.</p>
 <blockquote>
 <p>Raster -&gt; Divers -&gt; Construire un rasteur virtuel</p>
 </blockquote>
@@ -564,13 +564,13 @@ Bande spectrale n°11 - Infrarouge
 </div>
 <div id="visualer-limage" class="section level1">
 <h1>5 - Visualer l’image 💻</h1>
-<div id="en-niveau-de-gris" class="section level2">
-<h2>En niveau de gris</h2>
+<div id="en-niveau-de-gris" class="section level3">
+<h3>En niveau de gris</h3>
 <blockquote>
 <p>Clic droit sur l’image -&gt; Propriétés -&gt; Symbologie -&gt; Type de rendu -&gt; Bande grise unique</p>
 </blockquote>
 <p>Sélectionnez la bande du Proche Infrarouge (bande n°5) par exemple en niveau de gris.</p>
-<p>Vous pouvez afficher les valeurs de chaque pixel avec l’outil “Identifier des entités” (CTRL + MAJ + I). Vous dirigez ensuite votre curseur sur le canevas et cliquez sur un pixel quelconque pour obtenir sa valeur radiométrique sur toutes les bandes spectrales. Celles-ci varient en fonction de l’encodage de l’image (les valeurs varient entre 0 et 225 si l’image est codée sur 8 bits par exemple). On parle alors de <em>résolution radiométrique</em>.</p>
+<p>Vous pouvez afficher les valeurs de chaque pixel avec l’outil “Identifier des entités” (CTRL + MAJ + I). Vous devez ensuite diriger votre curseur sur le canevas et cliquez sur un pixel quelconque pour obtenir sa valeur radiométrique sur toutes les bandes spectrales. Celles-ci varient en fonction de l’encodage de l’image (les valeurs varient entre 0 et 225 si l’image est codée sur 8 bits par exemple). On parle alors de <em>résolution radiométrique</em>.</p>
 <p>❓ Quelle est la résolution spatiale et radiométrique de votre image ?</p>
 <p><strong>Rappel</strong></p>
 <ul>
@@ -704,8 +704,8 @@ Bâtiment
 </tbody>
 </table>
 </div>
-<div id="en-pseudo-couleur-vraiefausse-couleur" class="section level2">
-<h2>En pseudo-couleur (vraie/fausse couleur)</h2>
+<div id="en-pseudo-couleur-vraiefausse-couleur" class="section level3">
+<h3>En pseudo-couleur (vraie/fausse couleur)</h3>
 <blockquote>
 <p>Clic droit sur l’image -&gt; Propriétés -&gt; Symbologie -&gt; Type de rendu -&gt; Couleurs à bandes multiples</p>
 </blockquote>
@@ -742,7 +742,7 @@ Bâtiment
 <img src="images/sigProfile.png" alt="" />
 <p class="caption">Profil radiométrique dans la bande du PIR</p>
 </div>
-<p>❓ Exercice - réalisez un seul graphique avec le profil radiométrique de la bande spectrale n°2,3,4,5 et 10.</p>
+<p>❓ Exercice - Réalisez un seul graphique avec le profil radiométrique de la bande spectrale n°2,3,4,5 et 10.</p>
 </div>
 <div id="les-signatures-spectrales" class="section level1">
 <h1>7 - Les signatures spectrales 📊</h1>
