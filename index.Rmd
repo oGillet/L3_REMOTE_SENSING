@@ -1,7 +1,82 @@
 ---
-title: "Télécharger, afficher et explorer des images"
+title: " "
 output: html_document
 ---
 
-## Images Landsat 8
+<style>
+body {
+text-align: justify}
+</style>
 
+```{r knitr_init, echo=FALSE, cache=FALSE, warning=FALSE}
+library(knitr)
+library(rmdformats)
+library(kableExtra)
+
+## Global options
+options(max.print="75")
+opts_chunk$set(echo=FALSE,
+               cache=TRUE,
+               prompt=FALSE,
+               tidy=TRUE,
+               comment=NA,
+               message=FALSE,
+               warning=FALSE)
+opts_knit$set(width=75)
+```
+_Travaux dirigés réalisés par Olivier Gillet et Yvette Vaguet_
+
+# Objectifs du TD n°1
+- Télécharger, visualiser et explorer des données matricielles produites par le satellite Landsat 8
+- Réaliser des signatures spectrales et des profils radiométriques
+
+Le TD va se dérouler en 4 temps :  
+1 - Télécharger les images satellitaires de l'embouchure de la Seine depuis le site de l'USGS  
+2 - Prétraiter les données (Réaliser un layerStack et découper les données sous QGIS)  
+3 - Visualiser les images sous QGIS (pseudo-couleur, le rehaussement d'image, les compositions colorées)  
+4 - Réaliser des signatures spectrales ainsi que des profils radiométriques  
+
+# La plateforme de données **EarthExplorer** de l'**USGS**  
+
+L'Institut d'études géologiques des États-Unis (United States Geological Survey, USGS) est un organisme gouvernemental américain qui se consacre aux sciences de la Terre. Par exemple, l'une des missions de l'organisme consiste à surveiller activité volcanique et sismique sur l'ensemble du globe.  L'USGS et le département de l'agriculture ont impulsé le premier programme spatial d'observation de la Terre destiné à des fins civiles, le programme landsat. Il sera développé au milieu des années 1960 par l'agence spatiale américaine, la NASA. L'USGS, département de l'Intérieur des États-Unis, mettent à disposition gratuitement auprès des utilisateurs du monde entier les données brutes étalonnées Landsat. L'organisme met également à disposition d'autre données comme des MNT, des données issues de capteurs actifs, ... La NASA a réalisé 6 lancements de satellites "Landsat" depuis les années 70 (9 satellites au total). Les données utilisées lors des TDs sont issues de la 5ème campagne avec le satellite Landsat 8. 
+
+![Image de synthèse du satellite Landsat 8](images/l8.jpg)
+
+```{r}
+df <- data.frame(
+  # "Capteur"= c(rep("OLI", 9),rep("TIRS", 2)),
+                 "Bandes"=c("Bande spectrale n°1 - aérosols","Bande spectrale n°2 - Bleu","Bande spectrale n°3 - Vert","Bande spectrale n°4 - Rouge","Bande spectrale n°5 - Proche Infrarouge","Bande spectrale n°6 - Moyen Infrarouge","Bande spectrale n°7 - Moyen Infrarouge","Bande spectrale n°8 - Panchromatique","Bande spectrale n°9 - Cirrus", "Bande spectrale n°10 - Infrarouge", "Bande spectrale n°11 - Infrarouge"),
+                 "Longueur onde"=c("0.433 - 0.453 µm","0.450 - 0.515 µm","0.525 - 0.600 µm","0.630 - 0.680 µm","0.845 - 0.885 µm","1.560 - 1.660 µm","2.100 - 2.300 µm","0.500 - 0.680 µm","1.360 - 1.390 µm","10.30 - 11.30 µm", "11.50 - 12.50 µm"),
+                 "Résolution"=c("30 m","30 m","30 m","30 m","30 m","30 m","30 m","15 m","30 m","100 m","100 m"))
+
+kbl(df, col.names = NULL) %>%
+  kable_paper(full_width = T) %>%
+  column_spec(1, bold = T)  %>%
+  pack_rows("Instrument embarqué n°1 - OLI", 1, 9, label_row_css = "background-color: #333333; color: #fff;")%>%
+  pack_rows("Instrument embarqué n°2 - TIRS", 10, 11, label_row_css = "background-color: #333333; color: #fff;")
+```
+
+# Télécharger les images de l'embouchure de la Seine
+
+1 - https://ers.cr.usgs.gov/login (l'inscription est obligatoire pour télécharger les données de l'USGS)  
+`r emo::ji("warning")` Le formulaire d'inscription est long et en anglais.  
+2 - https://earthexplorer.usgs.gov/ (lien vers la plateforme de données)  
+3 - Télécharger les données depuis la plateforme
+
+Vous devez télécharger l'image de l'embouchure de la Seine acquise le 2021/06/14 (Landsat 8  OLI/TIRS C2 L1).   
+
+![Plateforme de téléchargement de l'USGS - EarthExplorer](images/usgs.png)
+# Télécharger les images de l'embouchure de la Seine
+
+-  Layerstack
+-  Clip
+-  Information pixel
+-  Profil radiométrique
+-  Histogramme
+-  Différence bandes (réfléctance, IR, etc )
+- Stretch local, global
+
+- Les signatures spectrales des surfaces naturelles et anthropiques dans le domaine du visible,
+du proche infrarouge et du moyen infrarouge.
+- Les réflectances des sols, de la végétation et de l'eau en fonction de la turbidité ou de la
+teneur en chlorophylle.

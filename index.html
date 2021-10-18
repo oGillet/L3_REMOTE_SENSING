@@ -11,7 +11,7 @@
 
 
 
-<title>Télécharger, afficher et explorer des images</title>
+<title>index.knit</title>
 
 <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -32,6 +32,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -269,13 +271,182 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Télécharger, afficher et explorer des images</h1>
 
 </div>
 
 
-<div id="images-landsat-8" class="section level2">
-<h2>Images Landsat 8</h2>
+<style>
+body {
+text-align: justify}
+</style>
+<p><em>Travaux dirigés réalisés par Olivier Gillet et Yvette Vaguet</em></p>
+<div id="objectifs-du-td-n1" class="section level1">
+<h1>Objectifs du TD n°1</h1>
+<ul>
+<li>Télécharger, visualiser et explorer des données matricielles produites par le satellite Landsat 8</li>
+<li>Réaliser des signatures spectrales et des profils radiométriques</li>
+</ul>
+<p>Le TD va se dérouler en 4 temps :<br />
+1 - Télécharger les images satellitaires de l’embouchure de la Seine depuis le site de l’USGS<br />
+2 - Prétraiter les données (Réaliser un layerStack et découper les données sous QGIS)<br />
+3 - Visualiser les images sous QGIS (pseudo-couleur, le rehaussement d’image, les compositions colorées)<br />
+4 - Réaliser des signatures spectrales ainsi que des profils radiométriques</p>
+</div>
+<div id="la-plateforme-de-données-earthexplorer-de-lusgs" class="section level1">
+<h1>La plateforme de données <strong>EarthExplorer</strong> de l’<strong>USGS</strong></h1>
+<p>L’Institut d’études géologiques des États-Unis (United States Geological Survey, USGS) est un organisme gouvernemental américain qui se consacre aux sciences de la Terre. Par exemple, l’une des missions de l’organisme consiste à surveiller activité volcanique et sismique sur l’ensemble du globe. L’USGS et le département de l’agriculture ont impulsé le premier programme spatial d’observation de la Terre destiné à des fins civiles, le programme landsat. Il sera développé au milieu des années 1960 par l’agence spatiale américaine, la NASA. L’USGS, département de l’Intérieur des États-Unis, mettent à disposition gratuitement auprès des utilisateurs du monde entier les données brutes étalonnées Landsat. L’organisme met également à disposition d’autre données comme des MNT, des données issues de capteurs actifs, … La NASA a réalisé 6 lancements de satellites “Landsat” depuis les années 70 (9 satellites au total). Les données utilisées lors des TDs sont issues de la 5ème campagne avec le satellite Landsat 8.</p>
+<div class="figure">
+<img src="images/l8.jpg" alt="" />
+<p class="caption">Image de synthèse du satellite Landsat 8</p>
+</div>
+<table class=" lightable-paper" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr grouplength="9">
+<td colspan="3" style="background-color: #333333; color: #fff;">
+<strong>Instrument embarqué n°1 - OLI</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+Bande spectrale n°1 - aérosols
+</td>
+<td style="text-align:left;">
+0.433 - 0.453 µm
+</td>
+<td style="text-align:left;">
+30 m
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+Bande spectrale n°2 - Bleu
+</td>
+<td style="text-align:left;">
+0.450 - 0.515 µm
+</td>
+<td style="text-align:left;">
+30 m
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+Bande spectrale n°3 - Vert
+</td>
+<td style="text-align:left;">
+0.525 - 0.600 µm
+</td>
+<td style="text-align:left;">
+30 m
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+Bande spectrale n°4 - Rouge
+</td>
+<td style="text-align:left;">
+0.630 - 0.680 µm
+</td>
+<td style="text-align:left;">
+30 m
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+Bande spectrale n°5 - Proche Infrarouge
+</td>
+<td style="text-align:left;">
+0.845 - 0.885 µm
+</td>
+<td style="text-align:left;">
+30 m
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+Bande spectrale n°6 - Moyen Infrarouge
+</td>
+<td style="text-align:left;">
+1.560 - 1.660 µm
+</td>
+<td style="text-align:left;">
+30 m
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+Bande spectrale n°7 - Moyen Infrarouge
+</td>
+<td style="text-align:left;">
+2.100 - 2.300 µm
+</td>
+<td style="text-align:left;">
+30 m
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+Bande spectrale n°8 - Panchromatique
+</td>
+<td style="text-align:left;">
+0.500 - 0.680 µm
+</td>
+<td style="text-align:left;">
+15 m
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+Bande spectrale n°9 - Cirrus
+</td>
+<td style="text-align:left;">
+1.360 - 1.390 µm
+</td>
+<td style="text-align:left;">
+30 m
+</td>
+</tr>
+<tr grouplength="2">
+<td colspan="3" style="background-color: #333333; color: #fff;">
+<strong>Instrument embarqué n°2 - TIRS</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+Bande spectrale n°10 - Infrarouge
+</td>
+<td style="text-align:left;">
+10.30 - 11.30 µm
+</td>
+<td style="text-align:left;">
+100 m
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+Bande spectrale n°11 - Infrarouge
+</td>
+<td style="text-align:left;">
+11.50 - 12.50 µm
+</td>
+<td style="text-align:left;">
+100 m
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="télécharger-les-images-de-lembouchure-de-la-seine" class="section level1">
+<h1>Télécharger les images de l’embouchure de la Seine</h1>
+<p>1 - <a href="https://ers.cr.usgs.gov/login" class="uri">https://ers.cr.usgs.gov/login</a> (l’inscription est obligatoire pour télécharger les données de l’USGS)<br />
+⚠️ Le formulaire d’inscription est long et en anglais.<br />
+2 - <a href="https://earthexplorer.usgs.gov/" class="uri">https://earthexplorer.usgs.gov/</a> (lien vers la plateforme de données)<br />
+3 - Télécharger les données depuis la plateforme</p>
+<p>Vous devez télécharger l’image de l’embouchure de la Seine acquise le 2021/06/14 (Landsat 8 OLI/TIRS C2 L1).</p>
+<p><img src="images/usgs.png" alt="Plateforme de téléchargement de l’USGS - EarthExplorer" /> - Images Landsat 8 - Layerstack - Clip - Information pixel - Profil radiométrique - Histogramme - Différence bandes (réfléctance, IR, etc ) - Stretch local, global</p>
+<ul>
+<li>Les signatures spectrales des surfaces naturelles et anthropiques dans le domaine du visible, du proche infrarouge et du moyen infrarouge.</li>
+<li>Les réflectances des sols, de la végétation et de l’eau en fonction de la turbidité ou de la teneur en chlorophylle.</li>
+</ul>
 </div>
 
 
