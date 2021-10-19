@@ -105,7 +105,7 @@ Nous allons ensuite découper l'image satellite et définir la zone d'étude sur
 
 ![Image satellite dans QGIS après la phase de prétraitement](images/sig1.png)
 
-# 5 - Visualer l'image `r emo::ji("screen")`
+# 5 - Visualiser l'image `r emo::ji("screen")`
 ### En niveau de gris
 
 > Clic droit sur l'image -> Propriétés -> Symbologie  -> Type de rendu -> Bande grise unique
