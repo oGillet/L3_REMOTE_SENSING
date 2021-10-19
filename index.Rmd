@@ -181,4 +181,4 @@ Chaque objet, à cause de leurs caractéristiques intrinsèques, possède sa pro
 
 ![Signature spectrale des surfaces en eau, minérales etvégétalisées *https://remotesensing529.wordpress.com*](images/spectral_signatures.jpg)
 
-`r emo::ji("question")` Exercice - Tracez les différentes signatures spectrales sous Excel avec les données de votre précédent tableaux.
+`r emo::ji("question")` Exercice - Tracez les différentes signatures spectrales sous Excel avec les données de votre précédent tableau.
