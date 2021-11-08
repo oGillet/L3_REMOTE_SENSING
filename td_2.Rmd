@@ -200,7 +200,7 @@ $NDVI = (ROUGE-MIR)/(ROUGE+MIR)$
 
 Autres indices pour étudier les surfaces hygrophiles : **Indice d'irrigation**, **DWV (Difference Water Vegetation**
 
-# 8 - Exercice  `r emo::ji("stats")`
+# 8 - Exercice n°1  `r emo::ji("stats")`
 
 `r emo::ji("question")` Vous devez tracer la courbes présentant l'évolution de deux indicateurs (NDVI et du BSI) au cours de l'année 2017 et sur 5 points différents de la zone d'étude.
 
@@ -221,4 +221,46 @@ p + ggplot2::geom_line(ggplot2::aes(color = POINT))+
     ggplot2::ylim(0, 1) 
 ```
 
+# 9 - Exercice n°2  `r emo::ji("stats")`
 
+`r emo::ji("question")` Vous devez calculer la superficie des espaces verts au cours de l'année 2017 et les 8 communes de la zone d'étude.
+
+1 - Tout d'abord, vous devez ajouter le shapefile *"communes_brest.shp"* dans votre projet QGIS.
+
+![Affichage des 4 NDVIs et des communes dans QGIS](images/td2_ndvi_commune.png)
+
+2 - Ensuite, vous devez classifier, via la calculatrice raster, le NDVI à partir d'un seuillage NDVI.
+
+`r emo::ji("question")` Selon vous, quel est le seuil végétation/sol nus (vous pouvez vous aider d'une composition colorée ou d'un fond satellite) ?
+
+Formule pour classifier les NDVI à partir de la calculatrice raster   
+$NDVI RECLASSIFY = (NDVI@1 < Seuil) * 0 + (NDVI@1 >= Seuil) * 1$ 
+
+![Affichage du NDVI reclassifié](images/td2_ndviReclassify.png)
+
+3 - Vous devez vectoriser votre raster puis supprimer les entités dont l'attribut "DN" est égal à 0 pour obtenir seulement des polygones de végétation.   
+4 - Une intersection entre votre "rasteur vectorisé" et le shapefile des communes de Brest Métropole est nécessaire pour obtenir les statistiques.   
+
+![Affichage de l'intersection](images/td2_intersection.png)
+
+5 - Pour terminer, vous devez créer un champ avec la superficie des espaces végatalisés pour chaque commune
+
+Formule pour calculer la superficie des espaces végétalisés à partir de la calculatrice de champ  
+$Superficie  = sum( area ,  nom ) / 1000000$ 
+
+![Calculatrice de champ](images/calculatriceChamp.png)
+`r emo::ji("stats")` Voici un exemple de résultat attendu
+
+```{r , echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}
+df <- data.frame(Date=c(rep(as.Date(c("10/14/2017"),"%m/%d/%y"),8)),  
+                 Superficie=c(1.280,2.266,1.683,2.79,5.756,0.199,4.888,4.074),
+                 Commune=c("Bohars","Brest","Gouesnou","Guilers","Guipavas","Le Relecq-Kerhuon","Plougastel-Daoulas","Plouzané"))
+
+ggplot2::ggplot(df, ggplot2::aes(x=Commune, y=Superficie, fill=Commune)) +
+  ggplot2::geom_bar(stat="identity")+
+  ggplot2::labs(title = "Superficie des espaces végétalisés par communes",subtitle = "10 octobre 2017", x="Commune", y="Superficie (km2)")+ 
+  ggplot2::theme_minimal() +
+  ggplot2::theme(axis.text.x = ggplot2::element_blank())+
+  ggplot2::scale_fill_brewer(palette="Dark2")
+
+```

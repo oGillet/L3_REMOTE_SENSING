@@ -601,8 +601,8 @@ Bande spectrale n°10 - Infrarouge à grande longueur d’onde
 <p>⚠️ Vous ne pouvez pas calculer cet indices, il vous manque la bande spectrale du MIR.</p>
 <p>Autres indices pour étudier les surfaces hygrophiles : <strong>Indice d’irrigation</strong>, <strong>DWV (Difference Water Vegetation</strong></p>
 </div>
-<div id="exercice" class="section level1">
-<h1>8 - Exercice 📊</h1>
+<div id="exercice-n1" class="section level1">
+<h1>8 - Exercice n°1 📊</h1>
 <p>❓ Vous devez tracer la courbes présentant l’évolution de deux indicateurs (NDVI et du BSI) au cours de l’année 2017 et sur 5 points différents de la zone d’étude.</p>
 <div class="figure">
 <img src="images/td2_4ndvi.png" alt="" />
@@ -610,6 +610,34 @@ Bande spectrale n°10 - Infrarouge à grande longueur d’onde
 </div>
 <p>📊 Voici un exemple de résultat attendu</p>
 <p><img src="td_2_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="exercice-n2" class="section level1">
+<h1>9 - Exercice n°2 📊</h1>
+<p>❓ Vous devez calculer la superficie des espaces verts au cours de l’année 2017 et les 8 communes de la zone d’étude.</p>
+<p>1 - Tout d’abord, vous devez ajouter le shapefile <em>“communes_brest.shp”</em> dans votre projet QGIS.</p>
+<div class="figure">
+<img src="images/td2_ndvi_commune.png" alt="" />
+<p class="caption">Affichage des 4 NDVIs et des communes dans QGIS</p>
+</div>
+<p>2 - Ensuite, vous devez classifier, via la calculatrice raster, le NDVI à partir d’un seuillage NDVI.</p>
+<p>❓ Selon vous, quel est le seuil végétation/sol nus (vous pouvez vous aider d’une composition colorée ou d’un fond satellite) ?</p>
+<p>Formule pour classifier les NDVI à partir de la calculatrice raster<br />
+<span class="math inline">\(NDVI RECLASSIFY = (NDVI@1 &lt; Seuil) * 0 + (NDVI@1 &gt;= Seuil) * 1\)</span></p>
+<div class="figure">
+<img src="images/td2_ndviReclassify.png" alt="" />
+<p class="caption">Affichage du NDVI reclassifié</p>
+</div>
+<p>3 - Vous devez vectoriser votre raster puis supprimer les entités dont l’attribut “DN” est égal à 0 pour obtenir seulement des polygones de végétation.<br />
+4 - Une intersection entre votre “rasteur vectorisé” et le shapefile des communes de Brest Métropole est nécessaire pour obtenir les statistiques.</p>
+<div class="figure">
+<img src="images/td2_intersection.png" alt="" />
+<p class="caption">Affichage de l’intersection</p>
+</div>
+<p>5 - Pour terminer, vous devez créer un champ avec la superficie des espaces végatalisés pour chaque commune</p>
+<p>Formule pour calculer la superficie des espaces végétalisés à partir de la calculatrice de champ<br />
+<span class="math inline">\(Superficie = sum( area , nom ) / 1000000\)</span></p>
+<p><img src="images/calculatriceChamp.png" alt="Calculatrice de champ" /> 📊 Voici un exemple de résultat attendu</p>
+<p><img src="td_2_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 </div>
 
 
