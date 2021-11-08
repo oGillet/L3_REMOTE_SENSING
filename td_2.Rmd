@@ -152,7 +152,7 @@ $DVI = PIR/ROUGE$
 
 `r emo::ji("chart")` Les valeurs supérieures à 1 correspondent à de la végétation alors que les valeurs proches de  1 sont les surfaces en eau ou les sols nus.
 
-# 5 - Etude de la végétation `r emo::ji("calculation")`
+# 5 - Etude de la végétation `r emo::ji("evergreen_tree")`
 
 **L'indice de végétation normalisé (Normalized Difference Vegetation Index)**  
 
@@ -170,7 +170,7 @@ Autres indices pour l'étude de la végétation: **WDVI (Weighted Difference Veg
 
 ![Affichage du NDVI dans QGIS](images/td2_ndvi.png)
 
-# 6 - Etude des sols `r emo::ji("calculation")`
+# 6 - Etude des sols `r emo::ji("mountain")`
 
 **L'indice de brillance (Brightnes Soil Index)**  
 
@@ -186,7 +186,7 @@ Autres indices pour différencier les sols: **NDSI (Normalized Difference Soil I
 
 ![Affichage du BSI dans QGIS](images/td2_bsi.png)
 
-# 7 - Etude des surfaces hygrophiles `r emo::ji("calculation")`
+# 7 - Etude des surfaces hygrophiles `r emo::ji("earth")`
 
 **Le Normalized Difference Water Index (NDWI)**  
 
