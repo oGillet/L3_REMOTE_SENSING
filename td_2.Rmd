@@ -33,8 +33,8 @@ _Travaux dirigés réalisés par Olivier Gillet et Yvette Vaguet_
 
 Le TD va se dérouler en 4 temps :  
 1 - Télécharger les données sur la plateforme **Universitice**  
-2 - Continuer de prétraiter les données (réaliser un layerStack pour chaque scène)  
-3 - Visualiser les images sous QGIS 
+2 - Continuer de prétraiter les données (réaliser un layerStack pour chaque scène)   
+3 - Visualiser les images sous QGIS  
 5 - Exercice
 
 # ***Prétraitements sous R***  
@@ -60,7 +60,7 @@ time.taken <- end.time - start.time
 cat("Temps d'execution ==>",time.taken)
 ```
 
-Au final, il me faut 5 minutes pour écrire le script R et 5 pour découper 20 images satellitaires situées dans 4 répertoires différents. Ce prétraitement vous permet de manipuler des objets moins lourds pour votre machine.  
+Au final, il me faut 5 minutes pour écrire le script R et 5 secondes pour découper 20 images satellitaires situées dans 4 répertoires différents. Ce prétraitement vous permet de manipuler des objets moins lourds pour votre machine.  
 
 En plus du gain de temps, les avantages de la programmation en Géographie sont multiples :  
 - Chaîne des traitements (simples ou complexes)  
