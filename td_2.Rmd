@@ -202,9 +202,11 @@ Autres indices pour étudier les surfaces hygrophiles : **Indice d'irrigation**,
 
 # 8 - Exercice  `r emo::ji("stats")`
 
-`r emo::ji("question")` Vous devez tracer l'évolution des NDVI et du BSI  sur 4/5 points différents de la zone d'étude.
+`r emo::ji("question")` Vous devez tracer la courbes présentant l'évolution de deux indicateurs (NDVI et du BSI) au cours de l'année 2017 et sur 5 points différents de la zone d'étude.
 
 ![Affichage des 4 NDVIs dans QGIS](images/td2_4ndvi.png)
+
+`r emo::ji("stats")` Voici un exemple de résultat attendu
 
 ```{r , echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}
 df <- data.frame(Date=c(as.Date(c("01/22/2017","04/21/2017","08/27/2017","10/14/2017"), "%m/%d/%y"),as.Date(c("01/22/2017","04/21/2017","08/27/2017","10/14/2017"), "%m/%d/%y")),  
@@ -218,3 +220,5 @@ p + ggplot2::geom_line(ggplot2::aes(color = POINT))+
     ggplot2::labs(title = "Evolution du NDVI au cours de l'année 2017", x="Date", y="Indice de végétation normalisé (NDVI)")+ 
     ggplot2::ylim(0, 1) 
 ```
+
+
