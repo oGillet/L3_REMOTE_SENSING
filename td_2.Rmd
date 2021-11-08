@@ -108,6 +108,7 @@ Vous devez regrouper les 5 bandes spectrales de chaque scène, réaliser un "Lay
 > Raster -> Divers -> Construire un rasteur virtuel  
 
 `r emo::ji("warning")` N'oubliez pas de cocher l'option "Place each input file into a separate band"
+`r emo::ji("warning")` Faites attention à l'ordre des bandes spectrales lors de la création du vrt
 
 Le fichier créé par l'outil est format *.vrt*. Exporter ce fichier dans un autre format, en *.tif*.  
 
@@ -140,7 +141,7 @@ Le calcul de ces indicateurs est un processus impliquant la manipulation, via la
 
 Nous commençons par calculer un indice élémentaire, le **RVI** ou le **Ration Vegetation Index** (Krieger et al., 1969), en calculant le rapport en deux bandes spectrales. La végétation réfléchit fortement dans le proche infrarouge et absorbe fortement dans la portion du rouge visible.  
 
-$DVI = PIR/ROUGE$    
+$RVI = PIR/ROUGE$    
 
 `r emo::ji("question")` Vous devez réaliser le rapport spectral entre les bandes spectrales du Rouge et PIR sur la zone d'étude pour chaque scène.  
  
@@ -150,7 +151,7 @@ $DVI = PIR/ROUGE$
 
 ![Affichage du  RVI dans QGIS](images/td2_rvi.png)
 
-`r emo::ji("chart")` Les valeurs supérieures à 1 correspondent à de la végétation alors que les valeurs proches de  1 sont les surfaces en eau ou les sols nus.
+`r emo::ji("chart")` Les valeurs supérieures à 1 correspondent à de la végétation avec une activité chlorophyllienne alors que les valeurs proches de 1 sont les surfaces en eau ou les sols nus ou... végétation en dormance (hiver).  
 
 # 5 - Etude de la végétation `r emo::ji("evergreen_tree")`
 

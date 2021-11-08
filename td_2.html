@@ -497,7 +497,7 @@ Bande spectrale n°10 - Infrarouge à grande longueur d’onde
 <blockquote>
 <p>Raster -&gt; Divers -&gt; Construire un rasteur virtuel</p>
 </blockquote>
-<p>⚠️ N’oubliez pas de cocher l’option “Place each input file into a separate band”</p>
+<p>⚠️ N’oubliez pas de cocher l’option “Place each input file into a separate band” ⚠️ Faites attention à l’ordre des bandes spectrales lors de la création du vrt</p>
 <p>Le fichier créé par l’outil est format <em>.vrt</em>. Exporter ce fichier dans un autre format, en <em>.tif</em>.</p>
 <blockquote>
 <p>Clic droit sur l’image -&gt; Exporter -&gt; Enregistrer sous …</p>
@@ -538,7 +538,7 @@ Bande spectrale n°10 - Infrarouge à grande longueur d’onde
 <h1>4 - Calculer mon premier indice 🧮</h1>
 <p>Les images satellitaires sont des images numériques que l’on peut exploiter à travers des traitements statistiques ou mathématiques afin de calculer des indicateurs. Le calcul de ces indicateurs est un processus impliquant la manipulation, via la calculatrice matricielle, d’une ou de plusieurs bandes spectrales. Ici, nous allons calculer, sur plusieurs images de la même région prises à des temporalités différentes (données multi-temporelles), divers indicateurs mathématiques. Ces indicateurs, issus de méthodes d’analyses statistiques et/ou des combinaisons arithmétiques de canaux/bandes spectrales, permettront de synthétiser ou d’extraire certaines caractéristiques peu visibles sur les canaux radiométriques d’origine, en variables thématiques ayant une réelle signification.</p>
 <p>Nous commençons par calculer un indice élémentaire, le <strong>RVI</strong> ou le <strong>Ration Vegetation Index</strong> (Krieger et al., 1969), en calculant le rapport en deux bandes spectrales. La végétation réfléchit fortement dans le proche infrarouge et absorbe fortement dans la portion du rouge visible.</p>
-<p><span class="math inline">\(DVI = PIR/ROUGE\)</span></p>
+<p><span class="math inline">\(RVI = PIR/ROUGE\)</span></p>
 <p>❓ Vous devez réaliser le rapport spectral entre les bandes spectrales du Rouge et PIR sur la zone d’étude pour chaque scène.</p>
 <blockquote>
 <p>Raster -&gt; Calculatrice Raster</p>
@@ -551,7 +551,7 @@ Bande spectrale n°10 - Infrarouge à grande longueur d’onde
 <img src="images/td2_rvi.png" alt="" />
 <p class="caption">Affichage du RVI dans QGIS</p>
 </div>
-<p>💹 Les valeurs supérieures à 1 correspondent à de la végétation alors que les valeurs proches de 1 sont les surfaces en eau ou les sols nus.</p>
+<p>💹 Les valeurs supérieures à 1 correspondent à de la végétation avec une activité chlorophyllienne alors que les valeurs proches de 1 sont les surfaces en eau ou les sols nus ou… végétation en dormance (hiver).</p>
 </div>
 <div id="etude-de-la-végétation" class="section level1">
 <h1>5 - Etude de la végétation 🌲</h1>
