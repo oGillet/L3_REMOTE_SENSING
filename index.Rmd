@@ -31,7 +31,7 @@ _Travaux dirigés réalisés par Olivier Gillet et Yvette Vaguet_
 - Réaliser des signatures spectrales et des profils radiométriques
 
 Le TD va se dérouler en 4 temps :  
-1 - Télécharger les images satellitaires de l'embouchure de la Seine depuis le site de l'USGS  
+1 - Télécharger les images satellitaires de la rade de Brest depuis le site de l'USGS  
 2 - Prétraiter les données (Réaliser un layerStack et découper les données sous QGIS)  
 3 - Visualiser les images sous QGIS (pseudo-couleur, le rehaussement d'image, les compositions colorées)  
 4 - Réaliser des signatures spectrales ainsi que des profils radiométriques  
@@ -151,7 +151,7 @@ kbl(df) %>%
 
 `r emo::ji("question")` Selon vous, quelle est la combinaison des bandes spectrales pour afficher l'image en pseudo-couleur naturelle ? 
 
-![Image satellite dans QGIS en pseudo-couleur naturelle'](images/sig2.png)
+![Image satellite dans QGIS en pseudo-couleur naturelle](images/sig2.png)
 
 Maintenant, nous allons réaliser une composition en infrarouge colorée, ou fausses couleurs. Elle a pour objectif de faire apparaître la végétation.  
 

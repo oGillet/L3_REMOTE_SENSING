@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>td_2.knit</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">L3 - Télédétection</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">TD n°1</a>
+</li>
+<li>
+  <a href="td_2.html">TD n°2</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="mailto:&lt;gillet.olivier@outlook.fr&gt;">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://github.com/ogillet/">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<style>
+body {
+text-align: justify}
+</style>
+<p><em>Travaux dirigés réalisés par Olivier Gillet et Yvette Vaguet</em></p>
+<div id="objectifs-du-td-n2" class="section level1">
+<h1>Objectifs du TD n°2</h1>
+<ul>
+<li>Apprendre à utiliser la calculatrice raster</li>
+<li>Réaliser un début d’analyse diachronique sur la zone d’étude</li>
+<li>Faire le lien entre la théorie (signatures spectrales), les indicateurs et les cartographies thématiques</li>
+</ul>
+<p>Le TD va se dérouler en 4 temps :<br />
+1 - Télécharger les données sur la plateforme <strong>Universitice</strong><br />
+2 - Continuer de prétraiter les données (réaliser un layerStack pour chaque scène)<br />
+3 - Visualiser les images sous QGIS 5 - Exercice</p>
+</div>
+<div id="prétraitements-sous-r" class="section level1">
+<h1><strong><em>Prétraitements sous R</em></strong></h1>
+<p>Ce bout de code R a pour objectif de découper toutes les images satellitaires de ce TD.<br />
+⚠️ C’est seulement un exemple pour illustrer les multiples avantages de la programmation en Géographie.</p>
+<pre class="r"><code>start.time &lt;- Sys.time()
+for (d in c(&#39;01_JANVIER&#39;,&#39;04_AVRIL&#39;,&#39;08_AOUT&#39;,&#39;10_OCTOBRE&#39;)){
+  setwd(paste0(&quot;/home/gilleol2/Bureau/L8_BREST/&quot;,d,&quot;_2017_L8_BREST&quot;))
+  filesList &lt;- list.files(pattern = &quot;.TIF&quot;)
+  ze = sf::st_read(&quot;/home/gilleol2/Bureau/L8_BREST/ze.shp&quot;, quiet=T)
+  for(r in filesList){
+    raster_best = raster::raster(r)
+    raster_best_crop = raster::crop(raster_best,ze)
+    raster::writeRaster(raster_best_crop,paste0(tools::file_path_sans_ext(r),&#39;_clip.TIF&#39;),
+                        options=c(&#39;TFW=YES&#39;),overwrite=TRUE)
+  }
+}
+end.time &lt;- Sys.time()
+time.taken &lt;- end.time - start.time
+cat(&quot;Temps d&#39;execution ==&gt;&quot;,time.taken)</code></pre>
+<pre><code>Temps d&#39;execution ==&gt; 5.751721</code></pre>
+<p>Au final, il me faut 5 minutes pour écrire le script R et 5 pour découper 20 images satellitaires situées dans 4 répertoires différents. Ce prétraitement vous permet de manipuler des objets moins lourds pour votre machine.</p>
+<p>En plus du gain de temps, les avantages de la programmation en Géographie sont multiples :<br />
+- Chaîne des traitements (simples ou complexes)<br />
+- Automatisation de certaines tâches<br />
+- Réexécution du code<br />
+- Création de nouvelles fonctionnalités</p>
+<p>R comme Python permettent de s’affranchir des softs classiques (ArcGis, Grass, Qgis, GVSig, Idrisi, Erdas) et de réaliser des chaînes de traitements plus ou moins complexes sans SIG ou logiciel de traitement d’images en utilisant certaines librairies comme GDAL/OGR et autres … Vous verrez cela en Master si vous continuez à Rouen 👨‍🎓</p>
+</div>
+<div id="télécharger-les-images-landsat" class="section level1">
+<h1>1 - Télécharger les images Landsat 🛰</h1>
+<p>Vous devez vous rendre sur <a href="https://universitice.univ-rouen.fr">Universitice</a> et télécharger le jeu de données à télécharger est le suivant :</p>
+<blockquote>
+<p>TD 2 - Donnees L8 (2017, 4 scènes)</p>
+</blockquote>
+<p>Le jeu de données est composé de plusieurs scènes Landsat 8, 4 scènes acquises en 2017. Vous disposez seulement de 5 bandes spectrales pour chaque scène.</p>
+<p>Pour rappel, les images satellitaires se caractérisent par une information panchromatique, multi- ou hyper-spectrales. Le nombre de bandes spectrales et les intervalles de longueur d’onde de ces dernières diffèrent selon le satellite et les capteurs utilisés. Les bandes spectrales à disposition sont les suivantes :</p>
+<table class=" lightable-paper" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr grouplength="4">
+<td colspan="3" style="background-color: #333333; color: #fff;">
+<strong>Instrument embarqué n°1 - OLI</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+Bande spectrale n°2 - Bleu
+</td>
+<td style="text-align:left;">
+0.450 - 0.515 µm
+</td>
+<td style="text-align:left;">
+30 m
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+Bande spectrale n°3 - Vert
+</td>
+<td style="text-align:left;">
+0.525 - 0.600 µm
+</td>
+<td style="text-align:left;">
+30 m
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+Bande spectrale n°4 - Rouge
+</td>
+<td style="text-align:left;">
+0.630 - 0.680 µm
+</td>
+<td style="text-align:left;">
+30 m
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+Bande spectrale n°5 - Infrarouge proche
+</td>
+<td style="text-align:left;">
+0.845 - 0.885 µm
+</td>
+<td style="text-align:left;">
+30 m
+</td>
+</tr>
+<tr grouplength="1">
+<td colspan="3" style="background-color: #333333; color: #fff;">
+<strong>Instrument embarqué n°2 - TIRS</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+Bande spectrale n°10 - Infrarouge à grande longueur d’onde
+</td>
+<td style="text-align:left;">
+10.30 - 11.30 µm
+</td>
+<td style="text-align:left;">
+100 m
+</td>
+</tr>
+</tbody>
+</table>
+<p>📆 Les dates d’acquisition des images satellitaires sont les suivantes :</p>
+<ul>
+<li>22 janvier 2017<br />
+</li>
+<li>21 avril 2017<br />
+</li>
+<li>27 août 2017<br />
+</li>
+<li>14 octobre 2017</li>
+</ul>
+</div>
+<div id="layerstacker-chaque-scène" class="section level1">
+<h1>2 - “LayerStacker” chaque scène 💻</h1>
+<p>Vous devez regrouper les 5 bandes spectrales de chaque scène, réaliser un “LayerStack” des bandes. pour rappel, un objet de plusieurs bandes est plus facile à manipuler que plusieurs objets d’une seule bande spectrale.</p>
+<blockquote>
+<p>Raster -&gt; Divers -&gt; Construire un rasteur virtuel</p>
+</blockquote>
+<p>⚠️ N’oubliez pas de cocher l’option “Place each input file into a separate band”</p>
+<p>Le fichier créé par l’outil est format <em>.vrt</em>. Exporter ce fichier dans un autre format, en <em>.tif</em>.</p>
+<blockquote>
+<p>Clic droit sur l’image -&gt; Exporter -&gt; Enregistrer sous …</p>
+</blockquote>
+<p>Vos scènes doivent avoir les noms suivants :</p>
+<ul>
+<li>01_JANVIER_2017_L8_BREST_CLIP_ALL_BANDS<br />
+</li>
+<li>04_AVRIL_2017_L8_BREST_CLIP_ALL_BANDS<br />
+</li>
+<li>08_AOUT_2017_L8_BREST_CLIP_ALL_BANDS<br />
+</li>
+<li>10_OCTOBRE_2017_L8_BREST_CLIP_ALL_BANDS</li>
+</ul>
+<div class="figure">
+<img src="images/td2_layerstack.png" alt="" />
+<p class="caption">4 scènes avec 5 bandes spectrales en format .tif</p>
+</div>
+</div>
+<div id="visualiser-limage" class="section level1">
+<h1>3 - Visualiser l’image 💻</h1>
+<div id="en-pseudo-couleur-vraie-couleur" class="section level2">
+<h2>En pseudo-couleur (vraie couleur)</h2>
+<blockquote>
+<p>Clic droit sur l’image -&gt; Propriétés -&gt; Symbologie -&gt; Type de rendu -&gt; Couleurs à bandes multiples</p>
+</blockquote>
+<p>Vous devez réaliser une composition colorée “vraies couleurs” pour chaque scène.</p>
+<ul>
+<li>La bande 4 en rouge, la bande 3 en vert, la bande 2 en bleu (4R, 3V, 2B ou 4, 3, 2)</li>
+</ul>
+<div class="figure">
+<img src="images/td2_cc_vrai.png" alt="" />
+<p class="caption">Image satellite dans QGIS en pseudo-couleur naturelle</p>
+</div>
+</div>
+</div>
+<div id="calculer-mon-premier-indice" class="section level1">
+<h1>4 - Calculer mon premier indice 🧮</h1>
+<p>Les images satellitaires sont des images numériques que l’on peut exploiter à travers des traitements statistiques ou mathématiques afin de calculer des indicateurs. Le calcul de ces indicateurs est un processus impliquant la manipulation, via la calculatrice matricielle, d’une ou de plusieurs bandes spectrales. Ici, nous allons calculer, sur plusieurs images de la même région prises à des temporalités différentes (données multi-temporelles), divers indicateurs mathématiques. Ces indicateurs, issus de méthodes d’analyses statistiques et/ou des combinaisons arithmétiques de canaux/bandes spectrales, permettront de synthétiser ou d’extraire certaines caractéristiques peu visibles sur les canaux radiométriques d’origine, en variables thématiques ayant une réelle signification.</p>
+<p>Nous commençons par calculer un indice élémentaire, le <strong>RVI</strong> ou le <strong>Ration Vegetation Index</strong> (Krieger et al., 1969), en calculant le rapport en deux bandes spectrales. La végétation réfléchit fortement dans le proche infrarouge et absorbe fortement dans la portion du rouge visible.</p>
+<p><span class="math inline">\(DVI = PIR/ROUGE\)</span></p>
+<p>❓ Vous devez réaliser le rapport spectral entre les bandes spectrales du Rouge et PIR sur la zone d’étude pour chaque scène.</p>
+<blockquote>
+<p>Raster -&gt; Calculatrice Raster</p>
+</blockquote>
+<div class="figure">
+<img src="images/td2_calculatriceRaster.png" alt="" />
+<p class="caption">Calcul du RVI avec la calculatrice raster de QGIS</p>
+</div>
+<div class="figure">
+<img src="images/td2_rvi.png" alt="" />
+<p class="caption">Affichage du RVI dans QGIS</p>
+</div>
+<p>💹 Les valeurs supérieures à 1 correspondent à de la végétation alors que les valeurs proches de 1 sont les surfaces en eau ou les sols nus.</p>
+</div>
+<div id="etude-de-la-végétation" class="section level1">
+<h1>5 - Etude de la végétation 🧮</h1>
+<p><strong>L’indice de végétation normalisé (Normalized Difference Vegetation Index)</strong></p>
+<p><span class="math inline">\(NDVI = (PIR-ROUGE)/(PIR+ROUGE)\)</span></p>
+<ul>
+<li>[0,+1[ Surfaces végétalisées avec activités chlorophyllienne</li>
+<li>[-1,0[ Surfaces en eau ou humide</li>
+<li>0 Sols nus</li>
+</ul>
+<p>Autres indices pour l’étude de la végétation: <strong>WDVI (Weighted Difference Vegetation Index)</strong>, <strong>PVI (Perpendicular Vegetation Index)</strong>, <strong>SAVI (Soil-Adjusted Vegetation Index)</strong> , <strong>TSAVI (Tranformed Soil-Adjusted Vegetation Index)</strong>, <strong>EVI (Enhanced Vegetation Index)</strong></p>
+<p>❓ Vous devez réaliser le calcul du NDVI sur la zone d’étude pour chaque scène.</p>
+<blockquote>
+<p>Raster -&gt; Calculatrice Raster</p>
+</blockquote>
+<div class="figure">
+<img src="images/td2_ndvi.png" alt="" />
+<p class="caption">Affichage du NDVI dans QGIS</p>
+</div>
+</div>
+<div id="etude-des-sols" class="section level1">
+<h1>6 - Etude des sols 🧮</h1>
+<p><strong>L’indice de brillance (Brightnes Soil Index)</strong></p>
+<p><span class="math inline">\(BSI = \sqrt{(ROUGE^{2} + PIR^{2})}\)</span></p>
+<p>Cet indice donne une information sur <em>“l’albédo”</em> des sols de la zone d’étude. Celui-ci caractérise, via le taux d’humidité des sols, le niveau de brillance pour chaque pixel. Nous pouvons ainsi déduire si une surface est humide ou sèche. Les valeurs de l’indice sont exprimées en pourcentage. Un pourcentage élevé indique une brillance forte. Par exemple, un sol labouré à une brillance moindre.</p>
+<p>Autres indices pour différencier les sols: <strong>NDSI (Normalized Difference Soil Index)</strong>, <strong>Indice de cuirasse</strong> (plus pertinent que BSI)</p>
+<p>❓ Vous devez réaliser le calcul du BSI sur la zone d’étude pour chaque scène.</p>
+<blockquote>
+<p>Raster -&gt; Calculatrice Raster</p>
+</blockquote>
+<div class="figure">
+<img src="images/td2_bsi.png" alt="" />
+<p class="caption">Affichage du BSI dans QGIS</p>
+</div>
+</div>
+<div id="etude-des-surfaces-hygrophiles" class="section level1">
+<h1>7 - Etude des surfaces hygrophiles 🧮</h1>
+<p><strong>Le Normalized Difference Water Index (NDWI)</strong></p>
+<p><span class="math inline">\(NDVI = (ROUGE-MIR)/(ROUGE+MIR)\)</span></p>
+<ul>
+<li>Valeurs négatives (sols nus et non cultivés)<br />
+</li>
+<li>Valeurs positives (surfaces cultivées et/ou végétalisées)<br />
+</li>
+<li>valeurs maximales (surfaces en eau)</li>
+</ul>
+<p>⚠️ Vous ne pouvez pas calculer cet indices, il vous manque la bande spectrale du MIR.</p>
+<p>Autres indices pour étudier les surfaces hygrophiles : <strong>Indice d’irrigation</strong>, <strong>DWV (Difference Water Vegetation</strong></p>
+</div>
+<div id="exercice" class="section level1">
+<h1>8 - Exercice 📊</h1>
+<p>❓ Vous devez tracer l’évolution des NDVI et du BSI sur 4/5 points différents de la zone d’étude.</p>
+<div class="figure">
+<img src="images/td2_4ndvi.png" alt="" />
+<p class="caption">Affichage des 4 NDVIs dans QGIS</p>
+</div>
+<p><img src="td_2_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
