@@ -6,6 +6,8 @@ navbar:
       href: index.html
     - text: "TD n°2"
       href: td_2.html
+    - text: "TD n°3"
+      href: td_3.html
   right: 
     - icon: fa-envelope fa-lg
       href: mailto:<gillet.olivier@outlook.fr>

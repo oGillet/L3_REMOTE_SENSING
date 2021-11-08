@@ -1,0 +1,29 @@
+---
+title: " "
+output: html_document
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+```{r knitr_init, echo=FALSE, cache=FALSE, warning=FALSE}
+library(knitr)
+library(rmdformats)
+library(kableExtra)
+
+## Global options
+options(max.print="75")
+opts_chunk$set(echo=FALSE,
+               cache=TRUE,
+               prompt=FALSE,
+               tidy=TRUE,
+               comment=NA,
+               message=FALSE,
+               warning=FALSE)
+opts_knit$set(width=75)
+```
+_Travaux dirigés réalisés par Olivier Gillet et Yvette Vaguet_
+
+# Objectifs du TD n°3
