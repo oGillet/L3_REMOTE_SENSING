@@ -107,7 +107,7 @@ Vous devez regrouper les 5 bandes spectrales de chaque scène, réaliser un "Lay
 
 > Raster -> Divers -> Construire un rasteur virtuel  
 
-`r emo::ji("warning")` N'oubliez pas de cocher l'option "Place each input file into a separate band"
+`r emo::ji("warning")` N'oubliez pas de cocher l'option "Place each input file into a separate band"  
 `r emo::ji("warning")` Faites attention à l'ordre des bandes spectrales lors de la création du vrt
 
 Le fichier créé par l'outil est format *.vrt*. Exporter ce fichier dans un autre format, en *.tif*.  
