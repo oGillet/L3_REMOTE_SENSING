@@ -35,7 +35,7 @@ Le TD va se dérouler en 4 temps :
 1 - Télécharger les données sur la plateforme **Universitice**  
 2 - Continuer de prétraiter les données (réaliser un layerStack pour chaque scène)   
 3 - Visualiser les images sous QGIS  
-5 - Exercice
+4 - Exercice
 
 # ***Prétraitements sous R***  
 
