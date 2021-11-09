@@ -203,7 +203,7 @@ Autres indices pour étudier les surfaces hygrophiles : **Indice d'irrigation**,
 
 # 8 - Exercice n°1  `r emo::ji("stats")`
 
-`r emo::ji("question")` Vous devez tracer la courbes présentant l'évolution de deux indicateurs (NDVI et du BSI) au cours de l'année 2017 et sur 5 points différents de la zone d'étude.
+`r emo::ji("question")` Vous devez tracer la courbe présentant l'évolution d'un indicateur (NDVI) au cours de l'année 2017 et sur 5 points différents de la zone d'étude.
 
 ![Affichage des 4 NDVIs dans QGIS](images/td2_4ndvi.png)
 
