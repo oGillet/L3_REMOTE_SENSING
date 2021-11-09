@@ -224,7 +224,7 @@ p + ggplot2::geom_line(ggplot2::aes(color = POINT))+
 
 # 9 - Exercice n°2  `r emo::ji("stats")`
 
-`r emo::ji("question")` Vous devez calculer la superficie des espaces verts au cours de l'année 2017 et les 8 communes de la zone d'étude.
+`r emo::ji("question")` Vous devez calculer la proportion d'espaces verts pout le mois d'octobre et les 8 communes de la zone d'étude.
 
 1 - Tout d'abord, vous devez ajouter le shapefile *"communes_brest.shp"* dans votre projet QGIS.
 
@@ -254,12 +254,12 @@ $Superficie  = sum( area ,  nom ) / 1000000$
 
 ```{r , echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}
 df <- data.frame(Date=c(rep(as.Date(c("10/14/2017"),"%m/%d/%y"),8)),  
-                 Superficie=c(1.280,2.266,1.683,2.79,5.756,0.199,4.888,4.074),
+                 Superficie=c(1.280/7.27,2.266/49.51 ,1.683/12.08,2.79/18.98,5.756/44.13,0.199/6.43,4.888/46.83,4.074/33.14),
                  Commune=c("Bohars","Brest","Gouesnou","Guilers","Guipavas","Le Relecq-Kerhuon","Plougastel-Daoulas","Plouzané"))
 
 ggplot2::ggplot(df, ggplot2::aes(x=Commune, y=Superficie, fill=Commune)) +
   ggplot2::geom_bar(stat="identity")+
-  ggplot2::labs(title = "Superficie des espaces végétalisés par communes",subtitle = "10 octobre 2017", x="Commune", y="Superficie (km2)")+ 
+  ggplot2::labs(title = "Proportion des espaces végétalisés par communes",subtitle = "10 octobre 2017 - Seuil fixé à 0.5", x="Commune", y="Pourcentage (%)")+ 
   ggplot2::theme_minimal() +
   ggplot2::theme(axis.text.x = ggplot2::element_blank())+
   ggplot2::scale_fill_brewer(palette="Dark2")
