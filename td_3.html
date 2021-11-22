@@ -35,6 +35,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -401,6 +403,275 @@ text-align: justify}
 </blockquote>
 <p>Le jeu de données est composé de plusieurs scènes MSG-4, 5 scènes acquises en 2020 Vous disposez seulement de 11 bandes spectrales pour chaque scène.</p>
 <p>Pour rappel, les images satellitaires se caractérisent par une information panchromatique, multi- ou hyper-spectrales. Le nombre de bandes spectrales et les intervalles de longueur d’onde de ces dernières diffèrent selon le satellite et les capteurs utilisés. Les bandes spectrales à disposition sont les suivantes :</p>
+<table class=" lightable-paper" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr grouplength="9">
+<td colspan="6" style="background-color: #333333; color: #fff;">
+<strong>Caractéristiques MSG</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+Bande spectrale
+</td>
+<td style="text-align:left;">
+λmin
+</td>
+<td style="text-align:left;">
+λ
+</td>
+<td style="text-align:left;">
+λmax
+</td>
+<td style="text-align:left;">
+Résolution
+</td>
+<td style="text-align:left;">
+Application
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+VIS0.6
+</td>
+<td style="text-align:left;">
+0.56
+</td>
+<td style="text-align:left;">
+0.635
+</td>
+<td style="text-align:left;">
+0.71
+</td>
+<td style="text-align:left;">
+3 km
+</td>
+<td style="text-align:left;">
+Détection et suivi des masses nuageuses, étude des terres émergées
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+VIS0.8
+</td>
+<td style="text-align:left;">
+0.74
+</td>
+<td style="text-align:left;">
+0.81
+</td>
+<td style="text-align:left;">
+0.88
+</td>
+<td style="text-align:left;">
+3 km
+</td>
+<td style="text-align:left;">
+Détection et suivi des masses nuageuses, étude des terres émergées
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+PIR1.6
+</td>
+<td style="text-align:left;">
+1.5
+</td>
+<td style="text-align:left;">
+1.64
+</td>
+<td style="text-align:left;">
+1.78
+</td>
+<td style="text-align:left;">
+3 km
+</td>
+<td style="text-align:left;">
+Distinction nuages d’eau et de glace, distinction neige / nuages chargés d’eau
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+IR3.9
+</td>
+<td style="text-align:left;">
+3.48
+</td>
+<td style="text-align:left;">
+3.9
+</td>
+<td style="text-align:left;">
+4.36
+</td>
+<td style="text-align:left;">
+3 km
+</td>
+<td style="text-align:left;">
+Détection des nuages bas et brouillards nocturnes, températures de surface, incendies de forêts
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+WV6.2
+</td>
+<td style="text-align:left;">
+5.35
+</td>
+<td style="text-align:left;">
+6.25
+</td>
+<td style="text-align:left;">
+7.15
+</td>
+<td style="text-align:left;">
+3 km
+</td>
+<td style="text-align:left;">
+Mesure de la vapeur d’eau dans la haute troposphère, instabilités atmosphériques et vents locaux
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+WV7.3
+</td>
+<td style="text-align:left;">
+6.85
+</td>
+<td style="text-align:left;">
+7.35
+</td>
+<td style="text-align:left;">
+7.85
+</td>
+<td style="text-align:left;">
+3 km
+</td>
+<td style="text-align:left;">
+Mesure de la vapeur d’eau dans la moyenne troposphère, instabilités atmosphériques et vents locaux
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+IR8.9
+</td>
+<td style="text-align:left;">
+8.3
+</td>
+<td style="text-align:left;">
+8.7
+</td>
+<td style="text-align:left;">
+9.1
+</td>
+<td style="text-align:left;">
+3 km
+</td>
+<td style="text-align:left;">
+Détection des cirrus, instabilités atmosphériques
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+IR9.7
+</td>
+<td style="text-align:left;">
+9.38
+</td>
+<td style="text-align:left;">
+9.66
+</td>
+<td style="text-align:left;">
+9.94
+</td>
+<td style="text-align:left;">
+3 km
+</td>
+<td style="text-align:left;">
+Mesure de l’ozone
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+IR10.8
+</td>
+<td style="text-align:left;">
+9.8
+</td>
+<td style="text-align:left;">
+10.8
+</td>
+<td style="text-align:left;">
+11.8
+</td>
+<td style="text-align:left;">
+3 km
+</td>
+<td style="text-align:left;">
+Détection des nuages, températures des surfaces terrestres et océaniques, instabilités atmosphériques
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+IR12.0
+</td>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:left;">
+12
+</td>
+<td style="text-align:left;">
+13
+</td>
+<td style="text-align:left;">
+3 km
+</td>
+<td style="text-align:left;">
+Détection des nuages, températures des surfaces terrestres et océaniques, instabilités atmosphériques
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+IR13.4
+</td>
+<td style="text-align:left;">
+12.4
+</td>
+<td style="text-align:left;">
+13.4
+</td>
+<td style="text-align:left;">
+13.4
+</td>
+<td style="text-align:left;">
+3 km
+</td>
+<td style="text-align:left;">
+Détermination de la hauteur des cirrus, instabilités atmosphériques
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+HRV
+</td>
+<td style="text-align:left;">
+0.4
+</td>
+<td style="text-align:left;">
+0.55
+</td>
+<td style="text-align:left;">
+1.1
+</td>
+<td style="text-align:left;">
+1 km
+</td>
+<td style="text-align:left;">
+Détection et suivi des masses nuageuses, étude des terres émergées
+</td>
+</tr>
+</tbody>
+</table>
 <p>💻 Lien pour à la plate-forme de données MSG et autres :</p>
 <p><a href="https://pics.eumetsat.int/viewer/index.html" class="uri">https://pics.eumetsat.int/viewer/index.html</a><br />
 <a href="https://view.eumetsat.int/productviewer?v=default" class="uri">https://view.eumetsat.int/productviewer?v=default</a></p>

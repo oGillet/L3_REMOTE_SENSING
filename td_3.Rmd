@@ -67,6 +67,22 @@ Le jeu de données est composé de plusieurs scènes  MSG-4, 5 scènes acquises 
 
 Pour rappel, les images satellitaires se caractérisent par une information panchromatique, multi- ou hyper-spectrales. Le nombre de bandes spectrales et les intervalles de longueur d’onde de ces dernières diffèrent selon le satellite et les capteurs utilisés. Les bandes spectrales à disposition sont les suivantes :
 
+```{r}
+df <- data.frame(
+  # "n° canal"=c(1:12),
+  "Bande spectrale"=c("Bande spectrale","VIS0.6","VIS0.8","PIR1.6","IR3.9","WV6.2","WV7.3","IR8.9","IR9.7","IR10.8","IR12.0","IR13.4","HRV"),
+  "λmin" = c("λmin",0.56,0.74,1.50,3.48,5.35,6.85,8.30,9.38,9.80,11.0,12.40,0.4),
+  "λ" = c("λ",0.635,0.81,1.64,3.90,6.25,7.35,8.70,9.66,10.80,12.00,13.40,0.55),
+  "λmax" = c("λmax",0.71,0.88,1.78,4.36,7.15,7.85,9.10,9.94,11.80,13.0,13.40,1.1),
+  "Résolution"=c("Résolution",paste0(rep(3,11),' km'),"1 km"),
+  "Utilisaions"=c("Application","Détection et suivi des masses nuageuses, étude des terres émergées","Détection et suivi des masses nuageuses, étude des terres émergées","Distinction nuages d'eau et de glace, distinction neige / nuages chargés d'eau", "Détection des nuages bas et brouillards nocturnes, températures de surface, incendies de forêts","Mesure de la vapeur d'eau dans la haute troposphère, instabilités atmosphériques et vents locaux","Mesure de la vapeur d'eau dans la moyenne troposphère, instabilités atmosphériques et vents locaux","Détection des cirrus, instabilités atmosphériques", "Mesure de l'ozone", "Détection des nuages, températures des surfaces terrestres et océaniques, instabilités atmosphériques", "Détection des nuages, températures des surfaces terrestres et océaniques, instabilités atmosphériques","Détermination de la hauteur des cirrus, instabilités atmosphériques", "Détection et suivi des masses nuageuses, étude des terres émergées")
+)
+
+kbl(df, col.names = NULL) %>%
+  kable_paper(full_width = T) %>%
+  column_spec(1, bold = T)  %>%
+  pack_rows("Caractéristiques MSG", 1, 9, label_row_css = "background-color: #333333; color: #fff;")
+```
 
 `r emo::ji("computer")` Lien pour à la plate-forme de données MSG et autres :  
 
