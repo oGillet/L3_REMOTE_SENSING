@@ -210,7 +210,7 @@ Autres indices pour étudier les surfaces hygrophiles : **Indice d'irrigation**,
 
 `r emo::ji("stats")` Voici un exemple de résultat attendu
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, , echo=FALSE}
+```{r eval=TRUE, message=FALSE, warning=FALSE, , echo=FALSE}
 df <- data.frame(Date=c(as.Date(c("01/22/2017","04/21/2017","08/27/2017","10/14/2017"), "%m/%d/%y"),as.Date(c("01/22/2017","04/21/2017","08/27/2017","10/14/2017"), "%m/%d/%y")),  
                  NDVI=c(0.413549,0.120044,0.1689345,0.123184,0.426546,0.555021,0.438939,0.450983),
                  POINT=c(rep("POINT 1",4),rep("POINT 2",4)))
@@ -253,7 +253,7 @@ $Superficie  = sum( area ,  nom ) / 1000000$
 ![Calculatrice de champ](images/calculatriceChamp.png)
 `r emo::ji("stats")` Voici un exemple de résultat attendu
 
-```{r , echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}
+```{r eval=TRUE, message=FALSE, warning=FALSE, , echo=FALSE}
 df <- data.frame(Date=c(rep(as.Date(c("10/14/2017"),"%m/%d/%y"),8)),  
                  Superficie=c(1.280/7.27,2.266/49.51 ,1.683/12.08,2.79/18.98,5.756/44.13,0.199/6.43,4.888/46.83,4.074/33.14),
                  Commune=c("Bohars","Brest","Gouesnou","Guilers","Guipavas","Le Relecq-Kerhuon","Plougastel-Daoulas","Plouzané"))
