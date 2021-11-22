@@ -102,7 +102,7 @@ La composition colorée combine la bande spectrale du visible (0.6 μm), du PIR 
 
 `r emo::ji("question")` Qu'est-ce qu'une fusion d'images ?
 
-La définition sur **wikipedia**:  
+La définition sur [**wikipedia**](https://en.wikipedia.org/wiki/Pansharpened_image):  
 
 >Pansharpening is a process of merging high-resolution panchromatic and lower resolution multispectral imagery to create a single high-resolution color image. Google Maps and nearly every map creating company use this technique to increase image quality. Pansharpening produces a high-resolution color image from three, four or more low-resolution multispectral satellite bands plus a corresponding high-resolution panchromatic band:
 
