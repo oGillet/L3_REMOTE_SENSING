@@ -98,7 +98,8 @@ La composition colorée combine la bande spectrale du visible (0.6 μm), du PIR 
 • Nuage de glace (haute altitude) et neige en cyan.  
 • Nuage d'eau (basse altitude) en blanc.  
 
-# 3 - Fusion  d'images satellitaires `r emo::ji("artificial_satellite")`  
+# **Landsat 8 (L8)** `r emo::ji("artificial_satellite")`  
+### La fusion  d'images satellitaires 
 
 `r emo::ji("question")` Qu'est-ce qu'une fusion d'images ?
 
