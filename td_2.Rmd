@@ -192,7 +192,7 @@ Autres indices pour différencier les sols: **NDSI (Normalized Difference Soil I
 
 **Le Normalized Difference Water Index (NDWI)**  
 
-$NDVI = (ROUGE-MIR)/(ROUGE+MIR)$ 
+$NDWI = (ROUGE-MIR)/(ROUGE+MIR)$ 
 
 - Valeurs négatives (sols nus et non cultivés)  
 - Valeurs positives (surfaces cultivées et/ou végétalisées)  
