@@ -40,7 +40,7 @@ Le TD va se dérouler en 4 temps :
 
 L'Institut d'études géologiques des États-Unis (United States Geological Survey, USGS) est un organisme gouvernemental américain qui se consacre aux sciences de la Terre. Par exemple, l'une des missions de l'organisme consiste à surveiller activité volcanique et sismique sur l'ensemble du globe.  L'USGS et le département de l'agriculture ont impulsé le premier programme spatial d'observation de la Terre destiné à des fins civiles, le programme landsat. Il sera développé au milieu des années 1960 par l'agence spatiale américaine, la NASA. L'USGS, département de l'Intérieur des États-Unis, met à disposition gratuitement pour le monde entier les données brutes étalonnées Landsat. L'organisme met également à disposition d'autres données comme des MNT, des données issues de capteurs actifs, ... La NASA a réalisé 6 lancements de satellites "Landsat" depuis les années 70 (9 satellites au total). Les données utilisées lors des TDs sont issues de la 5ème campagne avec le satellite Landsat 8. 
 
-![Image de synthèse du satellite Landsat 8](images/l8.jpg)
+![Satellite Landsat 8](images/l8.jpg)
 
 ```{r}
 df <- data.frame(

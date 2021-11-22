@@ -27,3 +27,119 @@ opts_knit$set(width=75)
 _Travaux dirigés réalisés par Olivier Gillet et Yvette Vaguet_
 
 # Objectifs du TD n°3
+- Manipuler des images produites par un satellite géostationnaire  
+- Réaliser une fusion d'images satellitaires  
+
+Le TD va se dérouler en 4 temps :   
+1 - Télécharger les données sur la plateforme **Universitice**    
+2 - Faire une composition colorée **"vraies couleurs"** puis exporter les PNGs via QGIS pour faire un gif  
+3 - Réaliser une fusion d'images satellitaires par la méthode du **pan-sharpening**   
+
+# **Météosat Seconde Génération (MSG)** 
+
+**Mission principale** ➔ Prévision météorologique  
+**Missions secondaires** ➔ Surveillance du climat et de l'environnement.  
+  
+C'est la composante européenne du système de surveillance météorologique mondiale développée par l’Organisation Météorologique Mondiale (OMM) depuis les années 1970.Ce système de surveillance  météorologique mondiale  est composé de plusieurs satellites géostationnaires déployés le long de l'équateur et permettent d'assurer un suivi météorologique global de la planète Quatre satellites, de MSG-1 à MSG-4, qui, ont été lancés à tour de rôle pour acquérir des images satellitaires des systèmes nuageux, de jour comme de nuit, pour permettre aux météorologues d'effectuer les prévisions quotidiennement.
+
+**Applications** :  
+- Hydrologie & précipitations  
+- Agriculture 
+- Évolution de l'urbanisation des terres émergées  
+- Suivi  des températures de surface des océans  
+- Ressource halieutique   
+- Suivi des phénomènes éruptifs, mouvement des panaches de cendre   
+- Évolution du couvert végétal   
+- Les sécheresses   
+- Détection des incendies de forêts  
+- Émergence des épidémies par le suivi des nuages de poussières  
+- ...
+
+![Satellite Météosat Seconde Génération](images/msg.jpg)
+
+# 1 - Télécharger les images MSG `r emo::ji("artificial_satellite")`
+
+Vous devez vous rendre sur [Universitice](https://universitice.univ-rouen.fr)  et télécharger le jeu de données à télécharger est le suivant :
+
+> TD 3 - Donnees MSG (2020, 5 scènes)  
+
+Le jeu de données est composé de plusieurs scènes  MSG-4, 5 scènes acquises en 2020 Vous disposez seulement de 11 bandes spectrales pour chaque scène.  
+
+Pour rappel, les images satellitaires se caractérisent par une information panchromatique, multi- ou hyper-spectrales. Le nombre de bandes spectrales et les intervalles de longueur d’onde de ces dernières diffèrent selon le satellite et les capteurs utilisés. Les bandes spectrales à disposition sont les suivantes :
+
+
+`r emo::ji("computer")` Lien pour à la plate-forme de données MSG et autres :  
+
+https://pics.eumetsat.int/viewer/index.html  
+https://view.eumetsat.int/productviewer?v=default   
+
+![Plate-forme de téléchargement des données MSG](images/eutmetsat_download)
+
+`r emo::ji("calendar")` Les dates d'acquisition des images satellitaires sont les suivantes :  
+
+- 20 octobre 2020 08h42  
+- 20 octobre 2020 09h42  
+- 20 octobre 2020 10h42  
+- 20 octobre 2020 11h42  
+- 20 octobre 2020 12h42   
+
+# 2 - Visualiser les images `r emo::ji("screen")`
+  
+![Image du 20 octobre 2020 12h42 en niveau de gris, composition colorée "vraies et fausses couleurs"](images/msg_all.png)
+
+
+`r emo::ji("question")` Vous devez réaliser une **"composition colorée naturelle"* (Rouge:3, Vert:2, Bleu:1) pour chaque scène en faire un gif.
+`r emo::ji("computer")` Lien pour à la plate-forme de données MSG et autres : https://ezgif.com/maker
+
+![Animation des 5 scènes MSG](images/msg_321.gif)
+
+La composition colorée combine la bande spectrale du visible (0.6 μm), du PIR (0.8 μm) et de l'IR (10.8 μm). Le canal de l'IR mesure les températures radiatives aux sommets des nuages. Les niveaux de gris, pour cette bande, représentent le rayonnement infrarouge émis par les nuages et la terre (plus c'est sombre, plus c'est chaud). Nous avons ainsi des informations relatives à l'altitude des nuages. La bande du visible fournit une information sur l'épaisseur optique des nuages. Les nuances de gris représentent l'intensité de la réflexion solaire. Plus les nuages sont épais, plus ils apparaissent en blanc. Pour finir, la bande du PIR fournit une information sur la végétation.  
+
+• Nuage de glace (haute altitude) et neige en cyan.  
+• Nuage d'eau (basse altitude) en blanc.  
+
+# 3 - Fusion  d'images satellitaires `r emo::ji("artificial_satellite")`  
+
+`r emo::ji("question")` Qu'est-ce qu'une fusion d'images ?
+
+La définition sur **wikipedia**:  
+
+>Pansharpening is a process of merging high-resolution panchromatic and lower resolution multispectral imagery to create a single high-resolution color image. Google Maps and nearly every map creating company use this technique to increase image quality. Pansharpening produces a high-resolution color image from three, four or more low-resolution multispectral satellite bands plus a corresponding high-resolution panchromatic band:
+
+L'objectif est d'obtenir une information de meilleure qualité spatiale et spectrale en combinant de plusieurs images provenant de capteurs différents. Les
+méthodes sont nombreuses (Gram-Schmidt, Brovey, ACP, CN Spectral Sharpening) mais le principe reste le même: intégrer le canal le plus précis spatialement et le moins précis spectralement (Panchromatique) dans les canaux multispectraux.
+
+![Principe de la fusion d'images satellitaires](images/pansharpening.png)
+Voici deux images satellitaires de notre zone d'étude, l'une provient du satellite Sentinel-2 et l'autre de Landsat 8. Celle de gauche, issue du satellite Sentinel-2 à une meilleure résolution spatiale (10 m).  
+
+>L'ESA, via le programme Sentinel, vise à déployer toute une série de satellites d'observation de la Terre (les premiers lancements ont eu lieu en 2015 et 2017). Le principal objectif du programme est de fournir aux pays européens des données complètes et actualisées leur permettant d'assurer le contrôle et la surveillance de l'environnement.  
+
+L'image de droite est une image Landsat 8 avec une résolution spatiale de 30 mètres. La résolution spectrale des deux scènes est *"""globalement"""* similaire.    
+
+![A gauche, une image Sentinel-2 (10m). A droite, une image Landsat 8 (30m)](images/s2_l8.png)
+
+Notre jeu de données Landsat 8 a cependant une bande spectrale dont la résolution spatiale est de 15 mètre, la **bande spectrale n°8 - Panchromatique**.  
+
+L'objectif est donc de fusionner la **bande spectrale n°8 - Panchromatique** avec les autres bandes (**bande spectrale n°2 - Bleu, bande spectrale n°3 - Vert, bande spectrale n°4 - Rouge, bande spectrale n°5 - Infrarouge proche**)  
+
+### **Étapes pour fusionner les images**
+
+`r emo::ji("question")` 1 - Vous devez réaliser un layerstack des images du **22 janvier 2017**  & **27 août 2017**.  
+`r emo::ji("question")` 2 - Vous devez télécharger les **bandes spectrales n°8 - Panchromatique du 22 janvier 2017  & 27 août 2017** sur la plateforme [Universitice](https://universitice.univ-rouen.fr).  
+
+> TD 3 - Donnees L8 (2017, 2 bandes panchromatiques)  
+
+`r emo::ji("question")` 3 - Vous devez réaliser une fusion du layerstack et de la **bande spectrale n°8 - Panchromatique**, objectif est de faire une composition colorée "vraies ou fausses couleurs" des scènes Landsat avec une résolution spatiale de  15 mètres.  
+
+La première dans ce processus consiste à ouvrir les images (layerstack + bande spectrale du panchromatique) et de chercher l'algorithme **pan-sharpening** dans QGIS.  
+
+![Première étape dans le processus de fusion](images/fusion_stepTwo.png)
+  
+L'étape consiste simplement à renseigner les images à forte spatiale et spectrale. Vous pouvez également modifier paramétrer des algorithmes de ré-échantillonnage ainsi que ceux pour la compression de données.  
+
+![Paramétrer l'algorithme de fusion](images/fusion_stepThree.png)
+Le résultat de la fusion de type **"pan-sharpening"** est le suivant :  
+`r emo::ji("question")` Où se trouve les informations/métadonnées de mon image matricielle ? Est-ce que la résolution spatiale de mon raster est correcte ?    
+
+![Image fusionnée encomposition colorée IR (avant/après)](images/fusion.png)
+`r emo::ji("question")` Vous devez réaliser la fusion **"pan-sharpening"** pour la scène de janvier 2017.    

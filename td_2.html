@@ -373,7 +373,7 @@ text-align: justify}
 1 - Télécharger les données sur la plateforme <strong>Universitice</strong><br />
 2 - Continuer de prétraiter les données (réaliser un layerStack pour chaque scène)<br />
 3 - Visualiser les images sous QGIS<br />
-4 - Exercice</p>
+4 - Calculer des indices (NDVI, BSI) 5 - Exercice</p>
 </div>
 <div id="prétraitements-sous-r" class="section level1">
 <h1><strong><em>Prétraitements sous R</em></strong></h1>
@@ -394,7 +394,7 @@ for (d in c(&#39;01_JANVIER&#39;,&#39;04_AVRIL&#39;,&#39;08_AOUT&#39;,&#39;10_OC
 end.time &lt;- Sys.time()
 time.taken &lt;- end.time - start.time
 cat(&quot;Temps d&#39;execution ==&gt;&quot;,time.taken)</code></pre>
-<pre><code>Temps d&#39;execution ==&gt; 5.751721</code></pre>
+<pre><code>Temps d&#39;execution ==&gt; 5.950314</code></pre>
 <p>Au final, il me faut 5 minutes pour écrire le script R et 5 secondes pour découper 20 images satellitaires situées dans 4 répertoires différents. Ce prétraitement vous permet de manipuler des objets moins lourds pour votre machine.</p>
 <p>En plus du gain de temps, les avantages de la programmation en Géographie sont multiples :<br />
 - Chaîne des traitements (simples ou complexes)<br />
