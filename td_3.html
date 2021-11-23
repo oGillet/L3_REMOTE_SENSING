@@ -748,6 +748,37 @@ Détection et suivi des masses nuageuses, étude des terres émergées
 <p><img src="images/fusion.png" alt="Image fusionnée encomposition colorée IR (avant/après)" /> ❓ Vous devez réaliser la fusion <strong>“pan-sharpening”</strong> pour la scène de janvier 2017.</p>
 </div>
 </div>
+<div id="fusion-sous-r" class="section level1">
+<h1><strong><em>Fusion sous R</em></strong></h1>
+<pre class="r"><code># # install.packages(&quot;tidyverse&quot;, type=&#39;win.binary&#39;)
+# 
+# # Load packages
+# library(raster)
+# library(rgdal)
+# library(ggplot2)
+# library(RStoolbox)
+# 
+# setwd(&quot;C:\\Users\\gilleol2\\Desktop\\L3_TELEDETECTION\\&quot;)
+# 
+# # Load Landsat images
+# pan &lt;- raster(&quot;01_JANVIER_2017_L8_BREST_B8_clip.tif&quot;)
+# b1 &lt;- raster(&quot;01_JANVIER_2017_L8_BREST_CLIP_ALL_BANDS.tif&quot;,band=1)
+# b2 &lt;- raster(&quot;01_JANVIER_2017_L8_BREST_CLIP_ALL_BANDS.tif&quot;,band=2)
+# b3 &lt;- raster(&quot;01_JANVIER_2017_L8_BREST_CLIP_ALL_BANDS.tif&quot;,band=3)
+# 
+# multi &lt;- stack(b1,b2,b3)
+# names(multi) &lt;- c(&#39;red&#39;, &#39;green&#39;, &#39;blue&#39;)
+# 
+# ## Brovey pan sharpening
+# lowResImg_pan &lt;- panSharpen(multi, pan, r = 3, g = 2, b = 1, method = &quot;brovey&quot;)
+# lowResImg_pan
+# 
+# ## Plot
+# ggRGB(multi, stretch = &quot;lin&quot;) + ggtitle(&quot;Original&quot;)
+# ggRGB(lowResImg_pan, stretch=&quot;lin&quot;) + ggtitle(&quot;Pansharpened (Brovey)&quot;)
+# 
+# writeRaster(lowResImg_pan, &quot;01_JANVIER_2017_L8_BREST_CLIP_ALL_BANDS_pan.tif&quot;)</code></pre>
+</div>
 
 
 

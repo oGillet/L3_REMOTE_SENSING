@@ -160,3 +160,36 @@ Le résultat de la fusion de type **"pan-sharpening"** est le suivant :
 
 ![Image fusionnée encomposition colorée IR (avant/après)](images/fusion.png)
 `r emo::ji("question")` Vous devez réaliser la fusion **"pan-sharpening"** pour la scène de janvier 2017.    
+
+# ***Fusion sous R***  
+
+```{r echo=TRUE, message=FALSE, warning=FALSE, , echo=TRUE}
+# # install.packages("tidyverse", type='win.binary')
+# 
+# # Load packages
+# library(raster)
+# library(rgdal)
+# library(ggplot2)
+# library(RStoolbox)
+# 
+# setwd("C:\\Users\\gilleol2\\Desktop\\L3_TELEDETECTION\\")
+# 
+# # Load Landsat images
+# pan <- raster("01_JANVIER_2017_L8_BREST_B8_clip.tif")
+# b1 <- raster("01_JANVIER_2017_L8_BREST_CLIP_ALL_BANDS.tif",band=1)
+# b2 <- raster("01_JANVIER_2017_L8_BREST_CLIP_ALL_BANDS.tif",band=2)
+# b3 <- raster("01_JANVIER_2017_L8_BREST_CLIP_ALL_BANDS.tif",band=3)
+# 
+# multi <- stack(b1,b2,b3)
+# names(multi) <- c('red', 'green', 'blue')
+# 
+# ## Brovey pan sharpening
+# lowResImg_pan <- panSharpen(multi, pan, r = 3, g = 2, b = 1, method = "brovey")
+# lowResImg_pan
+# 
+# ## Plot
+# ggRGB(multi, stretch = "lin") + ggtitle("Original")
+# ggRGB(lowResImg_pan, stretch="lin") + ggtitle("Pansharpened (Brovey)")
+# 
+# writeRaster(lowResImg_pan, "01_JANVIER_2017_L8_BREST_CLIP_ALL_BANDS_pan.tif")
+```
