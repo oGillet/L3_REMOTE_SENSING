@@ -1,0 +1,52 @@
+---
+title: " "
+output: html_document
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+```{r knitr_init, echo=FALSE, cache=FALSE, warning=FALSE}
+library(knitr)
+library(rmdformats)
+library(kableExtra)
+
+## Global options
+options(max.print="75")
+opts_chunk$set(echo=FALSE,
+               cache=TRUE,
+               prompt=FALSE,
+               tidy=TRUE,
+               comment=NA,
+               message=FALSE,
+               warning=FALSE)
+opts_knit$set(width=75)
+```
+_Travaux dirigés réalisés par Olivier Gillet et Yvette Vaguet_
+
+# Objectifs du TD n°4
+- Apprendre à classifier des images satellitaires selon une approche supervisée et non supervisée  
+- Réaliser une cartographie et quelques statistiques des résultats  
+
+Le TD va se dérouler en 4 temps :   
+1 - Télécharger les données Sentinel-2 sur la plateforme **Universitice**   
+2 - Classifier les images via le plugin SAC  
+3 - Cartographier et analyser les résultats  
+
+# **Sentinel-2 (S2)** 
+
+L'ESA, via le programme Sentinel, vise à déployer toute une série de satellites d'observation de la Terre (les premiers lancements ont eu lieu en 2015 et 2017). Le principal objectif du programme est de fournir aux pays européens des données complètes et actualisées leur permettant d'assurer le contrôle et la surveillance de l'environnement.  
+
+![Satellite Sentinel-2A](images/s2.jpg)
+
+### 1 - Télécharger les images MSG `r emo::ji("artificial_satellite")`
+
+Vous devez vous rendre sur [Universitice](https://universitice.univ-rouen.fr)  et télécharger le jeu de données à télécharger est le suivant :
+
+> TD 4 - Donnees S2 (2017, 14 bandes spectrales)  
+
+Le jeu de données est composé d'une seule scène et vous disposez de l'ensemble des bandes spectrales.   
+
+Pour rappel, les images satellitaires se caractérisent par une information panchromatique, multi- ou hyper-spectrales. Le nombre de bandes spectrales et les intervalles de longueur d’onde de ces dernières diffèrent selon le satellite et les capteurs utilisés. Les bandes spectrales à disposition sont les suivantes :
