@@ -620,8 +620,8 @@ Bande spectrale n°10 - Infrarouge à grande longueur d’onde
 <h1>9 - Exercice n°2 📊</h1>
 <p>❓ Vous devez calculer la proportion d’espaces verts pout le mois d’octobre et les 8 communes de la zone d’étude.</p>
 </div>
-<div id="calcul-de-la-superficie-des-espaces-végétalisés-par-commun-sous-qgis" class="section level1">
-<h1><strong><em>Calcul de la superficie des espaces végétalisés par commun sous QGIS</em></strong></h1>
+<div id="calcul-de-la-superficie-des-espaces-végétalisés-par-commune-sous-qgis" class="section level1">
+<h1><strong><em>Calcul de la superficie des espaces végétalisés par commune sous QGIS</em></strong></h1>
 <p>1 - Tout d’abord, vous devez ajouter le shapefile <em>“communes_brest.shp”</em> dans votre projet QGIS.</p>
 <div class="figure">
 <img src="images/td2_ndvi_commune.png" alt="" />
@@ -644,7 +644,13 @@ Bande spectrale n°10 - Infrarouge à grande longueur d’onde
 <p>5 - Pour terminer, vous devez créer un champ avec la superficie des espaces végatalisés pour chaque commune</p>
 <p>Formule pour calculer la superficie des espaces végétalisés à partir de la calculatrice de champ<br />
 <span class="math inline">\(Superficie = sum( area , nom ) / 1000000\)</span></p>
-<p><img src="images/calculatriceChamp.png" alt="Calculatrice de champ" /> # <strong><em>Calcul de la superficie des espaces végétalisés par commun sous R</em></strong></p>
+<div class="figure">
+<img src="images/calculatriceChamp.png" alt="" />
+<p class="caption">Calculatrice de champ</p>
+</div>
+</div>
+<div id="calcul-de-la-superficie-des-espaces-végétalisés-par-commune-sous-r" class="section level1">
+<h1><strong><em>Calcul de la superficie des espaces végétalisés par commune sous R</em></strong></h1>
 <pre class="r"><code>#  install.packages(&quot;tidyverse&quot;, type=&#39;win.binary&#39;)
 #  install.packages(&quot;raster&quot;, type=&#39;win.binary&#39;)
 #  install.packages(&quot;sf&quot;, type=&#39;win.binary&#39;)
@@ -654,19 +660,37 @@ library(raster)
 library(sf)
 library(ggplot2)
 
+# Ouvrir le raster
 raster_brest_reclassify = raster::raster(&quot;/home/gilleol2/Bureau/L8_BREST/10_OCTOBRE_2017_L8_BREST_CLIP_ALL_BANDS_NDVI_RECLASSIFY.tif&quot;)
+
+# Ouvrir le shapefile des communes
 communes = sf::st_read(&quot;/home/gilleol2/Bureau/L8_BREST/communes_brest.shp&quot;)
+
+# Decouper le raster avec le shapefile
 raster_brest_reclassify = mask(raster_brest_reclassify, communes)
+
+# Convertir le raster en shapefile (polygones)
 vector_brest_reclassify = rasterToPolygons(raster_brest_reclassify)
 vector_brest_reclassify = st_as_sf(vector_brest_reclassify)
+
+# Renommer une colonne
 names(vector_brest_reclassify)[1] &lt;- &#39;vegetation&#39;
+
+# Selectionner les polygones avec des espaces vegetalises
 vector_brest_reclassify = vector_brest_reclassify[vector_brest_reclassify$vegetation!=1,]
+
+# Realiser une intersection avec le shapefile des communes
 vector_brest_reclassify = st_intersection(vector_brest_reclassify,communes)
+
+# Calculer la superficie des surfaces vegetalises
 vector_brest_reclassify[,&#39;area&#39;] &lt;- as.numeric(st_area(vector_brest_reclassify))
+
+# Calculer une statistique (Superficie des espaces végétalisés par commune)
 results &lt;- aggregate(vector_brest_reclassify$area, by=list(communes=vector_brest_reclassify$nom), FUN=sum)
 colnames(results) &lt;- c(&#39;communes&#39;,&#39;superficie&#39;)
 results[,&#39;superficie&#39;] &lt;- results[,&#39;superficie&#39;]/1000</code></pre>
-<p>📊 Voici un exemple de résultat attendu <img src="td_2_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>📊 Voici un exemple de résultat attendu</p>
+<p><img src="td_2_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 </div>
 
 

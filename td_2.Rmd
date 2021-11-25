@@ -228,7 +228,7 @@ print(p)
 
 `r emo::ji("question")` Vous devez calculer la proportion d'espaces verts pout le mois d'octobre et les 8 communes de la zone d'étude.
 
-# ***Calcul de la superficie des espaces végétalisés par commun sous QGIS*** 
+# ***Calcul de la superficie des espaces végétalisés par commune sous QGIS*** 
 
 1 - Tout d'abord, vous devez ajouter le shapefile *"communes_brest.shp"* dans votre projet QGIS.
 
@@ -254,7 +254,8 @@ Formule pour calculer la superficie des espaces végétalisés à partir de la c
 $Superficie  = sum( area ,  nom ) / 1000000$ 
 
 ![Calculatrice de champ](images/calculatriceChamp.png)
-# ***Calcul de la superficie des espaces végétalisés par commun sous R*** 
+
+# ***Calcul de la superficie des espaces végétalisés par commune sous R*** 
 
 ```{r eval=F, echo=T}
 #  install.packages("tidyverse", type='win.binary')
@@ -266,23 +267,42 @@ library(raster)
 library(sf)
 library(ggplot2)
 
+# Ouvrir le raster
 raster_brest_reclassify = raster::raster("/home/gilleol2/Bureau/L8_BREST/10_OCTOBRE_2017_L8_BREST_CLIP_ALL_BANDS_NDVI_RECLASSIFY.tif")
+
+# Ouvrir le shapefile des communes
 communes = sf::st_read("/home/gilleol2/Bureau/L8_BREST/communes_brest.shp")
+
+# Decouper le raster avec le shapefile
 raster_brest_reclassify = mask(raster_brest_reclassify, communes)
+
+# Convertir le raster en shapefile (polygones)
 vector_brest_reclassify = rasterToPolygons(raster_brest_reclassify)
 vector_brest_reclassify = st_as_sf(vector_brest_reclassify)
+
+# Renommer une colonne
 names(vector_brest_reclassify)[1] <- 'vegetation'
+
+# Selectionner les polygones avec des espaces vegetalises
 vector_brest_reclassify = vector_brest_reclassify[vector_brest_reclassify$vegetation!=1,]
+
+# Realiser une intersection avec le shapefile des communes
 vector_brest_reclassify = st_intersection(vector_brest_reclassify,communes)
+
+# Calculer la superficie des surfaces vegetalises
 vector_brest_reclassify[,'area'] <- as.numeric(st_area(vector_brest_reclassify))
+
+# Calculer une statistique (Superficie des espaces végétalisés par commune)
 results <- aggregate(vector_brest_reclassify$area, by=list(communes=vector_brest_reclassify$nom), FUN=sum)
 colnames(results) <- c('communes','superficie')
 results[,'superficie'] <- results[,'superficie']/1000
 
 ```
+  
+  
+`r emo::ji("stats")` Voici un exemple de résultat attendu  
 
-
-`r emo::ji("stats")` Voici un exemple de résultat attendu
+  
 ```{r echo=FALSE, message=FALSE, warning=FALSE, , echo=FALSE}
 load('results.RData')
 p <- ggplot2::ggplot(results, ggplot2::aes(x=communes, y=superficie, fill=communes)) +
