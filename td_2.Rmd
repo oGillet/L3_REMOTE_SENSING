@@ -294,7 +294,11 @@ vector_brest_reclassify[,'area'] <- as.numeric(st_area(vector_brest_reclassify))
 
 # Calculer une statistique (Superficie des espaces végétalisés par commune)
 results <- aggregate(vector_brest_reclassify$area, by=list(communes=vector_brest_reclassify$nom), FUN=sum)
+
+# Renommer les colonnes
 colnames(results) <- c('communes','superficie')
+
+# Convertir m2 en km2
 results[,'superficie'] <- results[,'superficie']/1000
 
 ```
