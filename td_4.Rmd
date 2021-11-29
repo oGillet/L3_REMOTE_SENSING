@@ -230,7 +230,7 @@ vector_brest_reclassify = st_as_sf(vector_brest_reclassify)
 names(vector_brest_reclassify)[1] <- 'vegetation'
 
 # Selectionner les polygones avec des espaces vegetalises
-vector_brest_reclassify = vector_brest_reclassify[vector_brest_reclassify$vegetation==1,]
+vector_brest_reclassify = vector_brest_reclassify[vector_brest_reclassify$vegetation!=1,]
 
 # Realiser une intersection avec le shapefile des communes
 vector_brest_reclassify = st_intersection(vector_brest_reclassify,communes)
