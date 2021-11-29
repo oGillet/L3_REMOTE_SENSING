@@ -709,7 +709,7 @@ results &lt;- aggregate(vector_brest_reclassify$area, by=list(communes=vector_br
 colnames(results) &lt;- c(&#39;communes&#39;,&#39;superficie&#39;)
 
 # Convertir m2 en km2
-results[,&#39;superficie&#39;] &lt;- results[,&#39;superficie&#39;]/1000
+results[,&#39;superficie&#39;] &lt;- results[,&#39;superficie&#39;]/1000000
 save(results,file=&#39;results.RData&#39;)</code></pre>
 <p>📊 Voici un exemple de résultat attendu</p>
 <p><img src="td_2_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
