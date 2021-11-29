@@ -622,26 +622,42 @@ Bande spectrale n°10 - Infrarouge à grande longueur d’onde
 </div>
 <div id="calcul-de-la-superficie-des-espaces-végétalisés-par-commune-sous-qgis" class="section level1">
 <h1><strong><em>Calcul de la superficie des espaces végétalisés par commune sous QGIS</em></strong></h1>
-<p>1 - Tout d’abord, vous devez ajouter le shapefile <em>“communes_brest.shp”</em> dans votre projet QGIS.</p>
+<p>1 - Tout d’abord, vous devez ajouter le shapefile <em>“communes_brest.shp”</em> et le raster du <em>NDVI du mois d’octobre</em> ans votre projet QGIS.</p>
 <div class="figure">
 <img src="images/td2_ndvi_commune.png" alt="" />
-<p class="caption">Affichage des 4 NDVIs et des communes dans QGIS</p>
+<p class="caption">Affichage du NDVI et des communes dans QGIS</p>
 </div>
-<p>2 - Ensuite, vous devez classifier, via la calculatrice raster, le NDVI à partir d’un seuillage NDVI.</p>
+<p>2 - Ensuite, vous devez découper le raster selon une couche de masque, <em>“communes_brest.shp”</em></p>
+<blockquote>
+<p>Raster -&gt; Extraction -&gt; Découper un raster selon une couche de masque</p>
+</blockquote>
+<div class="figure">
+<img src="images/td2_ndvi_commune_clip.png" alt="" />
+<p class="caption">Affichage du NDVI découpé et des communes dans QGIS</p>
+</div>
+<p>3 - La troisième étapes consiste à classifier, via la calculatrice raster, le NDVI à partir d’un seuillage des valeurs du NDVI.</p>
 <p>❓ Selon vous, quel est le seuil végétation/sol nus (vous pouvez vous aider d’une composition colorée ou d’un fond satellite) ?</p>
+<blockquote>
+<p>Raster -&gt; Calculatrice Raster</p>
+</blockquote>
 <p>Formule pour classifier les NDVI à partir de la calculatrice raster<br />
 <span class="math inline">\(NDVI RECLASSIFY = (NDVI@1 &lt; Seuil) * 0 + (NDVI@1 &gt;= Seuil) * 1\)</span></p>
+<p><img src="images/td2_ndvi_commune_clip_reclassify.png" alt="Calculatrice raster pour classifier le raster" /> <img src="images/td2_ndvi_commune_clip_reclassify_map.png" alt="Résultat d’une classification avec un seuil NDVI fixé à 0.45" /></p>
+<p>4 - Vous devez vectoriser votre raster puis supprimer les entités dont l’attribut “DN” est égal à 0 (absence de végétation) pour obtenir seulement des polygones de végétation.</p>
+<blockquote>
+<p>Raster -&gt; Conversion -&gt; Polygoniser (raster vers vecteur)</p>
+</blockquote>
 <div class="figure">
-<img src="images/td2_ndviReclassify.png" alt="" />
-<p class="caption">Affichage du NDVI reclassifié</p>
+<img src="images/td2_ndvi_commune_polygons.png" alt="" />
+<p class="caption">Résultat d’une classification avec un seuil NDVI fixé à 0.45</p>
 </div>
-<p>3 - Vous devez vectoriser votre raster puis supprimer les entités dont l’attribut “DN” est égal à 0 pour obtenir seulement des polygones de végétation.<br />
-4 - Une intersection entre votre “rasteur vectorisé” et le shapefile des communes de Brest Métropole est nécessaire pour obtenir les statistiques.</p>
+<p>5 - Une intersection entre votre “rasteur vectorisé” et le shapefile des communes de Brest Métropole est nécessaire pour obtenir les statistiques.<br />
+⚠️Vous devez faire attention à la validité des géométries et des erreurs de topologie.</p>
 <div class="figure">
 <img src="images/td2_intersection.png" alt="" />
 <p class="caption">Affichage de l’intersection</p>
 </div>
-<p>5 - Pour terminer, vous devez créer un champ avec la superficie des espaces végatalisés pour chaque commune</p>
+<p>5 - Pour terminer, vous devez créer un champ avec la superficie des espaces végétalisés pour chaque commune</p>
 <p>Formule pour calculer la superficie des espaces végétalisés à partir de la calculatrice de champ<br />
 <span class="math inline">\(Superficie = sum( area , nom ) / 1000000\)</span></p>
 <div class="figure">
@@ -677,10 +693,11 @@ vector_brest_reclassify = st_as_sf(vector_brest_reclassify)
 names(vector_brest_reclassify)[1] &lt;- &#39;vegetation&#39;
 
 # Selectionner les polygones avec des espaces vegetalises
-vector_brest_reclassify = vector_brest_reclassify[vector_brest_reclassify$vegetation!=1,]
+vector_brest_reclassify = vector_brest_reclassify[vector_brest_reclassify$vegetation==1,]
+vector_brest_reclassify = vector_brest_reclassify %&gt;% st_set_crs(st_crs(communes))
 
 # Realiser une intersection avec le shapefile des communes
-vector_brest_reclassify = st_intersection(vector_brest_reclassify,communes)
+vector_brest_reclassify = st_intersection(vector_brest_reclassify2,communes)
 
 # Calculer la superficie des surfaces vegetalises
 vector_brest_reclassify[,&#39;area&#39;] &lt;- as.numeric(st_area(vector_brest_reclassify))
@@ -692,7 +709,8 @@ results &lt;- aggregate(vector_brest_reclassify$area, by=list(communes=vector_br
 colnames(results) &lt;- c(&#39;communes&#39;,&#39;superficie&#39;)
 
 # Convertir m2 en km2
-results[,&#39;superficie&#39;] &lt;- results[,&#39;superficie&#39;]/1000</code></pre>
+results[,&#39;superficie&#39;] &lt;- results[,&#39;superficie&#39;]/1000
+save(results,file=&#39;results.RData&#39;)</code></pre>
 <p>📊 Voici un exemple de résultat attendu</p>
 <p><img src="td_2_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 </div>

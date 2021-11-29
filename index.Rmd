@@ -69,7 +69,7 @@ Vous devez télécharger l'image du nord Finistère acquise le 2017/08/28 (Lands
 
 # 2 - Télécharger le plugin SAC et ProfilTool
 
-QGIS n'est pas un logiciel de traitement d'images comme IDRISI ou ENVI. Pour explorer et/ou manipuler graphiquement des images satellitaires via le Système d'Information Géographique (SIG, QGIS), nous devons installer deux plugins "Semi-Automatic Classification" et "Profile Tool". Ce premier plugin open-source a été développé par Luca Congedo pour la classification semi-automatique (ou classification supervisée) des images satellitaires. L'outil est très complet car il fournit des outils de téléchargement, de pré/post traitements des images.  
+QGIS n'est pas un logiciel de traitement d'images comme IDRISI ou ENVI. Pour explorer et/ou manipuler graphiquement des images satellitaires via le Système d'Information Géographique (SIG, QGIS), nous devons installer deux plugins "Semi-Automatic Classification" et "Profile Tool". Ce premier plugin open-source a été développé par Luca Congedo pour classifier des images satellitaires. L'outil est très complet car il fournit des outils de téléchargement, de pré/post traitements des images.  
 
 Pour le télécharger, après ouverture du SIG QGIS, vous devez vous rendre sur la fenêtre "Installer/Gérer les extensions" et installer le plugin "Semi-Automatic Classification":  
 

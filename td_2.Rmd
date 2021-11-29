@@ -230,25 +230,40 @@ print(p)
 
 # ***Calcul de la superficie des espaces végétalisés par commune sous QGIS*** 
 
-1 - Tout d'abord, vous devez ajouter le shapefile *"communes_brest.shp"* dans votre projet QGIS.
+1 - Tout d'abord, vous devez ajouter le shapefile *"communes_brest.shp"*  et le raster du *NDVI du mois d'octobre* ans votre projet QGIS.
 
-![Affichage des 4 NDVIs et des communes dans QGIS](images/td2_ndvi_commune.png)
+![Affichage du NDVI et des communes dans QGIS](images/td2_ndvi_commune.png)
 
-2 - Ensuite, vous devez classifier, via la calculatrice raster, le NDVI à partir d'un seuillage NDVI.
+2 - Ensuite, vous devez découper le raster selon une couche de masque, *"communes_brest.shp"*
+
+> Raster -> Extraction -> Découper un raster selon une couche de masque
+
+![Affichage du NDVI découpé et des communes dans QGIS](images/td2_ndvi_commune_clip.png)
+
+3 - La troisième étapes consiste à classifier, via la calculatrice raster, le NDVI à partir d'un seuillage des valeurs du NDVI.
 
 `r emo::ji("question")` Selon vous, quel est le seuil végétation/sol nus (vous pouvez vous aider d'une composition colorée ou d'un fond satellite) ?
+
+> Raster -> Calculatrice Raster  
 
 Formule pour classifier les NDVI à partir de la calculatrice raster   
 $NDVI RECLASSIFY = (NDVI@1 < Seuil) * 0 + (NDVI@1 >= Seuil) * 1$ 
 
-![Affichage du NDVI reclassifié](images/td2_ndviReclassify.png)
+![Calculatrice raster pour classifier le raster](images/td2_ndvi_commune_clip_reclassify.png)
+![Résultat d'une classification avec un seuil NDVI fixé à 0.45](images/td2_ndvi_commune_clip_reclassify_map.png)
 
-3 - Vous devez vectoriser votre raster puis supprimer les entités dont l'attribut "DN" est égal à 0 pour obtenir seulement des polygones de végétation.   
-4 - Une intersection entre votre "rasteur vectorisé" et le shapefile des communes de Brest Métropole est nécessaire pour obtenir les statistiques.   
+4 - Vous devez vectoriser votre raster puis supprimer les entités dont l'attribut "DN" est égal à 0 (absence de végétation) pour obtenir seulement des polygones de végétation.   
+
+> Raster -> Conversion -> Polygoniser (raster vers vecteur)  
+
+![Résultat d'une classification avec un seuil NDVI fixé à 0.45](images/td2_ndvi_commune_polygons.png)
+
+5 - Une intersection entre votre "rasteur vectorisé" et le shapefile des communes de Brest Métropole est nécessaire pour obtenir les statistiques.   
+`r emo::ji("warning")`Vous devez faire attention à la validité des géométries et des erreurs de topologie.
 
 ![Affichage de l'intersection](images/td2_intersection.png)
 
-5 - Pour terminer, vous devez créer un champ avec la superficie des espaces végatalisés pour chaque commune
+5 - Pour terminer, vous devez créer un champ avec la superficie des espaces végétalisés pour chaque commune
 
 Formule pour calculer la superficie des espaces végétalisés à partir de la calculatrice de champ  
 $Superficie  = sum( area ,  nom ) / 1000000$ 
@@ -284,10 +299,11 @@ vector_brest_reclassify = st_as_sf(vector_brest_reclassify)
 names(vector_brest_reclassify)[1] <- 'vegetation'
 
 # Selectionner les polygones avec des espaces vegetalises
-vector_brest_reclassify = vector_brest_reclassify[vector_brest_reclassify$vegetation!=1,]
+vector_brest_reclassify = vector_brest_reclassify[vector_brest_reclassify$vegetation==1,]
+vector_brest_reclassify = vector_brest_reclassify %>% st_set_crs(st_crs(communes))
 
 # Realiser une intersection avec le shapefile des communes
-vector_brest_reclassify = st_intersection(vector_brest_reclassify,communes)
+vector_brest_reclassify = st_intersection(vector_brest_reclassify2,communes)
 
 # Calculer la superficie des surfaces vegetalises
 vector_brest_reclassify[,'area'] <- as.numeric(st_area(vector_brest_reclassify))
@@ -300,7 +316,7 @@ colnames(results) <- c('communes','superficie')
 
 # Convertir m2 en km2
 results[,'superficie'] <- results[,'superficie']/1000
-
+save(results,file='results.RData')
 ```
   
   
@@ -311,7 +327,7 @@ results[,'superficie'] <- results[,'superficie']/1000
 load('results.RData')
 p <- ggplot2::ggplot(results, ggplot2::aes(x=communes, y=superficie, fill=communes)) +
   ggplot2::geom_bar(stat="identity")+
-  ggplot2::labs(title = "Superficie des espaces végétalisés par commune",subtitle = "10 octobre 2017 - Seuil fixé à 0.5", x="Commune", y="Pourcentage (%)")+ 
+  ggplot2::labs(title = "Superficie des espaces végétalisés par commune",subtitle = "10 octobre 2017 - Seuil fixé à 0.5", x="Commune", y="km2")+ 
   ggplot2::theme_minimal() +
   ggplot2::theme(axis.text.x = ggplot2::element_blank())+
   ggplot2::scale_fill_brewer(palette="Dark2")

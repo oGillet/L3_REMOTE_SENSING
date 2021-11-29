@@ -372,7 +372,7 @@ text-align: justify}
 </li>
 <li>Réaliser une fusion d’images satellitaires</li>
 </ul>
-<p>Le TD va se dérouler en 4 temps :<br />
+<p>Le TD va se dérouler en 3 temps :<br />
 1 - Télécharger les données sur la plateforme <strong>Universitice</strong><br />
 2 - Faire une composition colorée <strong>“vraies couleurs”</strong> puis exporter les PNGs via QGIS pour faire un gif<br />
 3 - Réaliser une fusion d’images satellitaires par la méthode du <strong>pan-sharpening</strong></p>
@@ -732,8 +732,9 @@ Détection et suivi des masses nuageuses, étude des terres émergées
 <p>Notre jeu de données Landsat 8 a cependant une bande spectrale dont la résolution spatiale est de 15 mètre, la <strong>bande spectrale n°8 - Panchromatique</strong>.</p>
 <p>L’objectif est donc de fusionner la <strong>bande spectrale n°8 - Panchromatique</strong> avec les autres bandes (<strong>bande spectrale n°2 - Bleu, bande spectrale n°3 - Vert, bande spectrale n°4 - Rouge, bande spectrale n°5 - Infrarouge proche</strong>)</p>
 </div>
-<div id="étapes-pour-fusionner-les-images" class="section level3">
-<h3><strong>Étapes pour fusionner les images</strong></h3>
+</div>
+<div id="étapes-pour-fusionner-les-images" class="section level1">
+<h1><strong>Étapes pour fusionner les images</strong></h1>
 <p>❓ 1 - Vous devez réaliser un layerstack des images du <strong>22 janvier 2017</strong> &amp; <strong>27 août 2017</strong>.<br />
 ❓ 2 - Vous devez télécharger les <strong>bandes spectrales n°8 - Panchromatique du 22 janvier 2017 &amp; 27 août 2017</strong> sur la plateforme <a href="https://universitice.univ-rouen.fr">Universitice</a>.</p>
 <blockquote>
@@ -749,7 +750,6 @@ Détection et suivi des masses nuageuses, étude des terres émergées
 <p><img src="images/fusion_stepThree.png" alt="Paramétrer l’algorithme de fusion" /> Le résultat de la fusion de type <strong>“pan-sharpening”</strong> est le suivant :<br />
 ❓ Où se trouve les informations/métadonnées de mon image matricielle ? Est-ce que la résolution spatiale de mon raster est correcte ?</p>
 <p><img src="images/fusion.png" alt="Image fusionnée encomposition colorée IR (avant/après)" /> ❓ Vous devez réaliser la fusion <strong>“pan-sharpening”</strong> pour la scène de janvier 2017.</p>
-</div>
 </div>
 <div id="fusion-sous-r" class="section level1">
 <h1><strong><em>Fusion sous R</em></strong></h1>
