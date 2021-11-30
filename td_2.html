@@ -697,7 +697,7 @@ vector_brest_reclassify = vector_brest_reclassify[vector_brest_reclassify$vegeta
 vector_brest_reclassify = vector_brest_reclassify %&gt;% st_set_crs(st_crs(communes))
 
 # Realiser une intersection avec le shapefile des communes
-vector_brest_reclassify = st_intersection(vector_brest_reclassify2,communes)
+vector_brest_reclassify = st_intersection(vector_brest_reclassify,communes)
 
 # Calculer la superficie des surfaces vegetalises
 vector_brest_reclassify[,&#39;area&#39;] &lt;- as.numeric(st_area(vector_brest_reclassify))
