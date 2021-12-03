@@ -263,4 +263,4 @@ p <- ggplot2::ggplot(results, ggplot2::aes(x=communes, y=superficie, fill=commun
 print(p)
 ```
 
-`r emo::ji("question")` Vous devez réaliser la classification Kmeans pour les images `r emo::ji("artificial_satellite")`
+`r emo::ji("question")` Vous devez réaliser la classification Kmeans pour les autres images satellitaires `r emo::ji("artificial_satellite")`

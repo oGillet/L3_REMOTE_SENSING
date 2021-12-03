@@ -333,6 +333,9 @@ div.tocify {
 <li>
   <a href="td_4.html">TD n°4</a>
 </li>
+<li>
+  <a href="exam.html">Examen (CC)</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -712,7 +715,41 @@ colnames(results) &lt;- c(&#39;communes&#39;,&#39;superficie&#39;)
 results[,&#39;superficie&#39;] &lt;- results[,&#39;superficie&#39;]/1000000
 save(results,file=&#39;results.RData&#39;)</code></pre>
 <p>📊 Voici un exemple de résultat attendu</p>
+<center>
 <p><img src="td_2_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</center>
+</div>
+<div id="calcul-de-la-superficie-des-espaces-végétalisés-depuis-le-plugin-lecos" class="section level1">
+<h1><strong><em>Calcul de la superficie des espaces végétalisés depuis le plugin LECOS</em></strong></h1>
+<p>Pour le télécharger, après ouverture du SIG QGIS, vous devez vous rendre sur la fenêtre “Installer/Gérer les extensions” et installer le plugin “LECOS”:</p>
+<blockquote>
+<p>Extensions -&gt; Installer/Gérer les extensions</p>
+</blockquote>
+<p>Après l’installation du plugin, vous devez utiliser l’outil <strong>Landscape vector overlay</strong></p>
+<blockquote>
+<p>Raster -&gt; Landscape Ecology -&gt; Landscape vector overlay</p>
+</blockquote>
+<center>
+<img src="images/LECOS.png" title="fig:" alt="Fenêtre de l’outils “Landscape vector overlay”" />
+</center>
+<p>Les paramètres à renseigner sont les suivants :</p>
+<ul>
+<li>Landscape Grid = votre classification ou votre raster reclassifié<br />
+</li>
+<li>Overlay Vector Grid = communes.shp<br />
+</li>
+<li>Settings = class<br />
+</li>
+<li>Choose class = La valeur devotre classe végétation<br />
+</li>
+<li>Vector grid ID = NOM (pour le nom des communes)<br />
+</li>
+<li>Output = save in attribute table (cette option va ajouter les statistiques directement dans la table attributaire du shapefile des communes)<br />
+Metrics = Land Cover</li>
+</ul>
+<p><img src="images/output_LECOS.png" /></p>
+<p>L’attribut <strong>Land cover</strong> est en m², vous devez le convertir en km².<br />
+1 - Créer un champ superficieVEG en km² (=Land cover/ 1 000 000)</p>
 </div>
 
 

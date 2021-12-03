@@ -322,7 +322,8 @@ save(results,file='results.RData')
   
 `r emo::ji("stats")` Voici un exemple de résultat attendu  
 
-  
+
+<center>
 ```{r echo=FALSE, message=FALSE, warning=FALSE, , echo=FALSE}
 load('results.RData')
 # results[,'superficie'] <- results[,'superficie']/1000
@@ -334,3 +335,34 @@ p <- ggplot2::ggplot(results, ggplot2::aes(x=communes, y=superficie, fill=commun
   ggplot2::scale_fill_brewer(palette="Dark2")
 print(p)
 ```
+
+</center>
+
+# ***Calcul de la superficie des espaces végétalisés depuis le plugin LECOS*** 
+
+Pour le télécharger, après ouverture du SIG QGIS, vous devez vous rendre sur la fenêtre "Installer/Gérer les extensions" et installer le plugin "LECOS":  
+
+> Extensions -> Installer/Gérer les extensions  
+
+Après l'installation du plugin, vous devez utiliser l'outil **Landscape vector overlay**
+
+> Raster -> Landscape Ecology -> Landscape vector overlay  
+
+<center>
+![Fenêtre de l'outils "Landscape vector overlay"](images/LECOS.png)  
+</center> 
+
+Les paramètres à renseigner sont les suivants :
+
+- Landscape Grid = votre classification ou votre raster reclassifié  
+- Overlay Vector Grid = communes.shp   
+- Settings = class  
+- Choose class = La valeur devotre classe végétation  
+- Vector grid ID = NOM (pour le nom des communes)  
+- Output = save in attribute table (cette option va ajouter les statistiques directement dans la table attributaire du shapefile des communes)  
+Metrics = Land Cover   
+
+![](images/output_LECOS.png)   
+
+L'attribut **Land cover** est en m², vous devez le convertir en km².  
+1 - Créer un champ superficieVEG en km² (=Land cover/ 1 000 000)

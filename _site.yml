@@ -10,6 +10,8 @@ navbar:
       href: td_3.html
     - text: "TD n°4"
       href: td_4.html
+    - text: "Examen (CC)"
+      href: exam.html
   right: 
     - icon: fa-envelope fa-lg
       href: mailto:<gillet.olivier@outlook.fr>
