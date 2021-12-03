@@ -110,7 +110,7 @@ https://earthexplorer.usgs.gov/
 
 ### 2 - Télécharger le plugin SAC et ProfilTool
 
-QGIS n'est pas un logiciel de traitement d'images comme IDRISI ou ENVI. Pour classifier graphiquement des images satellitaires via le Système d'Information Géographique (SIG, QGIS), nous devons installer un plugin "Semi-Automatic Classification". Ce premier plugin open-source a été développé par Luca Congedo pour la classifier des images satellitaires. L'outil est très complet car il fournit des outils de téléchargement, de pré/post traitements des images.  
+QGIS n'est pas un logiciel de traitement d'images comme IDRISI ou ENVI. Pour classifier graphiquement des images satellitaires via le Système d'Information Géographique (SIG, QGIS), nous devons installer un plugin "Semi-Automatic Classification". Ce premier plugin open-source a été développé par Luca Congedo pour classifier des images satellitaires. L'outil est très complet car il fournit des outils de téléchargement, de pré/post traitements des images.  
 
 Pour le télécharger, après ouverture du SIG QGIS, vous devez vous rendre sur la fenêtre "Installer/Gérer les extensions" et installer le plugin "Semi-Automatic Classification":  
 
@@ -132,7 +132,7 @@ L'algorithme de pré-traitement des données affiche les bandes spectrales dans 
 
 La classification, manuelle ou automatique, a pour objectif d'assigner une classe particulière à chacun des pixels d'une scène (surface en eau, surface végétalisée ou sol nu par exemple). Cette classification, ou typologie, est une mosaïque de pixels qui appartiennent chacun à une classe d'occupation du sols. Celle-ci peut être plus ou moins complexe (nombre de classe, caractérisation des objets observés, ..).
 
-Pour rappel, les images satellitaires sont des images numériques que l'on peut exploiter à travers des traitements statistiques et/ou mathématiques afin de calculer des indicateurs ou de les classifier. Tous pixel sont caractérisés par un vecteur de valeur numérique. La longueur de se vecteur dépend du nombre de bandes spectrales de l'image. Ainsi, et en fonction des vecteurs de valeurs, des groupes de pixels qui ont les mêmes caractéristiques (ou presque) peuvent être classé dans une **classe d'information**. Les pixels réunis au sein de ces différentes classes d'une typologie ont des caractéristiques radiométriques communes et correspondant donc à des objets géographiques similaires ou très proches.
+Pour rappel, les images satellitaires sont des images numériques que l'on peut exploiter à travers des traitements statistiques et/ou mathématiques afin de calculer des indicateurs ou de les classifier. Tous pixels sont caractérisés par un vecteur de valeurs numériques. La longueur de ce vecteur dépend du nombre de bandes spectrales de l'image. Ainsi, et en fonction des vecteurs de valeurs, des groupes de pixels qui ont les mêmes caractéristiques (ou presque) peuvent être classés dans une **classe d'information**. Les pixels réunis au sein de ces différentes classes d'une typologie ont des caractéristiques radiométriques communes correspondant donc à des objets géographiques similaires ou très proches.
 
 On parle de **partitionnement de données** ou de **clustering**.
 
