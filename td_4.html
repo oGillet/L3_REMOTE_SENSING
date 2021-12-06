@@ -383,7 +383,7 @@ text-align: justify}
 3 - Cartographier et analyser les résultats</p>
 </div>
 <div id="sentinel-2-s2" class="section level1">
-<h1><strong>Sentinel-2 (S2)</strong></h1>
+<h1><strong>Sentinel-2 (S2) 🛰</strong></h1>
 <p>L’ESA, via le programme Sentinel, vise à déployer toute une série de satellites d’observation de la Terre (les premiers lancements ont eu lieu en 2015 et 2017). Le principal objectif du programme est de fournir aux pays européens des données complètes et actualisées leur permettant d’assurer le contrôle et la surveillance de l’environnement.</p>
 <div class="figure">
 <img src="images/s2.jpg" alt="" />
@@ -592,10 +592,10 @@ Bande spectrale n°12 - SWIR
 <div id="les-algorithmes-de-classification" class="section level1">
 <h1><strong>Les algorithmes de classification </strong></h1>
 <p>La classification, manuelle ou automatique, a pour objectif d’assigner une classe particulière à chacun des pixels d’une scène (surface en eau, surface végétalisée ou sol nu par exemple). Cette classification, ou typologie, est une mosaïque de pixels qui appartiennent chacun à une classe d’occupation du sols. Celle-ci peut être plus ou moins complexe (nombre de classe, caractérisation des objets observés, ..).</p>
-<p>Pour rappel, les images satellitaires sont des images numériques que l’on peut exploiter à travers des traitements statistiques et/ou mathématiques afin de calculer des indicateurs ou de les classifier. Tous pixels sont caractérisés par un vecteur de valeurs numériques. La longueur de ce vecteur dépend du nombre de bandes spectrales de l’image. Ainsi, et en fonction des vecteurs de valeurs, des groupes de pixels qui ont les mêmes caractéristiques (ou presque) peuvent être classés dans une <strong>classe d’information</strong>. Les pixels réunis au sein de ces différentes classes d’une typologie ont des caractéristiques radiométriques communes correspondant donc à des objets géographiques similaires ou très proches.</p>
+<p>Pour rappel, les images satellitaires sont des images numériques que l’on peut exploiter à travers des traitements statistiques et/ou mathématiques afin de calculer des indicateurs ou de les classifier. Tous pixels sont caractérisés par un vecteur de valeurs numériques. La longueur de ce vecteur dépend du nombre de bandes spectrales de l’image. Ainsi, et en fonction des vecteurs de valeurs, des groupes de pixels qui ont les mêmes caractéristiques peuvent être classés au sein d’une même classe, d’une <strong>classe d’information</strong>. Les pixels réunis ont des caractéristiques radiométriques communes et correspondent donc à des objets géographiques similaires ou très proches.</p>
 </div>
 <div id="classification-non-supervisée" class="section level1">
-<h1><strong>Classification non supervisée </strong></h1>
+<h1><strong>Classification non supervisée 🖥</strong></h1>
 <p>On parle de <strong>partitionnement de données</strong> ou de <strong>clustering</strong>.</p>
 <p>La définition sur <a href="https://fr.wikipedia.org/wiki/Partitionnement_de_donn%C3%A9es"><strong>wikipedia</strong></a>:</p>
 <blockquote>
@@ -609,7 +609,9 @@ Bande spectrale n°12 - SWIR
 </div>
 <div id="algorithme-kmeans" class="section level1">
 <h1><strong>Algorithme Kmeans</strong></h1>
-<p>⚠️ Rappel CM de Mme Vaguet.</p>
+</div>
+<div id="rappel-cm-de-mme-vaguet" class="section level1">
+<h1><strong>⚠️ Rappel CM de Mme Vaguet</strong></h1>
 <ul>
 <li><p>Données en entrée : n points placés dans un référentiel en d dimensions<br />
 Où <strong>n = nombre de pixels dans l’image</strong><br />
@@ -630,8 +632,8 @@ On déplace le centroïde des clusters vers leur centre de gravité.</p></li>
 <p class="caption"><a href="https://dashee87.github.io/data%20science/general/Clustering-with-Scikit-with-GIFs/" class="uri">https://dashee87.github.io/data%20science/general/Clustering-with-Scikit-with-GIFs/</a></p>
 </div>
 </center>
-<div id="réaliser-la-classification-sous-qgis" class="section level3">
-<h3>1 - Réaliser la classification sous QGIS</h3>
+<div id="réaliser-la-classification-non-supervisée-sous-qgis" class="section level3">
+<h3>1 - Réaliser la classification non supervisée sous QGIS</h3>
 <blockquote>
 <p>SCP -&gt; Traitement de bande -&gt; Clustering</p>
 </blockquote>

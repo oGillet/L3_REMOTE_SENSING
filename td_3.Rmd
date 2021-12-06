@@ -35,7 +35,7 @@ Le TD va se dérouler en 3 temps :
 2 - Faire une composition colorée **"vraies couleurs"** puis exporter les PNGs via QGIS pour faire un gif  
 3 - Réaliser une fusion d'images satellitaires par la méthode du **pan-sharpening**   
 
-# **Météosat Seconde Génération (MSG)** 
+# **Météosat Seconde Génération (MSG) `r emo::ji("artificial_satellite")`** 
 
 **Mission principale** ➔ Prévision météorologique  
 **Missions secondaires** ➔ Surveillance du climat et de l'environnement.  
@@ -139,7 +139,7 @@ Notre jeu de données Landsat 8 a cependant une bande spectrale dont la résolut
 
 L'objectif est donc de fusionner la **bande spectrale n°8 - Panchromatique** avec les autres bandes (**bande spectrale n°2 - Bleu, bande spectrale n°3 - Vert, bande spectrale n°4 - Rouge, bande spectrale n°5 - Infrarouge proche**)  
 
-# **Étapes pour fusionner les images**
+# **Étapes pour fusionner les images `r emo::ji("desktop_computer")`**
 
 `r emo::ji("question")` 1 - Vous devez réaliser un layerstack des images du **22 janvier 2017**  & **27 août 2017**.  
 `r emo::ji("question")` 2 - Vous devez télécharger les **bandes spectrales n°8 - Panchromatique du 22 janvier 2017  & 27 août 2017** sur la plateforme [Universitice](https://universitice.univ-rouen.fr).  

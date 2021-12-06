@@ -57,11 +57,21 @@ kbl(df, col.names = NULL) %>%
   pack_rows("Instrument embarqué n°1 - OLI", 1, 7, label_row_css = "background-color: #333333; color: #fff;")
 ```
 
-# **Les algorithmes de classification**   
+# **Les algorithmes de classification **   
 # **`r emo::ji("warning")` Rappel TD n°4**  
 
 La classification, manuelle ou automatique, a pour objectif d'assigner une classe particulière à chacun des pixels d'une scène (surface en eau, surface végétalisée ou sol nu par exemple). Cette classification, ou typologie, est une mosaïque de pixels qui appartiennent chacun à une classe d'occupation du sols. Celle-ci peut être plus ou moins complexe (nombre de classe, caractérisation des objets observés, ..).
 
-Pour rappel, les images satellitaires sont des images numériques que l'on peut exploiter à travers des traitements statistiques et/ou mathématiques afin de calculer des indicateurs ou de les classifier. Tous pixels sont caractérisés par un vecteur de valeurs numériques. La longueur de ce vecteur dépend du nombre de bandes spectrales de l'image. Ainsi, et en fonction des vecteurs de valeurs, des groupes de pixels qui ont les mêmes caractéristiques (ou presque) peuvent être classés dans une **classe d'information**. Les pixels réunis au sein de ces différentes classes d'une typologie ont des caractéristiques radiométriques communes correspondant donc à des objets géographiques similaires ou très proches.
+Pour rappel, les images satellitaires sont des images numériques que l'on peut exploiter à travers des traitements statistiques et/ou mathématiques afin de calculer des indicateurs ou de les classifier. Tous pixels sont caractérisés par un vecteur de valeurs numériques. La longueur de ce vecteur dépend du nombre de bandes spectrales de l'image. Ainsi, et en fonction des vecteurs de valeurs, des groupes de pixels qui ont les mêmes caractéristiques peuvent être classés au sein d'une même classe, d'une  **classe d'information**. Les pixels réunis ont des caractéristiques radiométriques communes et correspondent donc à des objets géographiques similaires ou très proches.
 
-# **Classification supervisée **  
+# **Classification supervisée `r emo::ji("desktop_computer")`**  
+
+A l'inverse de la classification non supervisée, l'opérateur peut maintenant définir le nombre de classes et les règles d'ajustements de la classification. En effet, l'utilisateur définit des échantillons lesquels se basent l'algorithme pour effectuer la classification des pixels. Ces zones d'apprentissage sites permettent de définir les centres de classes afin de partitionner de façon dirigée la classification. 
+
+L’opérateur connait ou reconnait des objets sur son image. Il connaît également le nombre de classes souhaitées. Il connaît au moins une zone représentative pour chaque classe. Il choisit ensuite quelques zones présentant des caractéristiques homogènes permettant de servir de « modèle spectral » pour la classification des autres pixels. A partir des Zones d'Apprentissage, sont extraites les caractéristiques statistiques de chaque classe en terme spectrale (ex: signature spectrale moyenne). Tous les pixels de l’image vont ensuite être tour à tour comparés aux référents de chaque classe et être rattaché à celui dont il est le plus proche.
+
+Pour évaluer le résultat obtenu, la classification, l'opérateur doit disposer de deux jeux de données issus de la vectorisation des zones d'entraînement. Le premier jeu de données est utilisé pour réaliser la classification alors que le second permet de valider ou non la classification.
+
+![](images/CLASSIFICATION.png)
+
+### 1 - Réaliser la classification supervisée sous QGIS
