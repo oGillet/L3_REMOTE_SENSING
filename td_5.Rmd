@@ -40,7 +40,7 @@ Le TD va se dérouler en 3 temps :
 
 Vous devez vous rendre sur [Universitice](https://universitice.univ-rouen.fr)  et télécharger le jeu de données à télécharger est le suivant :
 
-> TD 5 - Donnees L8 (2017, 1 scène, 7 bandes spectrales)  
+> TD 5 - Donnees L8 (2017, 1 scène, 7 bandes spectrales) et un shapefile (3 communes de Brest Métropole)  
 
 Le jeu de données est composé de plusieurs scènes Landsat 8, 4 scènes acquises en 2017. Vous disposez seulement de 5 bandes spectrales pour chaque scène.  
 
