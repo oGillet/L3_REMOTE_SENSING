@@ -493,6 +493,64 @@ Bande spectrale n°7 - Infrarouge à ondes courtes
 <p><img src="images/CLASSIFICATION.png" /></p>
 <div id="réaliser-la-classification-supervisée-sous-qgis" class="section level3">
 <h3>1 - Réaliser la classification supervisée sous QGIS</h3>
+<blockquote>
+<p>SCP -&gt; Pré-traitement -&gt; Landsat</p>
+</blockquote>
+<p>Vous devez pré-traiter vos données afin d’avoir des valeurs de réflectance. Le plugin SCP prétraite automatiquement les données. La réflectance donne une information sur l’interaction rayonnement éléctromagnétique/surfaces (absorption, transmission, réflexion). Cette réflexion est capté par les satellites. C’est une grandeur physique qui traduit la proportion de lumière réfléchie par la surface d’une cible. C’est le rapport entre le flux lumineux réfléchi et le flux lumineux incident.</p>
+</div>
+<div id="créer-des-compositions-colorées-vraies-et-fausses-couleurs" class="section level3">
+<h3>2 - Créer des compositions colorées “vraies et fausses couleurs”</h3>
+<p><img src="images/s2_cc_vrai.png" /></p>
+</div>
+<div id="réaliser-léchantillon-pour-diriger-la-classification" class="section level3">
+<h3>3 - Réaliser l’échantillon pour diriger la classification</h3>
+<p>1 - Vous devez vectoriser votre échantillon (méthode manuelle ou automatique).</p>
+<p><img src="images/sample_s2.png" /></p>
+<p>2 - Ensuite, vérifiez la variance inter-classe, la distance entre chaque classe.</p>
+<p><img src="images/spectral_signature.png" /></p>
+<p>2 - Puis, prévisualisez votre classification avec l’outil dédié.</p>
+<p><img src="images/preview_maxlike.png" /></p>
+</div>
+<div id="classifier-votre-image-satellitaire" class="section level3">
+<h3>4 - Classifier votre image satellitaire</h3>
+<blockquote>
+<p>SCP -&gt; Traitement de bande -&gt; Classification</p>
+</blockquote>
+<p><img src="images/maxlike_algo.png" /></p>
+<p><img src="images/result_maxlike_s2.png" /></p>
+<p>Après exécution de votre algorithme de classification, vous pouvez appliquer un filtre pour modifier la valeur des pixels isolés pour la valeur dominante de son voisinage, un filtre majoritaire. Les filtres “passe-bas” agissent en atténuant/adoucissant les contrastes (Réduit donc le bruit, réduit donc les pixels isolés). A l’inverse, les filtres “passe-haut” renforcent/améliorent les contrastes.</p>
+</div>
+</div>
+<div id="filtre-majoritaire---cm-mme-vaguet" class="section level1">
+<h1><strong>⚠️Filtre majoritaire - CM Mme Vaguet</strong></h1>
+<p><strong>Objectif</strong> = enlever les pixels isolés<br />
+- Dans un raster, cette méthode permet de changer la valeur d’un pixel en fonction de la valeur des pixels voisins.<br />
+- Dans une fenêtre 3x3, on peut considérer 2 types de voisinage :<br />
+<strong>« 4 voisins les plus proches »</strong> ou <strong>« 8 voisins les plus proches » </strong> (choix de l’opérateur).<br />
+- Une fois le filtre appliqué, la cellule centrale prend la valeur la plus représentée parmi les cellules voisines.<br />
+- Cette valeur doit être représentée dans la moitié ou la majorité des cellules voisines (choix de l’opérateur).</p>
+<blockquote>
+<p>SCP -&gt; Post-traitement -&gt; Cribler la classification</p>
+</blockquote>
+<p><img src="images/filtre_s2_maxlike.png" /></p>
+<div id="valider-votre-classification" class="section level3">
+<h3>5 - Valider votre classification</h3>
+<p>Pour terminer, vous devez votre valider classification avec un autre échantillon. Pour rappel, l’opérateur doit disposer de deux jeux de données issus de la vectorisation des zones d’entraînement. Le premier jeu de données est utilisé pour réaliser la classification alors que le second permet de valider ou non la classification. On distingue deux types de validation : - <strong>L’évaluation qualitative</strong> ou interprétation visuelle des résultats. C’est une comparaison visuelle entre le résultat et d’autres données comme des photographies aériennes … - <strong>L’évaluation quantitative</strong> mesure de manière très précise l’écart obtenu entre l’échantillon de validation et de classification. Une matrice de confusion ainsi qu’un indice de Kappa peuvent alors être générés pour évaluer la classification.</p>
+<blockquote>
+<p>SCP -&gt; Post-traitement -&gt; Précision</p>
+</blockquote>
+<p><img src="images/validation_1.png" /></p>
+<p><img src="images/validation_2.png" /></p>
+</div>
+<div id="calcul-de-la-superficie-des-espaces-végétalisés-par-commune" class="section level3">
+<h3>6 - Calcul de la superficie des espaces végétalisés par commune</h3>
+<p><img src="images/stats_s2_3communes.png" /></p>
+<p><img src="images/stats_s2_3communes_1.png" /></p>
+<p><img src="images/stats_s2_3communes_2.png" /></p>
+<p>📊 Voici un exemple de résultat attendu</p>
+<center>
+<img src="td_5_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+</center>
 </div>
 </div>
 

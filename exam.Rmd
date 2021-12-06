@@ -33,7 +33,7 @@ L'objectif de l'exercice est de calculer la superficie totale (km²) des espaces
 
 ### ***Etapes***  
 - Classifier les images selon les trois méthodes de classification (seuillage, non supervisée et supervisée)  
-- Reclassifier les rasters afin d'extraire la classe végétation pour chaque classification (calculatrice raster `r emo::ji("abacus")`ou algorithme   *reclassification* du plugin SCP `r emo::ji("computer")`)  
+- Reclassifier les rasters afin d'extraire la classe végétation pour chaque classification (calculatrice raster `r emo::ji("abacus")` ou algorithme   *reclassification* du plugin SCP `r emo::ji("computer")`)  
 - Calculer les statistiques pour les communes de Brest, de Guilers et de Plouzané (selon l'une des deux méthodes QGIS ou selon le script R)  
 
 ### ***Données (Inputs)***  

@@ -75,3 +75,84 @@ Pour évaluer le résultat obtenu, la classification, l'opérateur doit disposer
 ![](images/CLASSIFICATION.png)
 
 ### 1 - Réaliser la classification supervisée sous QGIS
+
+> SCP -> Pré-traitement -> Landsat
+
+Vous devez pré-traiter vos données afin d'avoir des valeurs de réflectance. Le plugin SCP prétraite automatiquement les données. La réflectance donne une information sur l'interaction rayonnement éléctromagnétique/surfaces (absorption, transmission, réflexion). Cette réflexion est capté par les satellites. C'est une grandeur physique qui  traduit  la proportion de  lumière  réfléchie  par  la  surface  d'une  cible.  C'est le  rapport  entre  le  flux  lumineux  réfléchi et le flux lumineux incident.
+
+### 2 - Créer des compositions colorées "vraies et fausses couleurs"
+
+![](images/s2_cc_vrai.png)
+
+### 3 - Réaliser l'échantillon pour diriger la classification
+
+1 - Vous devez vectoriser votre échantillon (méthode manuelle ou automatique).  
+
+![](images/sample_s2.png)
+
+2 - Ensuite, vérifiez la variance inter-classe, la distance entre chaque classe.  
+
+![](images/spectral_signature.png)
+
+2 - Puis, prévisualisez votre classification avec l'outil dédié.  
+
+![](images/preview_maxlike.png)
+
+### 4 - Classifier votre image satellitaire
+
+> SCP -> Traitement de bande -> Classification
+
+![](images/maxlike_algo.png)
+
+![](images/result_maxlike_s2.png)
+
+Après exécution de votre algorithme de classification, vous pouvez appliquer un filtre pour modifier la valeur des pixels isolés pour la valeur dominante de son voisinage, un filtre majoritaire. Les filtres "passe-bas" agissent en atténuant/adoucissant les contrastes (Réduit donc le bruit, réduit donc les pixels isolés). A l'inverse, les filtres "passe-haut" renforcent/améliorent les contrastes. 
+
+# **`r emo::ji("warning")`Filtre majoritaire - CM Mme Vaguet**  
+
+**Objectif** = enlever les pixels isolés   
+  - Dans un raster, cette méthode permet de changer la valeur d’un pixel en fonction de la valeur des pixels voisins.     
+  - Dans une fenêtre 3x3, on peut considérer 2 types de voisinage :     
+    **« 4 voisins les plus proches »** ou **« 8 voisins les plus proches » ** (choix de l’opérateur).   
+  - Une fois le filtre appliqué, la cellule centrale prend la valeur la plus représentée parmi les cellules voisines.   
+  - Cette valeur doit être représentée dans la moitié ou la majorité des cellules voisines (choix de l’opérateur).   
+
+> SCP -> Post-traitement -> Cribler la classification
+
+![](images/filtre_s2_maxlike.png)
+
+
+### 5 - Valider votre classification
+
+Pour terminer, vous devez votre valider classification avec un autre échantillon. Pour rappel, l'opérateur doit disposer de deux jeux de données issus de la vectorisation des zones d'entraînement. Le premier jeu de données est utilisé pour réaliser la classification alors que le second permet de valider ou non la classification. On distingue deux types de validation : 
+- **L'évaluation qualitative** ou interprétation visuelle des résultats. C'est une comparaison visuelle entre le résultat et d'autres données comme des photographies aériennes ... 
+- **L'évaluation quantitative** mesure de manière très précise l'écart obtenu entre l'échantillon de validation et de classification. Une matrice de confusion ainsi qu'un indice de Kappa peuvent alors être générés pour évaluer la classification. 
+
+> SCP -> Post-traitement -> Précision
+
+![](images/validation_1.png)  
+
+![](images/validation_2.png) 
+
+### 6 - Calcul de la superficie des espaces végétalisés par commune 
+
+![](images/stats_s2_3communes.png) 
+
+![](images/stats_s2_3communes_1.png) 
+
+![](images/stats_s2_3communes_2.png) 
+
+`r emo::ji("stats")` Voici un exemple de résultat attendu  
+
+<center>
+```{r echo=FALSE, message=FALSE, warning=FALSE, , echo=FALSE}
+results <- data.frame(communes=c('Brest','Guilers','Plouzané'),superficie=c(19727800,21040700,11764600)/1000000)
+p <- ggplot2::ggplot(results, ggplot2::aes(x=communes, y=superficie, fill=communes)) +
+  ggplot2::geom_bar(stat="identity")+
+  ggplot2::labs(title = "Superficie des espaces végétalisés par commune",subtitle = "10 octobre 2017 - Algorithme Kmeans", x="Commune", y="km2")+ 
+  ggplot2::theme_minimal() +
+  ggplot2::theme(axis.text.x = ggplot2::element_blank())+
+  ggplot2::scale_fill_brewer(palette="Dark2")
+print(p)
+```
+</center>
