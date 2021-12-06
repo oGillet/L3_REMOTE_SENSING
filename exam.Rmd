@@ -29,7 +29,7 @@ _Travaux dirigés réalisés par Olivier Gillet et Yvette Vaguet_
 
 ![](images/Exam_L3.png)
 
-L'objectif de l'exercice est de calculer la superficie totale (km²) des espaces végétalisés pour les communes de Brest, de Guilers et de Plouzané pour chaque classification pour le mois d'avril 2017.
+L'objectif de l'exercice est de calculer la superficie totale (km²) des espaces végétalisés lors du mois d'avril 2017 pour les communes de Brest, de Guilers et de Plouzané et pour chaque classification (seuil, classification supervisée et non supervisée).
 
 ### ***Etapes***  
 - Classifier les images selon les trois méthodes de classification (seuillage, non supervisée et supervisée)  

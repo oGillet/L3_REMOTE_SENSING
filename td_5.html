@@ -35,6 +35,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -371,6 +373,120 @@ text-align: justify}
 <p><em>Travaux dirigés réalisés par Olivier Gillet et Yvette Vaguet</em></p>
 <div id="objectifs-du-td-n5" class="section level1">
 <h1>Objectifs du TD n°5</h1>
+<ul>
+<li>Apprendre à classifier des images satellitaires selon une approche supervisée et comprendre le fonctionnement d’une classification automatique supervisée.</li>
+<li>Réaliser une cartographie et quelques statistiques des résultats</li>
+</ul>
+<p>Le TD va se dérouler en 3 temps :<br />
+1 - Télécharger les données Landsat 8 sur la plateforme <strong>Universitice</strong><br />
+2 - Classifier selon une méthode supervisée des images satellitaires via le plugin SAC<br />
+3 - Réaliser un traitement post-classification (filtres) 3 - Cartographier et analyser les résultats</p>
+</div>
+<div id="télécharger-les-images-landsat" class="section level1">
+<h1>1 - Télécharger les images Landsat 🛰</h1>
+<p>Vous devez vous rendre sur <a href="https://universitice.univ-rouen.fr">Universitice</a> et télécharger le jeu de données à télécharger est le suivant :</p>
+<blockquote>
+<p>TD 5 - Donnees L8 (2017, 1 scène, 7 bandes spectrales)</p>
+</blockquote>
+<p>Le jeu de données est composé de plusieurs scènes Landsat 8, 4 scènes acquises en 2017. Vous disposez seulement de 5 bandes spectrales pour chaque scène.</p>
+<p>Pour rappel, les images satellitaires se caractérisent par une information panchromatique, multi- ou hyper-spectrales. Le nombre de bandes spectrales et les intervalles de longueur d’onde de ces dernières diffèrent selon le satellite et les capteurs utilisés. Les bandes spectrales à disposition sont les suivantes :</p>
+<table class=" lightable-paper" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr grouplength="7">
+<td colspan="3" style="background-color: #333333; color: #fff;">
+<strong>Instrument embarqué n°1 - OLI</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+Bande spectrale n°1 - aérosols
+</td>
+<td style="text-align:left;">
+0.433 - 0.453 µm
+</td>
+<td style="text-align:left;">
+30 m
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+Bande spectrale n°2 - Bleu
+</td>
+<td style="text-align:left;">
+0.450 - 0.515 µm
+</td>
+<td style="text-align:left;">
+30 m
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+Bande spectrale n°3 - Vert
+</td>
+<td style="text-align:left;">
+0.525 - 0.600 µm
+</td>
+<td style="text-align:left;">
+30 m
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+Bande spectrale n°4 - Rouge
+</td>
+<td style="text-align:left;">
+0.630 - 0.680 µm
+</td>
+<td style="text-align:left;">
+30 m
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+Bande spectrale n°5 - Infrarouge proche
+</td>
+<td style="text-align:left;">
+0.845 - 0.885 µm
+</td>
+<td style="text-align:left;">
+30 m
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+Bande spectrale n°6 - Infrarouge à ondes courtes
+</td>
+<td style="text-align:left;">
+1.560 - 1.660 µm
+</td>
+<td style="text-align:left;">
+30 m
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+Bande spectrale n°7 - Infrarouge à ondes courtes
+</td>
+<td style="text-align:left;">
+2.100 - 2.300 µm
+</td>
+<td style="text-align:left;">
+30 m
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="les-algorithmes-de-classification" class="section level1">
+<h1><strong>Les algorithmes de classification</strong></h1>
+</div>
+<div id="rappel-td-n4" class="section level1">
+<h1><strong>⚠️ Rappel TD n°4</strong></h1>
+<p>La classification, manuelle ou automatique, a pour objectif d’assigner une classe particulière à chacun des pixels d’une scène (surface en eau, surface végétalisée ou sol nu par exemple). Cette classification, ou typologie, est une mosaïque de pixels qui appartiennent chacun à une classe d’occupation du sols. Celle-ci peut être plus ou moins complexe (nombre de classe, caractérisation des objets observés, ..).</p>
+<p>Pour rappel, les images satellitaires sont des images numériques que l’on peut exploiter à travers des traitements statistiques et/ou mathématiques afin de calculer des indicateurs ou de les classifier. Tous pixels sont caractérisés par un vecteur de valeurs numériques. La longueur de ce vecteur dépend du nombre de bandes spectrales de l’image. Ainsi, et en fonction des vecteurs de valeurs, des groupes de pixels qui ont les mêmes caractéristiques (ou presque) peuvent être classés dans une <strong>classe d’information</strong>. Les pixels réunis au sein de ces différentes classes d’une typologie ont des caractéristiques radiométriques communes correspondant donc à des objets géographiques similaires ou très proches.</p>
+</div>
+<div id="classification-supervisée" class="section level1">
+<h1><strong>Classification supervisée </strong></h1>
 </div>
 
 

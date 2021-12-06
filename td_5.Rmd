@@ -27,3 +27,41 @@ opts_knit$set(width=75)
 _Travaux dirigés réalisés par Olivier Gillet et Yvette Vaguet_
 
 # Objectifs du TD n°5
+- Apprendre à classifier des images satellitaires selon une approche supervisée et comprendre le fonctionnement d'une classification automatique supervisée.
+- Réaliser une cartographie et quelques statistiques des résultats  
+
+Le TD va se dérouler en 3 temps :   
+1 - Télécharger les données Landsat 8 sur la plateforme **Universitice**   
+2 - Classifier selon une méthode supervisée des images satellitaires via le plugin SAC  
+3 - Réaliser un traitement post-classification (filtres)
+3 - Cartographier et analyser les résultats  
+
+# 1 - Télécharger les images Landsat `r emo::ji("artificial_satellite")`
+
+Vous devez vous rendre sur [Universitice](https://universitice.univ-rouen.fr)  et télécharger le jeu de données à télécharger est le suivant :
+
+> TD 5 - Donnees L8 (2017, 1 scène, 7 bandes spectrales)  
+
+Le jeu de données est composé de plusieurs scènes Landsat 8, 4 scènes acquises en 2017. Vous disposez seulement de 5 bandes spectrales pour chaque scène.  
+
+Pour rappel, les images satellitaires se caractérisent par une information panchromatique, multi- ou hyper-spectrales. Le nombre de bandes spectrales et les intervalles de longueur d’onde de ces dernières diffèrent selon le satellite et les capteurs utilisés. Les bandes spectrales à disposition sont les suivantes :  
+
+```{r}
+df <- data.frame("Bandes"=c("Bande spectrale n°1 - aérosols","Bande spectrale n°2 - Bleu","Bande spectrale n°3 - Vert","Bande spectrale n°4 - Rouge","Bande spectrale n°5 - Infrarouge proche","Bande spectrale n°6 - Infrarouge à ondes courtes","Bande spectrale n°7 - Infrarouge à ondes courtes"),
+                 "Longueur onde"=c("0.433 - 0.453 µm","0.450 - 0.515 µm","0.525 - 0.600 µm","0.630 - 0.680 µm","0.845 - 0.885 µm","1.560 - 1.660 µm","2.100 - 2.300 µm"),
+                 "Résolution"=c("30 m","30 m","30 m","30 m","30 m","30 m","30 m"))
+
+kbl(df, col.names = NULL) %>%
+  kable_paper(full_width = T) %>%
+  column_spec(1, bold = T)  %>%
+  pack_rows("Instrument embarqué n°1 - OLI", 1, 7, label_row_css = "background-color: #333333; color: #fff;")
+```
+
+# **Les algorithmes de classification**   
+# **`r emo::ji("warning")` Rappel TD n°4**  
+
+La classification, manuelle ou automatique, a pour objectif d'assigner une classe particulière à chacun des pixels d'une scène (surface en eau, surface végétalisée ou sol nu par exemple). Cette classification, ou typologie, est une mosaïque de pixels qui appartiennent chacun à une classe d'occupation du sols. Celle-ci peut être plus ou moins complexe (nombre de classe, caractérisation des objets observés, ..).
+
+Pour rappel, les images satellitaires sont des images numériques que l'on peut exploiter à travers des traitements statistiques et/ou mathématiques afin de calculer des indicateurs ou de les classifier. Tous pixels sont caractérisés par un vecteur de valeurs numériques. La longueur de ce vecteur dépend du nombre de bandes spectrales de l'image. Ainsi, et en fonction des vecteurs de valeurs, des groupes de pixels qui ont les mêmes caractéristiques (ou presque) peuvent être classés dans une **classe d'information**. Les pixels réunis au sein de ces différentes classes d'une typologie ont des caractéristiques radiométriques communes correspondant donc à des objets géographiques similaires ou très proches.
+
+# **Classification supervisée **  

@@ -27,7 +27,7 @@ opts_knit$set(width=75)
 _Travaux dirigés réalisés par Olivier Gillet et Yvette Vaguet_
 
 # Objectifs du TD n°4
-- Apprendre à classifier des images satellitaires selon une approche non supervisée et comprendre le fonctionnement d'une classification automatique.
+- Apprendre à classifier des images satellitaires selon une approche non supervisée et comprendre le fonctionnement d'une classification automatique non supervisée.
 - Réaliser une cartographie et quelques statistiques des résultats  
 
 Le TD va se dérouler en 3 temps :   
@@ -128,11 +128,13 @@ L'algorithme de pré-traitement des données affiche les bandes spectrales dans 
 
 ![Afficher les données dans QGIS](images/s2_scp_step1(2).png)
 
-# **Les algorithmes de classification non supervisées **
+# **Les algorithmes de classification **
 
 La classification, manuelle ou automatique, a pour objectif d'assigner une classe particulière à chacun des pixels d'une scène (surface en eau, surface végétalisée ou sol nu par exemple). Cette classification, ou typologie, est une mosaïque de pixels qui appartiennent chacun à une classe d'occupation du sols. Celle-ci peut être plus ou moins complexe (nombre de classe, caractérisation des objets observés, ..).
 
 Pour rappel, les images satellitaires sont des images numériques que l'on peut exploiter à travers des traitements statistiques et/ou mathématiques afin de calculer des indicateurs ou de les classifier. Tous pixels sont caractérisés par un vecteur de valeurs numériques. La longueur de ce vecteur dépend du nombre de bandes spectrales de l'image. Ainsi, et en fonction des vecteurs de valeurs, des groupes de pixels qui ont les mêmes caractéristiques (ou presque) peuvent être classés dans une **classe d'information**. Les pixels réunis au sein de ces différentes classes d'une typologie ont des caractéristiques radiométriques communes correspondant donc à des objets géographiques similaires ou très proches.
+
+# **Classification non supervisée **
 
 On parle de **partitionnement de données** ou de **clustering**.
 
