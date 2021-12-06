@@ -66,9 +66,9 @@ Pour rappel, les images satellitaires sont des images numériques que l'on peut 
 
 # **Classification supervisée `r emo::ji("desktop_computer")`**  
 
-A l'inverse de la classification non supervisée, l'opérateur peut maintenant définir le nombre de classes et les règles d'ajustements de la classification. En effet, l'utilisateur définit des échantillons lesquels se basent l'algorithme pour effectuer la classification des pixels. Ces zones d'apprentissage sites permettent de définir les centres de classes afin de partitionner de façon dirigée la classification. 
+A l'inverse de la classification non supervisée, l'opérateur peut définir les règles d'ajustements de la classification. En effet, l'opérateur définit des échantillons sur lesquels se basent l'algorithme pour effectuer la classification des pixels. Ces zones d'apprentissage permettent de définir les centres de classes afin de partitionner de façon dirigée la classification. 
 
-L’opérateur connait ou reconnait des objets sur son image. Il connaît également le nombre de classes souhaitées. Il connaît au moins une zone représentative pour chaque classe. Il choisit ensuite quelques zones présentant des caractéristiques homogènes permettant de servir de « modèle spectral » pour la classification des autres pixels. A partir des Zones d'Apprentissage, sont extraites les caractéristiques statistiques de chaque classe en terme spectrale (ex: signature spectrale moyenne). Tous les pixels de l’image vont ensuite être tour à tour comparés aux référents de chaque classe et être rattaché à celui dont il est le plus proche.
+L’opérateur connait ou reconnait des objets sur son image. Il connaît également le nombre de classes souhaitées. Il connaît au moins une zone représentative pour chaque classe. Il choisit ensuite quelques zones présentant des caractéristiques homogènes permettant de servir de « modèle spectral » pour la classification des autres pixels. A partir des zones d'epprentissage, sont extraites les caractéristiques statistiques de chaque classe en terme spectrale (ex: signature spectrale moyenne). Tous les pixels de l’image vont ensuite être tour à tour comparés aux référents de chaque classe et être rattaché à celui dont il est le plus proche.
 
 Pour évaluer le résultat obtenu, la classification, l'opérateur doit disposer de deux jeux de données issus de la vectorisation des zones d'entraînement. Le premier jeu de données est utilisé pour réaliser la classification alors que le second permet de valider ou non la classification.
 
@@ -78,7 +78,7 @@ Pour évaluer le résultat obtenu, la classification, l'opérateur doit disposer
 
 > SCP -> Pré-traitement -> Landsat
 
-Vous devez pré-traiter vos données afin d'avoir des valeurs de réflectance. Le plugin SCP prétraite automatiquement les données. La réflectance donne une information sur l'interaction rayonnement éléctromagnétique/surfaces (absorption, transmission, réflexion). Cette réflexion est capté par les satellites. C'est une grandeur physique qui  traduit  la proportion de  lumière  réfléchie  par  la  surface  d'une  cible.  C'est le  rapport  entre  le  flux  lumineux  réfléchi et le flux lumineux incident.
+Vous devez pré-traiter vos données afin d'avoir des valeurs de réflectance. Le plugin SCP prétraite automatiquement les données. La réflectance donne une information sur l'interaction rayonnement éléctromagnétique/surfaces (absorption, transmission, réflexion). Cette réflexion est capté par les satellites. C'est une grandeur physique qui  traduit la proportion de  lumière  réfléchie  par  la  surface  d'une  cible.  C'est le  rapport  entre  le  flux  lumineux  réfléchi et le flux lumineux incident.
 
 ### 2 - Créer des compositions colorées "vraies et fausses couleurs"
 
