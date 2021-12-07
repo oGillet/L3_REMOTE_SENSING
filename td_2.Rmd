@@ -200,7 +200,7 @@ $NDWI = (ROUGE-MIR)/(ROUGE+MIR)$
 
 `r emo::ji("warning")` Vous ne pouvez pas calculer cet indices, il vous manque la bande spectrale du MIR.  
 
-Autres indices pour étudier les surfaces hygrophiles : **Indice d'irrigation**, **DWV (Difference Water Vegetation**
+Autres indices pour étudier les surfaces hygrophiles : **Indice d'irrigation**, **DWV (Difference Water Vegetation)**
 
 # 8 - Exercice n°1  `r emo::ji("stats")`
 
