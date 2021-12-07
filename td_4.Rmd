@@ -43,7 +43,7 @@ L'ESA, via le programme Sentinel, vise à déployer toute une série de satellit
 
 ### 1 - Télécharger les images S2-A  `r emo::ji("artificial_satellite")`
 
-Vous devez vous rendre sur [Universitice](https://universitice.univ-rouen.fr)  et télécharger le jeu de données à télécharger est le suivant :
+Vous devez vous rendre sur [Universitice](https://universitice.univ-rouen.fr)  et télécharger le jeu de données suivant :
 
 > TD 4 - Donnees S2-A (2017, 14 bandes spectrales)  
 

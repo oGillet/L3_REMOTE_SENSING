@@ -37,7 +37,7 @@ L'objectif de l'exercice est de calculer la superficie totale (km²) des espaces
 - Calculer les statistiques pour les communes de Brest, de Guilers et de Plouzané (selon l'une des deux méthodes QGIS ou selon le script R)  
 
 ### ***Données (Inputs)***  
-- Image satellitaire Landsat 8 (raster, 5 bandes spectrales, EPSG::32630)  
+- Image satellitaire Landsat 8 pour avril 2017 (raster, 7 bandes spectrales, EPSG::32630). Vous devez vous rendre sur [Universitice](https://universitice.univ-rouen.fr)  et télécharger le jeu de données du TD n°5.  
 - Donnée vectorielle des communes de Brest métropole (vecteur, polygone, EPSG::32630)  
 
 ### ***Résultats (Outputs)***  

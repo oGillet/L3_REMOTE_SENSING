@@ -73,7 +73,7 @@ R comme Python permettent de s'affranchir des softs classiques (ArcGis, Grass, Q
 
 # 1 - Télécharger les images Landsat `r emo::ji("artificial_satellite")`
 
-Vous devez vous rendre sur [Universitice](https://universitice.univ-rouen.fr)  et télécharger le jeu de données à télécharger est le suivant :
+Vous devez vous rendre sur [Universitice](https://universitice.univ-rouen.fr)  et télécharger le jeu de données suivant :
 
 > TD 2 - Donnees L8 (2017, 4 scènes)  
 
