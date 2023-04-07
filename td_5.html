@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>td_5.knit</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">L3 - Télédétection</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">TD n°1</a>
+</li>
+<li>
+  <a href="td_2.html">TD n°2</a>
+</li>
+<li>
+  <a href="td_3.html">TD n°3</a>
+</li>
+<li>
+  <a href="td_4.html">TD n°4</a>
+</li>
+<li>
+  <a href="td_5.html">TD n°5</a>
+</li>
+<li>
+  <a href="exam.html">Examen (CC)</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="mailto:&lt;gillet.olivier@outlook.fr&gt;">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://github.com/ogillet/">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<style>
+body {
+text-align: justify}
+</style>
+<p><em>Travaux dirigés réalisés par Olivier Gillet et Yvette Vaguet</em></p>
+<div id="objectifs-du-td-n5" class="section level1">
+<h1>Objectifs du TD n°5</h1>
+<ul>
+<li>Apprendre à classifier des images satellitaires selon une approche supervisée et comprendre le fonctionnement d’une classification automatique supervisée.</li>
+<li>Réaliser une cartographie et quelques statistiques des résultats</li>
+</ul>
+<p>Le TD va se dérouler en 3 temps :<br />
+1 - Télécharger les données Landsat 8 sur la plateforme <strong>Universitice</strong><br />
+2 - Classifier selon une méthode supervisée des images satellitaires via le plugin SAC<br />
+3 - Réaliser un traitement post-classification (filtres) 3 - Cartographier et analyser les résultats</p>
+</div>
+<div id="télécharger-les-images-landsat" class="section level1">
+<h1>1 - Télécharger les images Landsat 🛰</h1>
+<p>Vous devez vous rendre sur <a href="https://universitice.univ-rouen.fr">Universitice</a> et télécharger le jeu de données suivant :</p>
+<blockquote>
+<p>TD 5 - Donnees L8 (2017, 1 scène, 7 bandes spectrales) et deux shapefiles (3 communes de Brest Métropole et échantillon de validation)</p>
+</blockquote>
+<p>Le jeu de données est composé de plusieurs scènes Landsat 8, 1 scène acquise en avril 2017. Vous disposez seulement de 7 bandes spectrales pour chaque scène.</p>
+<p>Pour rappel, les images satellitaires se caractérisent par une information panchromatique, multi- ou hyper-spectrales. Le nombre de bandes spectrales et les intervalles de longueur d’onde de ces dernières diffèrent selon le satellite et les capteurs utilisés. Les bandes spectrales à disposition sont les suivantes :</p>
+<table class=" lightable-paper" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr grouplength="7">
+<td colspan="3" style="background-color: #333333; color: #fff;">
+<strong>Instrument embarqué n°1 - OLI</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+Bande spectrale n°1 - aérosols
+</td>
+<td style="text-align:left;">
+0.433 - 0.453 µm
+</td>
+<td style="text-align:left;">
+30 m
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+Bande spectrale n°2 - Bleu
+</td>
+<td style="text-align:left;">
+0.450 - 0.515 µm
+</td>
+<td style="text-align:left;">
+30 m
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+Bande spectrale n°3 - Vert
+</td>
+<td style="text-align:left;">
+0.525 - 0.600 µm
+</td>
+<td style="text-align:left;">
+30 m
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+Bande spectrale n°4 - Rouge
+</td>
+<td style="text-align:left;">
+0.630 - 0.680 µm
+</td>
+<td style="text-align:left;">
+30 m
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+Bande spectrale n°5 - Infrarouge proche
+</td>
+<td style="text-align:left;">
+0.845 - 0.885 µm
+</td>
+<td style="text-align:left;">
+30 m
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+Bande spectrale n°6 - Infrarouge à ondes courtes
+</td>
+<td style="text-align:left;">
+1.560 - 1.660 µm
+</td>
+<td style="text-align:left;">
+30 m
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;padding-left: 2em;" indentlevel="1">
+Bande spectrale n°7 - Infrarouge à ondes courtes
+</td>
+<td style="text-align:left;">
+2.100 - 2.300 µm
+</td>
+<td style="text-align:left;">
+30 m
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="les-algorithmes-de-classification" class="section level1">
+<h1><strong>Les algorithmes de classification </strong></h1>
+</div>
+<div id="rappel-td-n4" class="section level1">
+<h1><strong>⚠️ Rappel TD n°4</strong></h1>
+<p>La classification, manuelle ou automatique, a pour objectif d’assigner une classe particulière à chacun des pixels d’une scène (surface en eau, surface végétalisée ou sol nu par exemple). Cette classification, ou typologie, est une mosaïque de pixels qui appartiennent chacun à une classe d’occupation du sols. Celle-ci peut être plus ou moins complexe (nombre de classe, caractérisation des objets observés, ..).</p>
+<p>Pour rappel, les images satellitaires sont des images numériques que l’on peut exploiter à travers des traitements statistiques et/ou mathématiques afin de calculer des indicateurs ou de les classifier. Tous pixels sont caractérisés par un vecteur de valeurs numériques. La longueur de ce vecteur dépend du nombre de bandes spectrales de l’image. Ainsi, et en fonction des vecteurs de valeurs, des groupes de pixels qui ont les mêmes caractéristiques peuvent être classés au sein d’une même classe, d’une <strong>classe d’information</strong>. Les pixels réunis ont des caractéristiques radiométriques communes et correspondent donc à des objets géographiques similaires ou très proches.</p>
+</div>
+<div id="classification-supervisée" class="section level1">
+<h1><strong>Classification supervisée 🖥</strong></h1>
+<p>A l’inverse de la classification non supervisée, l’opérateur peut définir les règles d’ajustements de la classification. En effet, l’opérateur définit des échantillons sur lesquels se basent l’algorithme pour effectuer la classification des pixels. Ces zones d’apprentissage permettent de définir les centres de classes afin de partitionner de façon dirigée la classification.</p>
+<p>L’opérateur connait ou reconnait des objets sur son image. Il connaît également le nombre de classes souhaitées. Il connaît au moins une zone représentative pour chaque classe. Il choisit ensuite quelques zones présentant des caractéristiques homogènes permettant de servir de « modèle spectral » pour la classification des autres pixels. A partir des zones d’epprentissage, sont extraites les caractéristiques statistiques de chaque classe en terme spectrale (ex: signature spectrale moyenne). Tous les pixels de l’image vont ensuite être tour à tour comparés aux référents de chaque classe et être rattaché à celui dont il est le plus proche.</p>
+<p>Pour évaluer le résultat obtenu, la classification, l’opérateur doit disposer de deux jeux de données issus de la vectorisation des zones d’entraînement. Le premier jeu de données est utilisé pour réaliser la classification alors que le second permet de valider ou non la classification.</p>
+<p><img src="images/CLASSIFICATION.png" /></p>
+<div id="réaliser-la-classification-supervisée-sous-qgis" class="section level3">
+<h3>1 - Réaliser la classification supervisée sous QGIS</h3>
+<blockquote>
+<p>SCP -&gt; Pré-traitement -&gt; Landsat</p>
+</blockquote>
+<p>Vous devez pré-traiter vos données afin d’avoir des valeurs de réflectance. Le plugin SCP prétraite automatiquement les données. La réflectance donne une information sur l’interaction rayonnement éléctromagnétique/surfaces (absorption, transmission, réflexion). Cette réflexion est capté par les satellites. C’est une grandeur physique qui traduit la proportion de lumière réfléchie par la surface d’une cible. C’est le rapport entre le flux lumineux réfléchi et le flux lumineux incident.</p>
+</div>
+<div id="créer-des-compositions-colorées-vraies-et-fausses-couleurs" class="section level3">
+<h3>2 - Créer des compositions colorées “vraies et fausses couleurs”</h3>
+<p><img src="images/s2_cc_vrai.png" /></p>
+</div>
+<div id="réaliser-léchantillon-pour-diriger-la-classification" class="section level3">
+<h3>3 - Réaliser l’échantillon pour diriger la classification</h3>
+<p>1 - Vous devez vectoriser votre échantillon (méthode manuelle ou automatique).</p>
+<p><img src="images/sample_s2.png" /></p>
+<p>2 - Ensuite, vérifiez la variance inter-classe, la distance entre chaque classe.</p>
+<p><img src="images/spectral_signature.png" /></p>
+<p>2 - Puis, prévisualisez votre classification avec l’outil dédié.</p>
+<p><img src="images/preview_maxlike.png" /></p>
+</div>
+<div id="classifier-votre-image-satellitaire" class="section level3">
+<h3>4 - Classifier votre image satellitaire</h3>
+<blockquote>
+<p>SCP -&gt; Traitement de bande -&gt; Classification</p>
+</blockquote>
+<p><img src="images/maxlike_algo.png" /></p>
+<p><img src="images/result_maxlike_s2.png" /></p>
+<p>Après exécution de votre algorithme de classification, vous pouvez appliquer un filtre pour modifier la valeur des pixels isolés pour la valeur dominante de son voisinage, un filtre majoritaire. Les filtres “passe-bas” agissent en atténuant/adoucissant les contrastes (Réduit donc le bruit, réduit donc les pixels isolés). A l’inverse, les filtres “passe-haut” renforcent/améliorent les contrastes.</p>
+</div>
+</div>
+<div id="filtre-majoritaire---cm-mme-vaguet" class="section level1">
+<h1><strong>⚠️Filtre majoritaire - CM Mme Vaguet</strong></h1>
+<p><strong>Objectif</strong> = enlever les pixels isolés<br />
+- Dans un raster, cette méthode permet de changer la valeur d’un pixel en fonction de la valeur des pixels voisins.<br />
+- Dans une fenêtre 3x3, on peut considérer 2 types de voisinage :<br />
+<strong>« 4 voisins les plus proches »</strong> ou <strong>« 8 voisins les plus proches » </strong> (choix de l’opérateur).<br />
+- Une fois le filtre appliqué, la cellule centrale prend la valeur la plus représentée parmi les cellules voisines.<br />
+- Cette valeur doit être représentée dans la moitié ou la majorité des cellules voisines (choix de l’opérateur).</p>
+<blockquote>
+<p>SCP -&gt; Post-traitement -&gt; Cribler la classification</p>
+</blockquote>
+<p><img src="images/filtre_s2_maxlike.png" /></p>
+<div id="valider-votre-classification" class="section level3">
+<h3>5 - Valider votre classification</h3>
+<p>Pour terminer, vous devez votre valider classification avec un autre échantillon. Pour rappel, l’opérateur doit disposer de deux jeux de données issus de la vectorisation des zones d’entraînement. Le premier jeu de données est utilisé pour réaliser la classification alors que le second permet de valider ou non la classification. On distingue deux types de validation : - <strong>L’évaluation qualitative</strong> ou interprétation visuelle des résultats. C’est une comparaison visuelle entre le résultat et d’autres données comme des photographies aériennes … - <strong>L’évaluation quantitative</strong> mesure de manière très précise l’écart obtenu entre l’échantillon de validation et de classification. Une matrice de confusion ainsi qu’un indice de Kappa peuvent alors être générés pour évaluer la classification.</p>
+<blockquote>
+<p>SCP -&gt; Post-traitement -&gt; Précision</p>
+</blockquote>
+<p><img src="images/validation_1.png" /></p>
+<p><img src="images/validation_2.png" /></p>
+</div>
+<div id="calcul-de-la-superficie-des-espaces-végétalisés-par-commune" class="section level3">
+<h3>6 - Calcul de la superficie des espaces végétalisés par commune</h3>
+<p><img src="images/stats_s2_3communes.png" /></p>
+<p><img src="images/stats_s2_3communes_1.png" /></p>
+<p><img src="images/stats_s2_3communes_2.png" /></p>
+<p>📊 Voici un exemple de résultat attendu</p>
+<center>
+<img src="td_5_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+</center>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
